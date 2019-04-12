@@ -35,10 +35,15 @@ body {
   .game {
     display: flex;
     flex-direction: row;
-    background-color: pink;
+    background-color: lightblue;
     height: 95vh;
     justify-content: center;
     align-items: center;
   }
   
-  .game-info {margin-left: 20px;}
+  .game-info {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+  }
