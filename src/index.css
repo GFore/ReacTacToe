@@ -47,4 +47,19 @@ body {
     flex-direction: column;
     align-content: flex-start;
     height: 180px;
+    display: inline-block;
+    text-align: left;
   }
+  ol {
+    height: 120px;
+    column-width: 100px;
+    list-style: none;
+    padding: 0;
+    counter-reset:step-counter -1;
+}
+ol li {
+    counter-increment: step-counter;
+}
+ol li:before {
+    content: counter(step-counter)". ";
+}
