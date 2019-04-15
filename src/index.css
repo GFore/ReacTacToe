@@ -1,65 +1,76 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-  }
-  
-  ol, ul {padding-left: 30px;}
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {margin-bottom: 10px;}
-  
-  .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 60px;
-    height: 60px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 60px;
-  }
-  
-  .square:focus {outline: none;}
-  
-  .kbd-navigation .square:focus {background: #ddd;}
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-    background-color: lightblue;
-    height: 95vh;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .game-info {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    height: 180px;
-    display: inline-block;
-    text-align: left;
-  }
-  ol {
-    height: 120px;
-    column-width: 100px;
-    list-style: none;
-    padding: 0;
-    counter-reset:step-counter -1;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {padding-left: 30px;}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {margin-bottom: 10px;}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 60px;
+  height: 60px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 60px;
+}
+
+.square:focus {outline: none;}
+
+.kbd-navigation .square:focus {background: #ddd;}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  background-color: lightblue;
+  height: 95vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-info {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  height: 180px;
+  display: inline-block;
+  text-align: left;
+}
+
+.game-status {
+  /* width: 180px; */
+}
+
+ol {
+  height: 120px;
+  column-width: 70px;
+  list-style: none;
+  padding: 0;
+  counter-reset:step-counter -1;
 }
 ol li {
-    counter-increment: step-counter;
+  counter-increment: step-counter;
 }
 ol li:before {
-    content: counter(step-counter)". ";
+  content: counter(step-counter)". ";
 }
+
+li button {
+  background-color: lightblue;
+
+}
+
