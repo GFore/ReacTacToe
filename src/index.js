@@ -12,6 +12,7 @@ class Game extends React.Component {
             }],
             stepNumber: 0,
             xIsNext: true,
+            highlighted: Array(9).fill(false),
         };
     }
 
@@ -36,6 +37,16 @@ class Game extends React.Component {
         });
     }
 
+    handleMouseOverStep(i) {
+      const hiState = this.state.highlighted;
+      console.log("HISTATE: ", hiState);
+      const newHighlighted = hiState.slice();
+      newHighlighted[i] = !newHighlighted[i];
+      this.setState({
+        highlighted: newHighlighted,
+      })
+    }
+
     jumpTo(step) {
       this.setState({
         stepNumber: step,
@@ -54,7 +65,13 @@ class Game extends React.Component {
             'Start';
           return (
             <li key={move}>
-                <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                <button
+                  onClick={() => this.jumpTo(move)}
+                  onMouseEnter={() => this.handleMouseOverStep(step.pos)}   // don't do for move=0
+                  onMouseLeave={() => this.handleMouseOverStep(step.pos)}   // don't do for move=0
+                >
+                  {desc}
+                </button>
             </li>
           );
         });
@@ -72,6 +89,8 @@ class Game extends React.Component {
                 <Board
                     squares={current.squares}
                     onClick={(i) => this.handleClick(i)}
+                    highlighted={this.state.highlighted}
+                    mouseOverStep={(i) => this.handleMouseOverStep(i)}
                 />
             </div>
             <div className="game-info">
