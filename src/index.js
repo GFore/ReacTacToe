@@ -39,7 +39,6 @@ class Game extends React.Component {
 
     handleMouseOverStep(i) {
       const hiState = this.state.highlighted;
-      console.log("HISTATE: ", hiState);
       const newHighlighted = hiState.slice();
       newHighlighted[i] = !newHighlighted[i];
       this.setState({
@@ -77,6 +76,8 @@ class Game extends React.Component {
                   onClick={() => this.jumpTo(move)}
                   onMouseEnter={() => this.handleMouseOverStep(step.pos)}
                   onMouseLeave={() => this.handleMouseOverStep(step.pos)}
+                  // onFocus={() => this.handleFocus(step.pos)}
+                  // onBlur={() => this.handleBlur(step.pos)}
                 >
                   {`${step.squares[step.pos]} in ${step.pos}`}
                 </button>
@@ -102,9 +103,13 @@ class Game extends React.Component {
                 />
             </div>
             <div className="game-info">
-              <div className="game-status">{status}</div>
-                Go to move #:
-              <ol>{moves}</ol>
+              <h3 className="game-status">
+                {status}
+              </h3>
+              Go to move #:
+              <div>
+                <ol>{moves}</ol>
+              </div>
             </div>
         </div>
         );
