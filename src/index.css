@@ -80,6 +80,16 @@ li button {
   border: none;
   margin-bottom: 3px;
   font-weight: normal;
-} 
+}
+
+li button:hover {
+  background-color: yellow;
+  font-weight: 900;
+}
+
+.bolded {
+  font-weight: 900;
+  border: 1px solid gray;
+}
 
 /* add media queries */

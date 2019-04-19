@@ -73,6 +73,7 @@ class Game extends React.Component {
           return (
             <li key={move}>
                 <button
+                  className={this.state.stepNumber === move ? 'bolded' : ''}
                   onClick={() => this.jumpTo(move)}
                   onMouseEnter={() => this.handleMouseOverStep(step.pos)}
                   onMouseLeave={() => this.handleMouseOverStep(step.pos)}
