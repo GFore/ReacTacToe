@@ -14,7 +14,8 @@ class Board extends React.Component {
       <Square
         hilite={this.props.highlighted[i]}
         value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}              
+        onClick={() => this.props.onClick(i)}
+        key={i}         
       />
     );
   }
@@ -28,7 +29,7 @@ class Board extends React.Component {
         rows.push(this.renderSquare(j))
       }
       
-      board.push(<div className="board-row">{rows}</div>)
+      board.push(<div className="board-row" key={i}>{rows}</div>)
     }
     return board;
   }
