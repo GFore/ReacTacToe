@@ -11,6 +11,7 @@ class Game extends React.Component {
                 squares: Array(9).fill(null),
             }],
             stepNumber: 0,
+            sortMovesAscending: true,
             xIsNext: true,
             highlighted: Array(9).fill(false),
         };
@@ -96,21 +97,20 @@ class Game extends React.Component {
         return (
         <div className="game">
             <div className="game-board">
-                <Board
-                    squares={current.squares}
-                    onClick={(i) => this.handleClick(i)}
-                    highlighted={this.state.highlighted}
-                    mouseOverStep={(i) => this.handleMouseOverStep(i)}
-                />
+              <h3 className="game-status">{status}</h3>
+              <Board
+                squares={current.squares}
+                onClick={(i) => this.handleClick(i)}
+                highlighted={this.state.highlighted}
+                mouseOverStep={(i) => this.handleMouseOverStep(i)}
+              />
             </div>
             <div className="game-info">
-              <h3 className="game-status">
-                {status}
-              </h3>
-              Go to move #:
+              <h4>Go to move #:</h4>
               <div>
-                <ol>{moves}</ol>
+                <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
+              <button onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}>Sort Moves</button>
             </div>
         </div>
         );
@@ -118,24 +118,24 @@ class Game extends React.Component {
 }
 
 function calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-          return squares[a];
-        }
-      }
-      return null;
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
   
 ReactDOM.render(<Game />, document.getElementById('root'));
