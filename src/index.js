@@ -39,9 +39,8 @@ class Game extends React.Component {
     }
 
     handleMouseOverStep(i) {
-      const hiState = this.state.highlighted;
-      const newHighlighted = hiState.slice();
-      newHighlighted[i] = !newHighlighted[i];
+      const newHighlighted = Array(9).fill(false);
+      newHighlighted[i] = !this.state.highlighted[i];
       this.setState({
         highlighted: newHighlighted,
       })
@@ -106,7 +105,7 @@ class Game extends React.Component {
               />
             </div>
             <div className="game-info">
-              <h4>Go to move #:</h4>
+              <h4>Move List:</h4>
               <div>
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
