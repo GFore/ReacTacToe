@@ -13,8 +13,8 @@ Upon completion of the basic follow-along tutorial, these improvements are sugge
 2. Bold the currently selected item in the move list. **[DONE THAT]**
 3. Rewrite Board to use two loops to make the squares instead of hardcoding them. **[DONE THAT]**
 4. Add a toggle button that lets you sort the moves in either ascending or descending order. **[DONE THAT]**
-5. When someone wins, highlight the three squares that caused the win.
-6. When no one wins, display a message about the result being a draw.
+5. When someone wins, highlight the three squares that caused the win. **[DONE THAT]**
+6. When no one wins, display a message about the result being a draw. **[DONE THAT]**
 
 ---
 
