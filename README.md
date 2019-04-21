@@ -12,7 +12,7 @@ Upon completion of the basic follow-along tutorial, these improvements are sugge
 1. Display the location for each move in the move history list. **[DONE THAT]**
 2. Bold the currently selected item in the move list. **[DONE THAT]**
 3. Rewrite Board to use two loops to make the squares instead of hardcoding them. **[DONE THAT]**
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
+4. Add a toggle button that lets you sort the moves in either ascending or descending order. **[DONE THAT]**
 5. When someone wins, highlight the three squares that caused the win.
 6. When no one wins, display a message about the result being a draw.
 
@@ -24,7 +24,7 @@ Nope - Possible enhancements include:
 - Deploy it live and add it to my portfolio
 - Allow tracking multiple game results between two players
 - Sound effects or other animation when a game ends
-- Reset button
+- Reset button **[DONE THAT]**
 
 ---
 
