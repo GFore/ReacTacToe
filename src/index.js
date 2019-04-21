@@ -3,18 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Board from './Board.js'
 
+const initialState = {
+  history: [{
+    squares: Array(9).fill(null),
+  }],
+  stepNumber: 0,
+  sortMovesAscending: true,
+  xIsNext: true,
+  highlighted: Array(9).fill(false),
+}
+
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            history: [{
-                squares: Array(9).fill(null),
-            }],
-            stepNumber: 0,
-            sortMovesAscending: true,
-            xIsNext: true,
-            highlighted: Array(9).fill(false),
-        };
+        this.state = {...initialState};
     }
 
     handleClick(i) {
@@ -128,7 +130,7 @@ class Game extends React.Component {
                 <i className="fas fa-undo fa-sm"></i>
               </button>
               <button title="Start New Game"  style={{ padding : "3px 4px" }}
-                onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
+                onClick={() => this.setState({...initialState})}
               >
                 <i className="fas fa-power-off"></i>
               </button>
