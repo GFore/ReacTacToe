@@ -109,7 +109,12 @@ class Game extends React.Component {
               <div>
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
-              <button onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}>Sort Moves</button>
+              {/* <button onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}>Sort Moves</button> */}
+              <button title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
+                onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
+              >
+                <i class={this.state.sortMovesAscending ? "fas fa-sort-down fa-2x" : "fas fa-sort-up fa-2x"}></i>
+              </button>
             </div>
         </div>
         );

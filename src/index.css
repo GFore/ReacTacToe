@@ -70,6 +70,7 @@ ol {
   list-style: none;
   padding: 0;
   margin-top: 0;
+  margin-bottom: 5px;
   counter-reset:step-counter -1;
 }
 ol li {
