@@ -115,6 +115,8 @@ class Game extends React.Component {
         let status;
         if (winner) {
             status = `Winner: ${winner.player}`;
+        } else if (!current.squares.includes(null)) {
+            status = `Tie game! Cat Wins!`;
         } else {
             status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
