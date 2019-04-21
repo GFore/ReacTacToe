@@ -53,6 +53,16 @@ class Game extends React.Component {
       });
     }
 
+    undoLastMove() {
+      if (this.state.history.length > 1) {
+        this.setState({
+          stepNumber: this.state.history.length - 2,
+          xIsNext: !this.state.xIsNext,
+          history: this.state.history.slice(0, this.state.history.length - 1)
+        });
+      }
+    }
+
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
@@ -77,8 +87,6 @@ class Game extends React.Component {
                   onClick={() => this.jumpTo(move)}
                   onMouseEnter={() => this.handleMouseOverStep(step.pos)}
                   onMouseLeave={() => this.handleMouseOverStep(step.pos)}
-                  // onFocus={() => this.handleFocus(step.pos)}
-                  // onBlur={() => this.handleBlur(step.pos)}
                 >
                   {`${step.squares[step.pos]} in ${step.pos}`}
                 </button>
@@ -109,11 +117,20 @@ class Game extends React.Component {
               <div>
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
-              {/* <button onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}>Sort Moves</button> */}
-              <button title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
+              <button title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}  style={{ padding : "3px 5px" }}
                 onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
               >
-                <i class={this.state.sortMovesAscending ? "fas fa-sort-down fa-2x" : "fas fa-sort-up fa-2x"}></i>
+                <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
+              </button>
+              <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
+                onClick={() => this.undoLastMove()}
+              >
+                <i className="fas fa-undo fa-sm"></i>
+              </button>
+              <button title="Start New Game"  style={{ padding : "3px 4px" }}
+                onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
+              >
+                <i className="fas fa-power-off"></i>
               </button>
             </div>
         </div>
