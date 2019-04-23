@@ -20,11 +20,11 @@ Upon completion of the basic follow-along tutorial, these improvements are sugge
 
 ## You're not stopping there are ya?
 Nope - Possible enhancements include:
+- Reset button **[DONE THAT]**
 - Add media queries to make it responsive
-- Deploy it live and add it to my portfolio
 - Allow tracking multiple game results between two players
 - Sound effects or other animation when a game ends
-- Reset button **[DONE THAT]**
+- Deploy it live and add it to my portfolio
 
 ---
 
