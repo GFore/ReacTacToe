@@ -55,12 +55,15 @@ ol, ul {padding-left: 30px;}
   flex-direction: column;
   align-content: flex-start;
   height: 180px;
+  width: 180px;
   display: inline-block;
   text-align: left;
+  /* background-color: pink; */
 }
 
 .game-status {
   width: 180px;
+  text-align: center;
 }
 
 ol {
@@ -72,6 +75,7 @@ ol {
   margin-top: 0;
   margin-bottom: 5px;
   counter-reset:step-counter -1;
+  /* background-color: green; */
 }
 ol li {
   counter-increment: step-counter;
@@ -98,3 +102,31 @@ li button:hover {
 }
 
 /* add media queries */
+@media screen and (max-width: 450px) {
+  .game {flex-direction: column;}
+
+  .game-status {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .square {
+    font-size: 60px;
+    height: 25vw;
+    width: 25vw;
+  }
+
+  .formItems {
+      width: 33%;
+      height: 66vh;
+      justify-content: flex-start
+  }
+  
+  .description {max-height: unset;}
+  
+  #map {
+      width: 66%;
+      height: 66vh;
+  }
+}
