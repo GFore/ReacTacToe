@@ -11,6 +11,7 @@ const initialState = {
   sortMovesAscending: true,
   xIsNext: true,
   highlighted: Array(9).fill(false),
+  playerOneIsX: true,
 }
 
 class Game extends React.Component {
@@ -132,16 +133,19 @@ class Game extends React.Component {
                 mouseOverStep={(i) => this.handleMouseOverStep(i)}
               />
               <div className="game-board-buttons">
-                <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
-                  onClick={() => this.undoLastMove()}
-                >
-                  <i className="fas fa-undo fa-sm"></i>
-                </button>
-                <button title="Start New Game"  style={{ padding : "3px 4px" }}
-                  onClick={() => this.setState({...initialState})}
-                >
-                  <i className="fas fa-power-off"></i>
-                </button>              
+                {this.state.playerOneIsX ? 'Player1: X  |  Player2: O ' : 'PLYR1: O  |  PLYR2: X '}
+                <div>
+                  <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
+                    onClick={() => this.undoLastMove()}
+                  >
+                    <i className="fas fa-undo fa-sm"></i>
+                  </button>
+                  <button title="Start New Game"  style={{ padding : "3px 4px" }}
+                    onClick={() => this.setState({...initialState})}
+                  >
+                    <i className="fas fa-power-off"></i>
+                  </button>              
+                </div>
               </div>
             </div>
             <div className="game-info">
