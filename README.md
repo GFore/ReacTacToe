@@ -22,10 +22,11 @@ Upon completion of the basic follow-along tutorial, these improvements are sugge
 Nope - Additional enhancements I could try:
 - ~~Reset button~~ **_[DONE]_**
 - ~~Add media queries to make it responsive~~ **_[DONE]_**
-- Allow tracking multiple game results between two players
+- Allow tracking multiple game results between two players **[IN PROGRESS]**
 - Sound effects or other animation when a game ends
 - Use a data viz library (eg., nivo) to show a pie or bar chart with player 1 vs player 2 results
 - Deploy it live and add it to my portfolio
+- Refactor index.js into multiple child component files since it's turned into a hot mess
 
 ---
 
