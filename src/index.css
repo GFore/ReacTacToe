@@ -82,6 +82,10 @@ ol, ul {padding-left: 30px;}
   margin-top: 10px;
 }
 
+.game-results {
+  margin-left: 20px;
+}
+
 .game-status {
   width: 180px;
   text-align: center;

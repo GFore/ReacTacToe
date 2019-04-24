@@ -12,6 +12,7 @@ const initialState = {
   xIsNext: true,
   highlighted: Array(9).fill(false),
   playerOneIsX: true,
+  results: {p1Wins: 0, p2Wins: 0, ties: 0},
 }
 
 class Game extends React.Component {
@@ -178,6 +179,16 @@ class Game extends React.Component {
               <div>
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
+            </div>
+            <div className="game-results">
+            <h4>Game Results</h4>
+              <p>Games Played:</p>
+              <p>Player1 Wins:</p>
+              <p>Player1 Win %:</p>
+              <p>Player2 Wins:</p>
+              <p>Player2 Win %:</p>
+              <p>Ties:</p>
+              <p>Tie %:</p>
             </div>
         </div>
         );
