@@ -49,7 +49,19 @@ ol, ul {padding-left: 30px;}
   align-items: center;
 }
 
+.game-board-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 2px;
+}
+
+.game-board-buttons button {
+  background-color: lightgreen;
+  border-radius: 4px;
+}
+
 .game-info {
+  margin-top: 10px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -59,6 +71,11 @@ ol, ul {padding-left: 30px;}
   display: inline-block;
   text-align: left;
   /* background-color: pink; */
+}
+
+.game-info h4 {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .game-status {

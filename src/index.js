@@ -114,7 +114,7 @@ class Game extends React.Component {
         
         let status;
         if (winner) {
-            status = `Winner: ${winner.player}`;
+            status = `${winner.player} WINS!!!`;
         } else if (!current.squares.includes(null)) {
             status = `Tie game!`;
         } else {
@@ -131,27 +131,33 @@ class Game extends React.Component {
                 highlighted={this.state.highlighted}
                 mouseOverStep={(i) => this.handleMouseOverStep(i)}
               />
+              <div className="game-board-buttons">
+                <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
+                  onClick={() => this.undoLastMove()}
+                >
+                  <i className="fas fa-undo fa-sm"></i>
+                </button>
+                <button title="Start New Game"  style={{ padding : "3px 4px" }}
+                  onClick={() => this.setState({...initialState})}
+                >
+                  <i className="fas fa-power-off"></i>
+                </button>              
+              </div>
             </div>
             <div className="game-info">
-              <h4>Move List:</h4>
+              <h4>
+                Moves
+                <button
+                  title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
+                  style={{ padding : "3px 5px" }}
+                  onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
+                >
+                  <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
+                </button>
+              </h4>
               <div>
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
-              <button title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}  style={{ padding : "3px 5px" }}
-                onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
-              >
-                <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
-              </button>
-              <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
-                onClick={() => this.undoLastMove()}
-              >
-                <i className="fas fa-undo fa-sm"></i>
-              </button>
-              <button title="Start New Game"  style={{ padding : "3px 4px" }}
-                onClick={() => this.setState({...initialState})}
-              >
-                <i className="fas fa-power-off"></i>
-              </button>
             </div>
         </div>
         );
