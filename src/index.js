@@ -72,6 +72,13 @@ class Game extends React.Component {
       });
     }
 
+    switchPlayers() {
+      this.setState({
+        xIsNext: true,
+        playerOneIsX: !this.state.playerOneIsX,
+      });
+    }
+
     undoLastMove() {
       if (this.state.history.length > 1) {
         this.setState({
@@ -133,7 +140,16 @@ class Game extends React.Component {
                 mouseOverStep={(i) => this.handleMouseOverStep(i)}
               />
               <div className="game-board-buttons">
-                {this.state.playerOneIsX ? 'Player1: X  |  Player2: O ' : 'PLYR1: O  |  PLYR2: X '}
+                <div>
+                  {this.state.playerOneIsX ? 'Player1: X ' : 'Player1: O '}
+                  <button title="Switch Players" style={{ padding : "3px 4px", margin: "auto 1px" }}
+                      onClick={() => this.switchPlayers()}
+                      disabled={this.state.history.length !== 1}
+                  >
+                    <i className="fas fa-random"></i>
+                  </button>
+                  {this.state.playerOneIsX ? ' Player2: O ' : ' Player2: X '}
+                </div>
                 <div>
                   <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
                     onClick={() => this.undoLastMove()}
