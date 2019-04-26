@@ -78,12 +78,19 @@ ol, ul {padding-left: 30px;}
   /* width: 180px; */
   display: inline-block;
   text-align: left;
-  /* background-color: pink; */
+  background-color: rgba(218, 165, 32, 0.2);
+  /* opacity: 0.1; */
+  padding: 0 15px 5px;
+}
+
+.game-info * {
+  opacity: unset;
 }
 
 .game-info h4 {
   text-align: center;
   margin-top: 10px;
+  opacity: 1;
 }
 
 .game-results {
@@ -114,12 +121,14 @@ ol li:before {
 }
 
 li button {
-  background-color: darkslategray;
+  background-color: rgba(218, 165, 32, 0);
   color: whitesmoke;
   border: none;
   margin-bottom: 3px;
   font-weight: normal;
   width: 50px;
+  /* padding-left: 0; */
+  margin-left: -10px;
 }
 
 li button:hover {
@@ -151,10 +160,17 @@ li button:hover {
     width: 25vw;
   }
 
+  .game-info {
+    height: 160px;
+    width: 66vw;
+    margin-left: 0;
+  }
+
   ol {
     height: 120px;
     column-count: 2;
     column-fill: auto;
+    padding-left: 20px;
   }
 
 }
