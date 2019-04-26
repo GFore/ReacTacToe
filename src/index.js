@@ -133,7 +133,7 @@ class Game extends React.Component {
         return (
         <div className="game">
             <div className="game-board">
-              <h3 className="game-status">{status}</h3>
+              <h2 className="game-status">{status}</h2>
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)}
@@ -142,14 +142,14 @@ class Game extends React.Component {
               />
               <div className="game-board-buttons">
                 <div>
-                  {this.state.playerOneIsX ? 'Player1: X ' : 'Player1: O '}
+                  {this.state.playerOneIsX ? 'P1: X ' : 'P1: O '}
                   <button title="Switch Players" style={{ padding : "3px 4px", margin: "auto 1px" }}
                       onClick={() => this.switchPlayers()}
                       disabled={this.state.history.length !== 1}
                   >
                     <i className="fas fa-random"></i>
                   </button>
-                  {this.state.playerOneIsX ? ' Player2: O ' : ' Player2: X '}
+                  {this.state.playerOneIsX ? ' P2: O ' : ' P2: X '}
                 </div>
                 <div>
                   <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
@@ -176,6 +176,7 @@ class Game extends React.Component {
                   <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
                 </button>
               </h4>
+              <hr />
               <div>
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
