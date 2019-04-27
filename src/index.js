@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Board from './Board.js'
+import Results from './Results.js'
 
 const initialState = {
   history: [{
@@ -12,13 +13,14 @@ const initialState = {
   xIsNext: true,
   highlighted: Array(9).fill(false),
   playerOneIsX: true,
-  results: {p1Wins: 0, p2Wins: 0, ties: 0},
 }
 
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {...initialState};
+        this.state = {
+          ...initialState,
+          results: {p1Wins: 2, p2Wins: 3, ties: 5},};
     }
 
     handleClick(i) {
@@ -181,16 +183,8 @@ class Game extends React.Component {
                 <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
               </div>
             </div>
-            <div className="game-results">
-            <h4>Game Results</h4>
-              <p>Games Played:</p>
-              <p>Player1 Wins:</p>
-              <p>Player1 Win %:</p>
-              <p>Player2 Wins:</p>
-              <p>Player2 Win %:</p>
-              <p>Ties:</p>
-              <p>Tie %:</p>
-            </div>
+
+            <Results results={this.state.results} />
         </div>
         );
     }
