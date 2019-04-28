@@ -20,7 +20,7 @@ class Game extends React.Component {
         super(props);
         this.state = {
           ...initialState,
-          results: {p1Wins: 2, p2Wins: 3, ties: 5},};
+          results: {p1Wins: 0, p2Wins: 0, ties: 0},};
     }
 
     handleClick(i) {
