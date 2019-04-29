@@ -17,7 +17,7 @@ class Results extends React.Component {
               P1 Wins<br />{results.p1Wins}<br />
             </div>
             <div className="result-block">
-              P1 Win%<br />{(results.p1Wins / played) * 100}<br />
+              P1 Win%<br />{((results.p1Wins / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
           <div className="result-block">
@@ -25,7 +25,7 @@ class Results extends React.Component {
               P2 Wins<br />{results.p2Wins}<br />
             </div>
             <div className="result-block">
-              P2 Win%<br />{(results.p2Wins / played) * 100}<br />
+              P2 Win%<br />{((results.p2Wins / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
           <div className="result-block">
@@ -33,7 +33,7 @@ class Results extends React.Component {
               Ties<br />{results.ties}<br />
             </div>
             <div className="result-block">
-              Tie%<br />{(results.ties / played) * 100}<br />
+              Tie%<br />{((results.ties / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
         </div>
