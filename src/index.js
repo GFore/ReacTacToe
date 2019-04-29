@@ -20,7 +20,7 @@ class Game extends React.Component {
         super(props);
         this.state = {
           ...initialState,
-          results: {p1Wins: 0, p2Wins: 0, ties: 0},};
+          results: {p1Wins: 1, p2Wins: 0, ties: 0},};
     }
 
     handleClick(i) {
@@ -39,6 +39,16 @@ class Game extends React.Component {
         const winner = calculateWinner(squares);
         if (winner) {
           winner.winningLine.forEach(i => newHighlighted[i] = true);
+        }
+
+        if (winner) {
+          if (winner.player === 'X') {
+            this.updateResults(this.state.playerOneIsX ? 'p1Wins' : 'p2Wins');
+          } else {
+            this.updateResults(this.state.playerOneIsX ? 'p2Wins' : 'p1Wins');
+          }
+        } else if (!squares.includes(null)) {
+            this.updateResults('ties');
         }
 
         this.setState({
@@ -91,6 +101,12 @@ class Game extends React.Component {
           highlighted: Array(9).fill(false),
         });
       }
+    }
+
+    updateResults = (result) => {
+      this.setState({
+        results: {...this.state.results, [result]: this.state.results[result] + 1},
+      });
     }
 
     render() {
@@ -160,7 +176,7 @@ class Game extends React.Component {
                     <i className="fas fa-undo fa-sm"></i>
                   </button>
                   <button title="Start New Game"  style={{ padding : "3px 4px" }}
-                    onClick={() => this.setState({...initialState})}
+                    onClick={() => this.setState({...initialState, playerOneIsX: this.state.playerOneIsX})}
                   >
                     <i className="fas fa-power-off"></i>
                   </button>              
