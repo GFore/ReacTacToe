@@ -29,6 +29,7 @@ Nope - Additional enhancements I could try:
 - Refactor index.js into multiple child component files since it's turned into a hot mess
 - (STRETCH) For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorius move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
+- Use localStorage to persist two-player results
 
 ---
 

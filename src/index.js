@@ -20,7 +20,7 @@ class Game extends React.Component {
         super(props);
         this.state = {
           ...initialState,
-          results: {p1Wins: 1, p2Wins: 0, ties: 0},};
+          results: {p1Wins: 0, p2Wins: 0, ties: 0},};
     }
 
     handleClick(i) {
@@ -188,7 +188,7 @@ class Game extends React.Component {
                 Moves
                 <button
                   title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
-                  style={{ padding : "3px 5px" }}
+                  style={{ padding : "3px 1px" }}
                   onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
                 >
                   <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
