@@ -23,13 +23,14 @@ Nope - Additional enhancements I could try:
 - ~~Reset button~~ **_[DONE]_**
 - ~~Add media queries to make it responsive~~ **_[DONE]_**
 - Allow tracking multiple game results between two players **[IN PROGRESS]**
+- Use a data viz library (eg., nivo) to show a pie,  bar, or line chart show player 1 wins, player 2 wins, and ties. (Line chart has number of games as x-axis, or save a tinestamp with each game to use time as x-axis). Have icons for switching between chart type. **[IN PROGRESS]**
 - Sound effects or other animation when a game ends
-- Use a data viz library (eg., nivo) to show a pie or bar chart with player 1 vs player 2 results
+- Sticky footer in mobile mode with the game and stat buttons
 - Deploy it live and add it to my portfolio
 - Refactor index.js into multiple child component files since it's turned into a hot mess
 - (STRETCH) For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorius move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
-- Use localStorage to persist two-player results
+- Use localStorage to persist two-player results (either assume it's always the same two people playing, or set up players and track results against different opponents)
 
 ---
 
