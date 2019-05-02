@@ -1,18 +1,16 @@
 import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 
-const MyResponsivePie = ({ data }) => (
+const MyResponsivePie = ({ data, colors }) => (
   <ResponsivePie
       data={data}
       margin={{
-          "top": 40,
+          "top": 80,
           "right": 80,
-          "bottom": 80,
+          "bottom": 40,
           "left": 80
       }}
-      colors={{
-          "scheme": "nivo"
-      }}
+      colors={colors}
       borderColor={{
           "from": "color",
           "modifiers": [
@@ -39,24 +37,37 @@ const MyResponsivePie = ({ data }) => (
       motionDamping={15}
       legends={[
           {
-              "anchor": "bottom",
+              "anchor": "top",
               "direction": "row",
-              "translateY": 56,
+              "translateY": -20,
+              "translateX": 30,
               "itemWidth": 100,
               "itemHeight": 18,
-              "itemTextColor": "#999",
-              "symbolSize": 18,
+              "itemTextColor": "whitesmoke",
+              "symbolSize": 14,
               "symbolShape": "circle",
-              "effects": [
-                  {
-                      "on": "hover",
-                      "style": {
-                          "itemTextColor": "#000"
-                      }
-                  }
-              ]
+              // "effects": [
+              //     {
+              //         "on": "hover",
+              //         "style": {
+              //             "itemTextColor": "#bbb"
+              //         }
+              //     }
+              // ]
           }
       ]}
+      tooltip={({ id, value, color }) => (
+        <strong style={{ color }}>
+          {id}: {value}
+        </strong>
+      )}
+      theme={{
+        tooltip: {
+          container: {
+            background: '#333',
+          },
+        },
+      }}
   />
 );
 

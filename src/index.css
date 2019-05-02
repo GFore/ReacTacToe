@@ -155,7 +155,8 @@ li button:hover {
 }
 
 .pie {
-  height: 400px;
+  height: 300px;
+  width: 300px;
 }
 
 /* add media queries */

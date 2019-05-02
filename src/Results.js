@@ -1,43 +1,56 @@
 import React from 'react';
 import MyResponsivePie from './PieChart.js';
 
-const data = [
-  {
-    "id": "stylus",
-    "label": "stylus",
-    "value": 289,
-    "color": "hsl(155, 70%, 50%)"
-  },
-  {
-    "id": "scala",
-    "label": "scala",
-    "value": 184,
-    "color": "hsl(95, 70%, 50%)"
-  },
-  {
-    "id": "php",
-    "label": "php",
-    "value": 12,
-    "color": "hsl(267, 70%, 50%)"
-  },
-  {
-    "id": "hack",
-    "label": "hack",
-    "value": 428,
-    "color": "hsl(59, 70%, 50%)"
-  },
-  {
-    "id": "java",
-    "label": "java",
-    "value": 323,
-    "color": "hsl(50, 70%, 50%)"
-  }
-]
+// const data = [
+//   {
+//     "id": "stylus",
+//     "label": "stylus",
+//     "value": 289,
+//   },
+//   {
+//     "id": "scala",
+//     "label": "scala",
+//     "value": 184,
+//   },
+//   {
+//     "id": "php",
+//     "label": "php",
+//     "value": 12,
+//   },
+//   {
+//     "id": "hack",
+//     "label": "hack",
+//     "value": 428,
+//   },
+//   {
+//     "id": "java",
+//     "label": "java",
+//     "value": 323,
+//   }
+// ]
 
 class Results extends React.Component {
   render() {
     const {results} = this.props; // p1Wins, p2Wins, ties}
     const played = results.p1Wins + results.p2Wins + results.ties;
+
+    const pieData = [
+      {
+        "id": "p1Wins",
+        "label": "Player 1 Wins",
+        "value": results.p1Wins,
+      },
+      {
+        "id": "p2Wins",
+        "label": "Player 2 Wins",
+        "value": results.p2Wins,
+      },
+      {
+        "id": "ties",
+        "label": "Tie Games",
+        "value": results.ties,
+      }
+    ]
 
     if (played > 0) {
       return (
@@ -70,7 +83,7 @@ class Results extends React.Component {
             </div>
           </div>
           <div className="pie">
-            <MyResponsivePie data={data} />
+            <MyResponsivePie data={pieData} colors={['darkOrange', 'cornflowerBlue', 'lightGoldenRodYellow']} />
           </div>
         </div>
       );
