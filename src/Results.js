@@ -1,5 +1,38 @@
 import React from 'react';
+import MyResponsivePie from './PieChart.js';
 
+const data = [
+  {
+    "id": "stylus",
+    "label": "stylus",
+    "value": 289,
+    "color": "hsl(155, 70%, 50%)"
+  },
+  {
+    "id": "scala",
+    "label": "scala",
+    "value": 184,
+    "color": "hsl(95, 70%, 50%)"
+  },
+  {
+    "id": "php",
+    "label": "php",
+    "value": 12,
+    "color": "hsl(267, 70%, 50%)"
+  },
+  {
+    "id": "hack",
+    "label": "hack",
+    "value": 428,
+    "color": "hsl(59, 70%, 50%)"
+  },
+  {
+    "id": "java",
+    "label": "java",
+    "value": 323,
+    "color": "hsl(50, 70%, 50%)"
+  }
+]
 
 class Results extends React.Component {
   render() {
@@ -35,6 +68,9 @@ class Results extends React.Component {
             <div className="result-block">
               Tie%<br />{((results.ties / played) * 100).toFixed(1)}%<br />
             </div>
+          </div>
+          <div className="pie">
+            <MyResponsivePie data={data} />
           </div>
         </div>
       );

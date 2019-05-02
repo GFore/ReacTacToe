@@ -154,6 +154,10 @@ li button:hover {
   /* outline: 1px solid red; */
 }
 
+.pie {
+  height: 400px;
+}
+
 /* add media queries */
 @media screen and (max-width: 450px) {
   .game {
