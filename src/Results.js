@@ -1,5 +1,6 @@
 import React from 'react';
 import MyResponsivePie from './PieChart.js';
+import { colorP1, colorP2, colorTie} from './constants';
 
 // const data = [
 //   {
@@ -36,17 +37,17 @@ class Results extends React.Component {
 
     const pieData = [
       {
-        "id": "p1Wins",
+        "id": "P1 Wins",
         "label": "Player 1 Wins",
         "value": results.p1Wins,
       },
       {
-        "id": "p2Wins",
+        "id": "P2 Wins",
         "label": "Player 2 Wins",
         "value": results.p2Wins,
       },
       {
-        "id": "ties",
+        "id": "Ties",
         "label": "Tie Games",
         "value": results.ties,
       }
@@ -83,7 +84,7 @@ class Results extends React.Component {
             </div>
           </div>
           <div className="pie">
-            <MyResponsivePie data={pieData} colors={['darkOrange', 'cornflowerBlue', 'lightGoldenRodYellow']} />
+            <MyResponsivePie data={pieData} colors={[colorP1, colorP2, colorTie]} />
           </div>
         </div>
       );

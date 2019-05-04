@@ -22,7 +22,7 @@ const MyResponsivePie = ({ data, colors }) => (
       }}
       radialLabelsSkipAngle={10}
       radialLabelsTextXOffset={7}
-      radialLabelsTextColor="#333333"
+      radialLabelsTextColor="whitesmoke"
       radialLabelsLinkOffset={0}
       radialLabelsLinkDiagonalLength={15}
       radialLabelsLinkHorizontalLength={16}
