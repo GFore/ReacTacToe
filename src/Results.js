@@ -1,6 +1,6 @@
 import React from 'react';
 import MyResponsivePie from './PieChart.js';
-import { colorP1, colorP2, colorTie} from './constants';
+import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
 class Results extends React.Component {
   render() {
@@ -31,7 +31,7 @@ class Results extends React.Component {
           <h4>Game Results</h4>
           <hr />
           <div className="result-block">Games Played: {played}<br /></div>
-          <div className="result-block">
+          <div className="result-block" style={{backgroundColor: colorP1}}>
             <div className="result-block">
               P1 Wins<br />{results.p1Wins}<br />
             </div>
@@ -39,7 +39,7 @@ class Results extends React.Component {
               P1 Win%<br />{((results.p1Wins / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
-          <div className="result-block">
+          <div className="result-block" style={{backgroundColor: colorP2}}>
             <div className="result-block">
               P2 Wins<br />{results.p2Wins}<br />
             </div>
@@ -47,7 +47,7 @@ class Results extends React.Component {
               P2 Win%<br />{((results.p2Wins / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
-          <div className="result-block">
+          <div className="result-block" style={{backgroundColor: colorTie, color: colorTextSecondary }}>
             <div className="result-block">
               Ties<br />{results.ties}<br />
             </div>
