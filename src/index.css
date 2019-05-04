@@ -157,6 +157,7 @@ li button:hover {
 .pie {
   height: 300px;
   width: 300px;
+  /* background-color: pink; */
 }
 
 /* add media queries */

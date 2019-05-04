@@ -2,34 +2,6 @@ import React from 'react';
 import MyResponsivePie from './PieChart.js';
 import { colorP1, colorP2, colorTie} from './constants';
 
-// const data = [
-//   {
-//     "id": "stylus",
-//     "label": "stylus",
-//     "value": 289,
-//   },
-//   {
-//     "id": "scala",
-//     "label": "scala",
-//     "value": 184,
-//   },
-//   {
-//     "id": "php",
-//     "label": "php",
-//     "value": 12,
-//   },
-//   {
-//     "id": "hack",
-//     "label": "hack",
-//     "value": 428,
-//   },
-//   {
-//     "id": "java",
-//     "label": "java",
-//     "value": 323,
-//   }
-// ]
-
 class Results extends React.Component {
   render() {
     const {results} = this.props; // p1Wins, p2Wins, ties}
