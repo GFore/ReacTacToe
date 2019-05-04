@@ -1,5 +1,6 @@
 import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
+import { colorText } from './constants';
 
 const MyResponsivePie = ({ data, colors }) => (
   <ResponsivePie
@@ -22,7 +23,7 @@ const MyResponsivePie = ({ data, colors }) => (
       }}
       radialLabelsSkipAngle={10}
       radialLabelsTextXOffset={7}
-      radialLabelsTextColor="whitesmoke"
+      radialLabelsTextColor={colorText}
       radialLabelsLinkOffset={0}
       radialLabelsLinkDiagonalLength={15}
       radialLabelsLinkHorizontalLength={16}
@@ -43,7 +44,7 @@ const MyResponsivePie = ({ data, colors }) => (
               "translateX": 30,
               "itemWidth": 100,
               "itemHeight": 18,
-              "itemTextColor": "whitesmoke",
+              "itemTextColor": {colorText},
               "symbolSize": 14,
               "symbolShape": "circle",
               // "effects": [
