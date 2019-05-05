@@ -98,6 +98,7 @@ ol, ul {padding-left: 30px;}
   margin-top: 30px;
   padding: 0 15px;
   background-color: rgba(218, 165, 32, 0.2);
+
 }
 
 .game-status {
@@ -158,10 +159,11 @@ li button:hover {
   height: 300px;
   width: 300px;
   /* background-color: pink; */
+  margin: 0 auto;
 }
 
 /* add media queries */
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 750px) {
   .game {
     flex-direction: column;
     height: unset;
