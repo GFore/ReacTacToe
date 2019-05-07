@@ -27,11 +27,11 @@ ol, ul {padding-left: 30px;}
   background: whitesmoke;
   border: 1px solid #999;
   float: left;
-  font-size: 60px;
+  font-size: 140px;
   font-weight: bold;
-  line-height: 60px;
-  height: 90px;
-  width: 90px;
+  /* line-height: 60px; */
+  height: 190px;
+  width: 190px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
@@ -70,14 +70,15 @@ ol, ul {padding-left: 30px;}
 
 .game-info {
   margin-top: 30px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  height: 265px;
+  height: 380px;
   /* width: 180px; */
   display: inline-block;
   text-align: left;
+  font-size: 20px;
   background-color: rgba(218, 165, 32, 0.2);
   /* opacity: 0.1; */
   padding: 0 15px 5px;
@@ -98,7 +99,6 @@ ol, ul {padding-left: 30px;}
   margin-top: 30px;
   padding: 0 15px;
   background-color: rgba(218, 165, 32, 0.2);
-
 }
 
 .game-status {
@@ -128,11 +128,12 @@ li button {
   background-color: rgba(218, 165, 32, 0);
   color: whitesmoke;
   border: none;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   font-weight: normal;
-  width: 50px;
+  width: 95px;
   /* padding-left: 0; */
   margin-left: -10px;
+  font-size: 20px;
 }
 
 li button:hover {
@@ -188,6 +189,7 @@ li button:hover {
     height: 160px;
     width: 66vw;
     margin-left: 0;
+    font-size: 14px;
   }
 
   ol {
@@ -195,6 +197,11 @@ li button:hover {
     column-count: 2;
     column-fill: auto;
     padding-left: 40px;
+  }
+
+  li button {
+    font-size: 14px;
+    margin-bottom: 3px;
   }
 
   .game-results {
