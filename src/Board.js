@@ -2,7 +2,11 @@ import React from 'react';
 
 function Square(props) {
   return (
-    <button className={`square ${props.hilite ? 'highlighted' : ''}`} onClick={props.onClick}>
+    <button
+      className={`square`}
+      onClick={props.onClick}
+      style={props.hilite ? { backgroundColor: props.colors[props.value]} : {}}
+    >
       {props.value}
     </button>
   );
@@ -15,7 +19,8 @@ class Board extends React.Component {
         hilite={this.props.highlighted[i]}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        key={i}         
+        key={i}
+        colors={this.props.colors} 
       />
     );
   }

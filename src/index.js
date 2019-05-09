@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Board from './Board.js'
 import Results from './Results.js'
+import { colorP1, colorP2 } from './constants';
 
 const initialState = {
   history: [{
@@ -157,6 +158,7 @@ class Game extends React.Component {
                 onClick={(i) => this.handleClick(i)}
                 highlighted={this.state.highlighted}
                 mouseOverStep={(i) => this.handleMouseOverStep(i)}
+                colors={this.state.playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 } }
               />
               <div className="game-board-buttons">
                 <div>
