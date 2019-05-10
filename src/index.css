@@ -137,7 +137,6 @@ li button {
 }
 
 li button:hover {
-  background-color: goldenrod;
   color: white;
   font-weight: 900;
 }

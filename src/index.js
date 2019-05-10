@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Board from './Board.js'
+import MoveButton from './MoveButton.js'
 import Results from './Results.js'
 import { colorP1, colorP2 } from './constants';
 
@@ -114,6 +115,7 @@ class Game extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
+        const colors = this.state.playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
 
         const moves = history.map((step, move) => {
           if (move === 0) {
@@ -128,14 +130,13 @@ class Game extends React.Component {
 
           return (
             <li key={move}>
-                <button
-                  className={this.state.stepNumber === move ? 'bolded' : ''}
-                  onClick={() => this.jumpTo(move)}
-                  onMouseEnter={() => this.handleMouseOverStep(step.pos)}
-                  onMouseLeave={() => this.handleMouseOverStep(step.pos)}
-                >
-                  {`${step.squares[step.pos]} in ${step.pos}`}
-                </button>
+                <MoveButton
+                  bolded={this.state.stepNumber === move}
+                  handleClick={() => this.jumpTo(move)}
+                  handleMouse={() => this.handleMouseOverStep(step.pos)}
+                  label={`${step.squares[step.pos]} in ${step.pos}`}
+                  hoverColor={colors[step.squares[step.pos]]}
+                />
             </li>
           );
         });
@@ -158,7 +159,7 @@ class Game extends React.Component {
                 onClick={(i) => this.handleClick(i)}
                 highlighted={this.state.highlighted}
                 mouseOverStep={(i) => this.handleMouseOverStep(i)}
-                colors={this.state.playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 } }
+                colors={colors}
               />
               <div className="game-board-buttons">
                 <div>
