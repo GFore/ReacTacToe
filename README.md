@@ -24,7 +24,8 @@ Nope - Additional enhancements I could try:
 - ~~Add media queries to make it responsive~~ **_[DONE]_**
 - ~~Allow tracking multiple game results between two players~~ **_[DONE]_**
 - Use a data viz library (eg., nivo) to show a pie,  bar, or line chart show player 1 wins, player 2 wins, and ties. (Line chart has number of games as x-axis, or save a timestamp with each game to use time as x-axis). Have icons for switching between chart type. **[IN PROGRESS]**
-- Change move list hover to highlight in the color specific to player 1 or player 2. When player wins (or ties), the highlight of the winning line should be the player's color (or make the whole board highlighted for a tie). **[IN PROGRESS]**
+- ~~Change move list hover to highlight in the color specific to player 1 or player 2. When player wins (or ties), the highlight of the winning line should be the player's color.~~ **_[DONE]_**
+- Highlight the whole board for a tie
 - Sound effects or other animation when a game ends
 - Sticky footer in mobile mode with the game and stat buttons
 - Deploy it live and add it to my portfolio
