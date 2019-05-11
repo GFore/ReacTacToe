@@ -37,20 +37,25 @@ class Game extends React.Component {
 
         squares[i] = this.state.xIsNext ? 'X' : 'O';
 
-        const newHighlighted = Array(9).fill(false);
+        let newHighlighted = Array(9).fill(false);
+        let newResults = {};
+        let result;
         const winner = calculateWinner(squares);
-        if (winner) {
-          winner.winningLine.forEach(i => newHighlighted[i] = true);
-        }
 
         if (winner) {
+          winner.winningLine.forEach(i => newHighlighted[i] = true);
           if (winner.player === 'X') {
-            this.updateResults(this.state.playerOneIsX ? 'p1Wins' : 'p2Wins');
+            result = this.state.playerOneIsX ? 'p1Wins' : 'p2Wins';
           } else {
-            this.updateResults(this.state.playerOneIsX ? 'p2Wins' : 'p1Wins');
+            result = this.state.playerOneIsX ? 'p2Wins' : 'p1Wins';
           }
         } else if (!squares.includes(null)) {
-            this.updateResults('ties');
+          newHighlighted = Array(9).fill(true);
+          result = 'ties';
+        }
+
+        if (result) {
+          newResults[result] = this.state.results[result] + 1;
         }
 
         this.setState({
@@ -61,6 +66,7 @@ class Game extends React.Component {
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
             highlighted: newHighlighted,
+            results: {...this.state.results, ...newResults}
         });
     }
 
@@ -105,12 +111,6 @@ class Game extends React.Component {
       }
     }
 
-    updateResults = (result) => {
-      this.setState({
-        results: {...this.state.results, [result]: this.state.results[result] + 1},
-      });
-    }
-
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
@@ -147,7 +147,7 @@ class Game extends React.Component {
         } else if (!current.squares.includes(null)) {
             status = `Tie game!`;
         } else {
-            status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+            status = `Next turn: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
 
         return (
