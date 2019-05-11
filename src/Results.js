@@ -4,6 +4,19 @@ import NivoBarChart from './NivoBarChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
 class Results extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: "pie"
+    };
+  }
+
+  handleOptionChange = changeEvent => {
+    this.setState({
+      selectedOption: changeEvent.target.value
+    });
+  };
+
   render() {
     const {results} = this.props; // p1Wins, p2Wins, ties}
     const played = results.p1Wins + results.p2Wins + results.ties;
@@ -86,9 +99,36 @@ class Results extends React.Component {
               Tie%<br />{((results.ties / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
+          <div className="chartSelection">
+            Chart Type: 
+            <label>
+              <input type="radio" name="chartType" value="pie"
+                checked={this.state.selectedOption === "pie"}
+                onChange={this.handleOptionChange}
+              />
+              Pie
+            </label>
+            <label>
+              <input type="radio" name="chartType" value="bar"
+                checked={this.state.selectedOption === "bar"}
+                onChange={this.handleOptionChange}
+              />
+              Bar
+            </label>
+            <label>
+              <input type="radio" name="chartType" value="line"
+                checked={this.state.selectedOption === "line"}
+                onChange={this.handleOptionChange}
+              />
+              Line
+            </label>
+          </div>
           <div className="pie">
-            <NivoBarChart data={barData} colors={[colorP1, colorP2, colorTie]} maxValue={maxValue} />
-            <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
+            {this.state.selectedOption === "pie" ?
+              <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
+              :
+              <NivoBarChart data={barData} colors={[colorP1, colorP2, colorTie]} maxValue={maxValue} />
+            }
           </div>
         </div>
       );

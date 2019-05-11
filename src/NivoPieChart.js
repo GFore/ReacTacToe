@@ -6,7 +6,7 @@ const NivoPieChart = ({ data, colors }) => (
   <ResponsivePie
       data={data}
       colors={colors}
-      margin={{ 'top': 40, 'right': 0, 'bottom': 20, 'left': 0 }}
+      margin={{ 'top': 20, 'right': 0, 'bottom': 40, 'left': 0 }}
       borderColor={{ 'from': 'color', 'modifiers': [['darker', 0.2]] }}
       enableRadialLabels={false}
       slicesLabelsSkipAngle={10}
