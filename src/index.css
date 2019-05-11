@@ -49,6 +49,7 @@ ol, ul {padding-left: 30px;}
 .game {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   background-color: darkslategray;
   color: whitesmoke;
   height: 98vh;
@@ -59,18 +60,23 @@ ol, ul {padding-left: 30px;}
 
 .game-board-buttons {
   display: flex;
-  justify-content: space-between;
-  padding: 0 2px;
+  justify-content: center;
+  width: 100%;
+  /* padding: 5px; */
+  background-color: rgba(218, 165, 32, 0.2);
 }
 
 .game-board-buttons button {
-  background-color: goldenrod;
-  border-radius: 4px;
+  background-color: lightgray;
+  border-radius: 2px;
+  padding: 10px 9px;
+  margin: 5px 1px;
+  font-size: 16px;
 }
 
-.game-info {
-  margin-top: 30px;
-  /* margin-left: 20px; */
+.move-list {
+  /* margin-top: 30px; */
+  margin-left: 2px;
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -84,29 +90,30 @@ ol, ul {padding-left: 30px;}
   padding: 0 15px 5px;
 }
 
-.game-info * {
+.move-list * {
   opacity: unset;
 }
 
-.game-info h4, .game-results h4 {
+.move-list h4, .game-results h4 {
   text-align: center;
   margin-top: 10px;
   opacity: 1;
 }
 
 .game-results {
-  margin-left: 20px;
-  margin-top: 30px;
+  margin-left: 2px;
+  /* margin-top: 30px; */
   padding: 0 15px;
   background-color: rgba(218, 165, 32, 0.2);
 }
 
 .game-status {
-  width: 240px;
+  width: 121px;
   text-align: center;
   font-size: 25px;
   font-family: 'Oxygen Mono', monospace;
-  margin: 10px 0;
+  margin: 10px 0 10px 2px;
+  padding: 0 15px 5px;
 }
 
 ol {
@@ -130,9 +137,9 @@ li button {
   border: none;
   margin-bottom: 5px;
   font-weight: normal;
-  width: 95px;
+  width: 100px;
   /* padding-left: 0; */
-  margin-left: -10px;
+  margin-left: -15px;
   font-size: 20px;
 }
 
@@ -184,7 +191,7 @@ li button:hover {
     width: 73vw;
   }
 
-  .game-info {
+  .move-list {
     height: 160px;
     width: 66vw;
     margin-left: 0;

@@ -143,7 +143,7 @@ class Game extends React.Component {
         
         let status;
         if (winner) {
-            status = `${winner.player} WINS!!!`;
+            status = `${winner.player} WINS!`;
         } else if (!current.squares.includes(null)) {
             status = `Tie game!`;
             colors.X = colorTie;
@@ -155,7 +155,7 @@ class Game extends React.Component {
         return (
         <div className="game">
             <div className="game-board">
-              <h2 className="game-status">{status}</h2>
+              
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)}
@@ -163,45 +163,45 @@ class Game extends React.Component {
                 mouseOverStep={(i) => this.handleMouseOverStep(i)}
                 colors={colors}
               />
-              <div className="game-board-buttons">
-                <div>
-                  {this.state.playerOneIsX ? 'P1: X ' : 'P1: O '}
-                  <button title="Switch Players" style={{ padding : "3px 4px", margin: "auto 1px" }}
-                      onClick={() => this.switchPlayers()}
-                      disabled={this.state.history.length !== 1}
-                  >
-                    <i className="fas fa-random"></i>
-                  </button>
-                  {this.state.playerOneIsX ? ' P2: O ' : ' P2: X '}
-                </div>
-                <div>
-                  <button title="Undo Last Move" style={{ padding : "3px 4px", margin: "auto 1px" }}
-                    onClick={() => this.undoLastMove()}
-                  >
-                    <i className="fas fa-undo fa-sm"></i>
-                  </button>
-                  <button title="Start New Game"  style={{ padding : "3px 4px" }}
-                    onClick={() => this.setState({...initialState, playerOneIsX: this.state.playerOneIsX})}
-                  >
-                    <i className="fas fa-power-off"></i>
-                  </button>              
-                </div>
-              </div>
             </div>
             <div className="game-info">
-              <h4>
-                Moves
-                <button
-                  title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
-                  style={{ padding : "3px 1px" }}
-                  onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
-                >
-                  <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
-                </button>
-              </h4>
-              <hr />
+              <h2 className="game-status">{status}</h2>
               <div>
-                <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
+                {this.state.playerOneIsX ? 'P1: X ' : 'P1: O '}
+                {this.state.playerOneIsX ? ' P2: O ' : ' P2: X '}
+              </div>
+              <div className="move-list">
+                <h4>Moves</h4>
+                <hr />
+                <div>
+                  <ol>{this.state.sortMovesAscending ? moves : moves.reverse()}</ol>
+                </div>
+              </div>
+              <div className="game-board-buttons">
+                <button title="Start New Game"  style={{}}
+                  onClick={() => this.setState({...initialState, playerOneIsX: this.state.playerOneIsX})}
+                >
+                  <i className="fas fa-power-off"></i>
+                </button>
+                <button title="Switch Players"
+                    onClick={() => this.switchPlayers()}
+                    disabled={this.state.history.length !== 1}
+                >
+                  <i className="fas fa-random"></i>
+                </button>
+                <button title="Undo Last Move"
+                  onClick={() => this.undoLastMove()}
+                  disabled={this.state.history.length === 1}
+                >
+                  <i className="fas fa-undo fa-sm"></i>
+                </button>
+                <button
+                    title={this.state.sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
+                    onClick={() => this.setState({sortMovesAscending: !this.state.sortMovesAscending})}
+                    disabled={this.state.history.length === 1}
+                  >
+                    <i className={this.state.sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
+                  </button>
               </div>
             </div>
 
