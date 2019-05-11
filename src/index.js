@@ -4,7 +4,7 @@ import './index.css';
 import Board from './Board.js'
 import MoveButton from './MoveButton.js'
 import Results from './Results.js'
-import { colorP1, colorP2 } from './constants';
+import { colorP1, colorP2, colorTie } from './constants';
 
 const initialState = {
   history: [{
@@ -146,6 +146,8 @@ class Game extends React.Component {
             status = `${winner.player} WINS!!!`;
         } else if (!current.squares.includes(null)) {
             status = `Tie game!`;
+            colors.X = colorTie;
+            colors.O = colorTie;
         } else {
             status = `Next turn: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
