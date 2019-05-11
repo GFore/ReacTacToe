@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import { colorTextSecondary } from './constants';
 
-const MyResponsivePie = ({ data, colors }) => (
+const NivoPieChart = ({ data, colors }) => (
   <ResponsivePie
       data={data}
       colors={colors}
@@ -22,7 +22,6 @@ const MyResponsivePie = ({ data, colors }) => (
       )}
       theme={{
         labels: { text: { fontSize: 25, }},
-        legends: { text: { fontSize: 14, }},
         tooltip: {
           container: {
             background: colorTextSecondary,
@@ -33,4 +32,4 @@ const MyResponsivePie = ({ data, colors }) => (
   />
 );
 
-export default MyResponsivePie;
+export default NivoPieChart;

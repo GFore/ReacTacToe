@@ -1,27 +1,58 @@
 import React from 'react';
-import MyResponsivePie from './PieChart.js';
+import NivoPieChart from './NivoPieChart.js';
+import NivoBarChart from './NivoBarChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
 class Results extends React.Component {
   render() {
     const {results} = this.props; // p1Wins, p2Wins, ties}
     const played = results.p1Wins + results.p2Wins + results.ties;
+    const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties) + 2
 
     const pieData = [
       {
-        "id": "P1 Wins",
-        "label": "Player 1 Wins",
-        "value": results.p1Wins,
+        id: "P1 Wins",
+        label: "Player 1 Wins",
+        value: results.p1Wins,
       },
       {
-        "id": "P2 Wins",
-        "label": "Player 2 Wins",
-        "value": results.p2Wins,
+        id: "P2 Wins",
+        label: "Player 2 Wins",
+        value: results.p2Wins,
       },
       {
-        "id": "Ties",
-        "label": "Tie Games",
-        "value": results.ties,
+        id: "Ties",
+        label: "Tie Games",
+        value: results.ties,
+      }
+    ]
+    const barData = [
+      {
+        player: "P1 Wins",
+        p1: results.p1Wins,
+        p1Color: colorP1,
+        p2: 0,
+        p2Color: colorP2,
+        ties: 0,
+        tiesColor: colorTie,
+      },
+      {
+        player: "P2 Wins",
+        p1: 0,
+        p1Color: colorP1,
+        p2: results.p2Wins,
+        p2Color: colorP2,
+        ties: 0,
+        tiesColor: colorTie,
+      },
+      {
+        player: "Ties",
+        p1: 0,
+        p1Color: colorP1,
+        p2: 0,
+        p2Color: colorP2,
+        ties: results.ties,
+        tiesColor: colorTie,
       }
     ]
 
@@ -56,7 +87,8 @@ class Results extends React.Component {
             </div>
           </div>
           <div className="pie">
-            <MyResponsivePie data={pieData} colors={[colorP1, colorP2, colorTie]} />
+            <NivoBarChart data={barData} colors={[colorP1, colorP2, colorTie]} maxValue={maxValue} />
+            <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
           </div>
         </div>
       );
