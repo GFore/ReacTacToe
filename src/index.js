@@ -155,7 +155,6 @@ class Game extends React.Component {
         return (
         <div className="game">
             <div className="game-board">
-              
               <Board
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)}
@@ -165,8 +164,8 @@ class Game extends React.Component {
               />
             </div>
             <div className="game-info">
-              <h2 className="game-status">{status}</h2>
-              <div>
+              <div  className="game-status">
+                <h2>{status}</h2>
                 {this.state.playerOneIsX ? 'P1: X ' : 'P1: O '}
                 {this.state.playerOneIsX ? ' P2: O ' : ' P2: X '}
               </div>
