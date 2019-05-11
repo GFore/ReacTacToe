@@ -1,6 +1,7 @@
 import React from 'react';
 import NivoPieChart from './NivoPieChart.js';
 import NivoBarChart from './NivoBarChart.js';
+import NivoLineChart from './NivoLineChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
 class Results extends React.Component {
@@ -67,7 +68,63 @@ class Results extends React.Component {
         ties: results.ties,
         tiesColor: colorTie,
       }
-    ]
+    ];
+    const lineData = [
+      {
+        "id": "p1",
+        "color": "hsl(39, 70%, 50%)",
+        "data": [
+          { x: 0, y: 0 },
+          { x: 1, y: 0 },
+          { x: 2, y: 1 },
+          { x: 3, y: 1 },
+          { x: 4, y: 2 },
+          { x: 5, y: 2 },
+          { x: 6, y: 2 },
+          { x: 7, y: 3 },
+          { x: 8, y: 4 },
+          { x: 9, y: 4 },
+          { x: 10, y: 5 },
+          { x: 11, y: 5 }
+        ]
+      },
+      {
+        "id": "p2",
+        "color": "hsl(39, 70%, 50%)",
+        "data": [
+          { x: 0, y: 0 },
+          { x: 1, y: 1 },
+          { x: 2, y: 1 },
+          { x: 3, y: 1 },
+          { x: 4, y: 1 },
+          { x: 5, y: 1 },
+          { x: 6, y: 2 },
+          { x: 7, y: 2 },
+          { x: 8, y: 2 },
+          { x: 9, y: 3 },
+          { x: 10, y: 3 },
+          { x: 11, y: 3 }
+        ]
+      },
+      {
+        "id": "ties",
+        "color": "hsl(39, 70%, 50%)",
+        "data": [
+          { x: 0, y: 0 },
+          { x: 1, y: 0 },
+          { x: 2, y: 0 },
+          { x: 3, y: 1 },
+          { x: 4, y: 1 },
+          { x: 5, y: 2 },
+          { x: 6, y: 2 },
+          { x: 7, y: 2 },
+          { x: 8, y: 2 },
+          { x: 9, y: 2 },
+          { x: 10, y: 2 },
+          { x: 11, y: 3 }
+        ]
+      },
+    ];
 
     if (played > 0) {
       return (
@@ -126,8 +183,11 @@ class Results extends React.Component {
           <div className="pie">
             {this.state.selectedOption === "pie" ?
               <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
-              :
-              <NivoBarChart data={barData} colors={[colorP1, colorP2, colorTie]} maxValue={maxValue} />
+              : (this.state.selectedOption === "bar" ?
+                <NivoBarChart data={barData} maxValue={maxValue} />
+                :
+                <NivoLineChart data={lineData} colors={[colorP1, colorP2, colorTie]} />
+              )
             }
           </div>
         </div>

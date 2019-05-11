@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@nivo/bar": "^0.57.0",
+    "@nivo/line": "^0.57.1",
     "@nivo/pie": "^0.56.2",
     "radium": "^0.25.1",
     "react": "^16.8.6",

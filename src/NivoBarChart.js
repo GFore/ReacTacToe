@@ -34,7 +34,7 @@ const theme = {
   },
 };
 
-const NivoBarChart = ({ data, colors, maxValue }) => (
+const NivoBarChart = ({ data, maxValue }) => (
   <ResponsiveBar
       data={data}
       indexBy='player'
