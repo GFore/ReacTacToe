@@ -223,7 +223,7 @@ class Game extends React.Component {
                 </button>
                 <button title="Undo Last Move"
                   onClick={() => this.undoLastMove()}
-                  disabled={this.state.history.length === 1}
+                  disabled={this.state.history.length === 1 || !status.startsWith('Next')}
                 >
                   <i className="fas fa-undo fa-sm"></i>
                 </button>
