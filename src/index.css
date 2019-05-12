@@ -153,7 +153,7 @@ li button {
   font-weight: normal;
   width: 100px;
   /* padding-left: 0; */
-  margin-left: -15px;
+  margin-left: -5px;
   font-size: 20px;
 }
 
@@ -192,12 +192,21 @@ li button:hover {
   margin-left: 8px;
 }
 
+/* .dashboard {
+  display: 'flex';
+  flex-direction: row;
+} */
+
 /* add media queries */
 @media screen and (max-width: 750px) {
   .game {
     flex-direction: column;
     height: unset;
   }
+
+  /* .dashboard {
+    flex-direction: column;
+  } */
 
   .game-status {
     width: 100%;
@@ -231,6 +240,7 @@ li button:hover {
   li button {
     font-size: 14px;
     margin-bottom: 3px;
+    width: 60px;
   }
 
   .game-results {

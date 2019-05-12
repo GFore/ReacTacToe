@@ -196,6 +196,7 @@ class Game extends React.Component {
                 colors={colors}
               />
             </div>
+            
             <div className="game-info">
               <div  className="game-status">
                 <h2>{status}</h2>
