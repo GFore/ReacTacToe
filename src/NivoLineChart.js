@@ -39,8 +39,7 @@ const NivoLineChart = ({ data, colors }) => (
       data={data}
       curve={"monotoneX"}
       // gridYValues={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
-      min={0}
-      max={10}
+
       margin={{ top: 30, right: 10, bottom: 90, left: 45 }}
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}

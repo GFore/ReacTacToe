@@ -22,7 +22,15 @@ class Game extends React.Component {
         super(props);
         this.state = {
           ...initialState,
-          results: {p1Wins: 12, p2Wins: 10, ties: 11},};
+          results: {p1Wins: 12, p2Wins: 10, ties: 11},
+          games: [{
+            id: 0,
+            winner: '',
+            squares: [],
+            winningLine: '',
+            results: {p1Wins: 0, p2Wins: 0, ties: 0},
+          }],
+        };
     }
 
     handleClick(i) {
@@ -37,9 +45,12 @@ class Game extends React.Component {
 
         squares[i] = this.state.xIsNext ? 'X' : 'O';
 
+        const games = this.state.games.slice();
+        let addGame;
         let newHighlighted = Array(9).fill(false);
         let newResults = {};
         let result;
+        let p1=0, p2=0, t=0;
         const winner = calculateWinner(squares);
 
         if (winner) {
@@ -49,24 +60,46 @@ class Game extends React.Component {
           } else {
             result = this.state.playerOneIsX ? 'p2Wins' : 'p1Wins';
           }
+          if (result === 'p1Wins') {
+            p1++;
+          } else {
+            p2++;
+          }
         } else if (!squares.includes(null)) {
           newHighlighted = Array(9).fill(true);
           result = 'ties';
+          t++;
         }
 
         if (result) {
           newResults[result] = this.state.results[result] + 1;
+          addGame = {
+            id: games.length,
+            squares: squares,
+            winner: result,
+            winningLine: t === 0 ? winner.winningLine : null,
+            results: {
+              p1Wins: games[games.length-1].results.p1Wins + p1,
+              p2Wins: games[games.length-1].results.p2Wins + p2,
+              ties: games[games.length-1].results.ties + t}
+          }
+        }
+
+        if (addGame) {
+          // console.log("addGame >>>> ", addGame);
+          games.push(addGame);
         }
 
         this.setState({
-            history: history.concat([{
-                squares: squares,
-                pos: i,
-            }]),
-            stepNumber: history.length,
-            xIsNext: !this.state.xIsNext,
-            highlighted: newHighlighted,
-            results: {...this.state.results, ...newResults}
+          games: games,
+          history: history.concat([{
+              squares: squares,
+              pos: i,
+          }]),
+          stepNumber: history.length,
+          xIsNext: !this.state.xIsNext,
+          highlighted: newHighlighted,
+          results: {...this.state.results, ...newResults}
         });
     }
 
@@ -204,7 +237,7 @@ class Game extends React.Component {
               </div>
             </div>
 
-            <Results results={this.state.results} />
+            <Results results={this.state.results} games={this.state.games} />
         </div>
         );
     }

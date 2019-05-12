@@ -19,9 +19,9 @@ class Results extends React.Component {
   };
 
   render() {
-    const {results} = this.props; // p1Wins, p2Wins, ties}
+    const { results, games } = this.props; // p1Wins, p2Wins, ties}
     const played = results.p1Wins + results.p2Wins + results.ties;
-    const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties) + 2
+    const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties)
 
     const pieData = [
       {
@@ -69,62 +69,102 @@ class Results extends React.Component {
         tiesColor: colorTie,
       }
     ];
-    const lineData = [
-      {
-        "id": "p1",
-        "color": "hsl(39, 70%, 50%)",
-        "data": [
-          { x: 0, y: 0 },
-          { x: 1, y: 0 },
-          { x: 2, y: 1 },
-          { x: 3, y: 1 },
-          { x: 4, y: 2 },
-          { x: 5, y: 2 },
-          { x: 6, y: 2 },
-          { x: 7, y: 3 },
-          { x: 8, y: 4 },
-          { x: 9, y: 4 },
-          { x: 10, y: 5 },
-          { x: 11, y: 5 }
-        ]
-      },
-      {
-        "id": "p2",
-        "color": "hsl(39, 70%, 50%)",
-        "data": [
-          { x: 0, y: 0 },
-          { x: 1, y: 1 },
-          { x: 2, y: 1 },
-          { x: 3, y: 1 },
-          { x: 4, y: 1 },
-          { x: 5, y: 1 },
-          { x: 6, y: 2 },
-          { x: 7, y: 2 },
-          { x: 8, y: 2 },
-          { x: 9, y: 3 },
-          { x: 10, y: 3 },
-          { x: 11, y: 3 }
-        ]
-      },
-      {
-        "id": "ties",
-        "color": "hsl(39, 70%, 50%)",
-        "data": [
-          { x: 0, y: 0 },
-          { x: 1, y: 0 },
-          { x: 2, y: 0 },
-          { x: 3, y: 1 },
-          { x: 4, y: 1 },
-          { x: 5, y: 2 },
-          { x: 6, y: 2 },
-          { x: 7, y: 2 },
-          { x: 8, y: 2 },
-          { x: 9, y: 2 },
-          { x: 10, y: 2 },
-          { x: 11, y: 3 }
-        ]
-      },
+    
+    // const games = [
+    //   {id: 0, results: {p1Wins: 0, p2Wins: 0, ties: 0}},
+    //   {id: 1, results: {p1Wins: 0, p2Wins: 1, ties: 0}},
+    //   {id: 2, results:  {p1Wins: 1, p2Wins: 1, ties: 0}},
+    //   {id: 3, results:  {p1Wins: 1, p2Wins: 1, ties: 1}},
+    //   {id: 4, results:  {p1Wins: 2, p2Wins: 1, ties: 1}},
+    //   {id: 5, results:  {p1Wins: 2, p2Wins: 1, ties: 2}},
+    //   {id: 6, results:  {p1Wins: 2, p2Wins: 2, ties: 2}},
+    //   {id: 7, results:  {p1Wins: 3, p2Wins: 2, ties: 2}},
+    //   {id: 8, results:  {p1Wins: 4, p2Wins: 2, ties: 2}},
+    //   {id: 9, results:  {p1Wins: 4, p2Wins: 3, ties: 2}},
+    //   {id: 10, results: {p1Wins: 5, p2Wins: 3, ties: 2}},
+    //   {id: 11, results: {p1Wins: 5, p2Wins: 3, ties: 3}},
+    // ];
+    
+    const myData = [
+      {id: 'p1', data: []},
+      {id: 'p2', data: []},
+      {id: 'ties', data: []},
     ];
+
+    const lineData = myData.map(line => {
+      games.forEach(game => {
+        let talley;
+        switch (line.id) {
+          case 'p1':
+            talley = game.results.p1Wins;
+            break;
+          case 'p2':
+            talley = game.results.p2Wins;
+            break;
+          default:
+          talley = game.results.ties;
+        }
+
+        line.data.push({x: game.id, y: talley})
+      });
+      return line;
+    });
+
+    // console.log("LDATA >>>> ", ldata);
+
+    // const lineData = [
+    //   {
+    //     "id": "p1",
+    //     "data": [
+    //       { x: 0, y: 0 },
+    //       { x: 1, y: 0 },
+    //       { x: 2, y: 1 },
+    //       { x: 3, y: 1 },
+    //       { x: 4, y: 2 },
+    //       { x: 5, y: 2 },
+    //       { x: 6, y: 2 },
+    //       { x: 7, y: 3 },
+    //       { x: 8, y: 4 },
+    //       { x: 9, y: 4 },
+    //       { x: 10, y: 5 },
+    //       { x: 11, y: 5 }
+    //     ]
+    //   },
+    //   {
+    //     "id": "p2",
+    //     "data": [
+    //       { x: 0, y: 0 },
+    //       { x: 1, y: 1 },
+    //       { x: 2, y: 1 },
+    //       { x: 3, y: 1 },
+    //       { x: 4, y: 1 },
+    //       { x: 5, y: 1 },
+    //       { x: 6, y: 2 },
+    //       { x: 7, y: 2 },
+    //       { x: 8, y: 2 },
+    //       { x: 9, y: 3 },
+    //       { x: 10, y: 3 },
+    //       { x: 11, y: 3 }
+    //     ]
+    //   },
+    //   {
+    //     "id": "ties",
+    //     "data": [
+    //       { x: 0, y: 0 },
+    //       { x: 1, y: 0 },
+    //       { x: 2, y: 0 },
+    //       { x: 3, y: 1 },
+    //       { x: 4, y: 1 },
+    //       { x: 5, y: 2 },
+    //       { x: 6, y: 2 },
+    //       { x: 7, y: 2 },
+    //       { x: 8, y: 2 },
+    //       { x: 9, y: 2 },
+    //       { x: 10, y: 2 },
+    //       { x: 11, y: 3 }
+    //     ]
+    //   },
+    // ];
 
     if (played > 0) {
       return (
@@ -184,7 +224,7 @@ class Results extends React.Component {
             {this.state.selectedOption === "pie" ?
               <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
               : (this.state.selectedOption === "bar" ?
-                <NivoBarChart data={barData} maxValue={maxValue} />
+                <NivoBarChart data={barData} maxValue={maxValue + 2} />
                 :
                 <NivoLineChart data={lineData} colors={[colorP1, colorP2, colorTie]} />
               )
