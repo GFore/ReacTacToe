@@ -27,9 +27,10 @@ Nope - Additional enhancements I could try:
 - ~~Highlight the whole board for a tie~~ **_[DONE]_**
 - ~~Reorganize wide-mode layout so buttons and status are in column with move list.~~  **_[DONE]_**
 - ~~Use a data viz library (eg., nivo) to display a live pie, bar, or line chart showing player 1 wins, player 2 wins, and ties. (Line chart has number of games as x-axis, or save a timestamp with each game to use time as x-axis). Allow user to switch between chart type.~~ **_[DONE]_**
+- Move Game Status above board in mobile mode and improve look of player to letter assignment info.
 - Add icon buttons for switching between chart types instead of radio input buttons.
 - Sound effects or other animation when a game ends
-- Sticky footer in mobile mode with the game and stat buttons
+- Sticky footer in mobile mode with the game and stat buttons and fix responsiveness of charts when in mobile mode.
 - Deploy it live and add it to my portfolio
 - Refactor index.js into multiple child component files since it's turned into a hot mess
 - (STRETCH) For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorius move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
