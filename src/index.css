@@ -1,7 +1,17 @@
+/* border-box hack */
+html {box-sizing: border-box;}
+*, *:before, *:after {box-sizing: inherit;}
+
+/* chef aquino's special sauce */
+html, body { margin: 0; padding: 0; height: 100%; width: 100%;
+    /* font-family: Geneva, Arial, sans-serif; */
+}
+
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 5px;
-  background-color: goldenrod;
+  /* background-color: goldenrod; */
+  background-color: darkslategray;
   height: 100%;
   font-family: 'Oxygen Mono', monospace;
 }
@@ -62,7 +72,7 @@ ol, ul {padding-left: 30px;}
   border: 3px rgba(218, 165, 32, 0.2) solid;
 }
 .game-info {
-  height: 565px;
+  height: 573px;
   border: 4px rgba(218, 165, 32, 0.2) solid;
   /* background-color: rgba(218, 165, 32, 0.2); */
   display: flex;
@@ -122,7 +132,7 @@ ol, ul {padding-left: 30px;}
 
 .game-status {
   /* background-color: rgba(218, 165, 32, 0.2); */
-  width: 121px;
+  width: 169px;
   text-align: center;
   font-size: 15px;
   /* font-family: 'Oxygen Mono', monospace; */
