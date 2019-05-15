@@ -2,15 +2,11 @@
 html {box-sizing: border-box;}
 *, *:before, *:after {box-sizing: inherit;}
 
-/* chef aquino's special sauce */
-html, body { margin: 0; padding: 0; height: 100%; width: 100%;
-    /* font-family: Geneva, Arial, sans-serif; */
-}
+html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
 
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 5px;
-  /* background-color: goldenrod; */
   background-color: darkslategray;
   height: 100%;
   font-family: 'Oxygen Mono', monospace;
@@ -39,7 +35,6 @@ ol, ul {padding-left: 30px;}
   float: left;
   font-size: 140px;
   font-weight: bold;
-  /* line-height: 60px; */
   height: 190px;
   width: 190px;
   margin-right: -1px;
@@ -74,7 +69,6 @@ ol, ul {padding-left: 30px;}
 .game-info {
   height: 573px;
   border: 4px rgba(218, 165, 32, 0.2) solid;
-  /* background-color: rgba(218, 165, 32, 0.2); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -83,9 +77,6 @@ ol, ul {padding-left: 30px;}
 .game-board-buttons {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
-  /* padding: 5px; */
-  /* background-color: rgba(218, 165, 32, 0.2); */
 }
 
 .game-board-buttons button {
@@ -97,18 +88,13 @@ ol, ul {padding-left: 30px;}
 }
 
 .move-list {
-  /* margin-top: 30px; */
-  /* margin-left: 2px; */
   display: flex;
   flex-direction: column;
   align-content: flex-start;
   height: 380px;
-  /* width: 180px; */
   display: inline-block;
   text-align: left;
   font-size: 20px;
-  /* background-color: rgba(218, 165, 32, 0.2); */
-  /* opacity: 0.1; */
   padding: 0 15px 5px;
 }
 
@@ -123,20 +109,15 @@ ol, ul {padding-left: 30px;}
 }
 
 .game-results {
-  /* margin-left: 2px; */
-  /* margin-top: 30px; */
   height: 573px;
   padding: 0 15px;
   background-color: rgba(218, 165, 32, 0.2);
 }
 
 .game-status {
-  /* background-color: rgba(218, 165, 32, 0.2); */
   width: 169px;
   text-align: center;
   font-size: 15px;
-  /* font-family: 'Oxygen Mono', monospace; */
-  /* margin: 10px 0 0 2px; */
   padding: 10px 15px 15px;
 }
 
@@ -146,7 +127,6 @@ ol {
   margin-top: 0;
   margin-bottom: 5px;
   counter-reset:step-counter -1;
-  /* background-color: green; */
 }
 ol li {
   counter-increment: step-counter;
@@ -162,7 +142,6 @@ li button {
   margin-bottom: 5px;
   font-weight: normal;
   width: 100px;
-  /* padding-left: 0; */
   margin-left: -5px;
   font-size: 20px;
 }
@@ -183,13 +162,11 @@ li button:hover {
   justify-content: space-around;
   margin: 3px 5px;
   padding: 5px;
-  /* outline: 1px solid red; */
 }
 
 .pie {
   height: 300px;
   width: 300px;
-  /* background-color: pink; */
   margin: 0 auto;
 }
 
@@ -202,21 +179,12 @@ li button:hover {
   margin-left: 8px;
 }
 
-/* .dashboard {
-  display: 'flex';
-  flex-direction: row;
-} */
-
 /* add media queries */
 @media screen and (max-width: 750px) {
   .game {
     flex-direction: column;
     height: unset;
   }
-
-  /* .dashboard {
-    flex-direction: column;
-  } */
 
   .game-status {
     width: 100%;
