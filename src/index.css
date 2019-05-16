@@ -161,7 +161,7 @@ li button:hover {
   display: flex;
   justify-content: space-around;
   margin: 3px 5px;
-  padding: 5px;
+  padding: 2px 5px;
 }
 
 .pie {
@@ -177,6 +177,10 @@ li button:hover {
 
 .chartSelection label {
   margin-left: 8px;
+  font-size: 20px;
+}
+.chartSelection label i {
+  margin-left: 4px;
 }
 
 /* add media queries */

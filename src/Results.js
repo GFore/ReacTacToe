@@ -70,21 +70,6 @@ class Results extends React.Component {
       }
     ];
     
-    // const games = [
-    //   {id: 0, results: {p1Wins: 0, p2Wins: 0, ties: 0}},
-    //   {id: 1, results: {p1Wins: 0, p2Wins: 1, ties: 0}},
-    //   {id: 2, results:  {p1Wins: 1, p2Wins: 1, ties: 0}},
-    //   {id: 3, results:  {p1Wins: 1, p2Wins: 1, ties: 1}},
-    //   {id: 4, results:  {p1Wins: 2, p2Wins: 1, ties: 1}},
-    //   {id: 5, results:  {p1Wins: 2, p2Wins: 1, ties: 2}},
-    //   {id: 6, results:  {p1Wins: 2, p2Wins: 2, ties: 2}},
-    //   {id: 7, results:  {p1Wins: 3, p2Wins: 2, ties: 2}},
-    //   {id: 8, results:  {p1Wins: 4, p2Wins: 2, ties: 2}},
-    //   {id: 9, results:  {p1Wins: 4, p2Wins: 3, ties: 2}},
-    //   {id: 10, results: {p1Wins: 5, p2Wins: 3, ties: 2}},
-    //   {id: 11, results: {p1Wins: 5, p2Wins: 3, ties: 3}},
-    // ];
-    
     const myData = [
       {id: 'p1', data: []},
       {id: 'p2', data: []},
@@ -109,62 +94,6 @@ class Results extends React.Component {
       });
       return line;
     });
-
-    // console.log("LDATA >>>> ", ldata);
-
-    // const lineData = [
-    //   {
-    //     "id": "p1",
-    //     "data": [
-    //       { x: 0, y: 0 },
-    //       { x: 1, y: 0 },
-    //       { x: 2, y: 1 },
-    //       { x: 3, y: 1 },
-    //       { x: 4, y: 2 },
-    //       { x: 5, y: 2 },
-    //       { x: 6, y: 2 },
-    //       { x: 7, y: 3 },
-    //       { x: 8, y: 4 },
-    //       { x: 9, y: 4 },
-    //       { x: 10, y: 5 },
-    //       { x: 11, y: 5 }
-    //     ]
-    //   },
-    //   {
-    //     "id": "p2",
-    //     "data": [
-    //       { x: 0, y: 0 },
-    //       { x: 1, y: 1 },
-    //       { x: 2, y: 1 },
-    //       { x: 3, y: 1 },
-    //       { x: 4, y: 1 },
-    //       { x: 5, y: 1 },
-    //       { x: 6, y: 2 },
-    //       { x: 7, y: 2 },
-    //       { x: 8, y: 2 },
-    //       { x: 9, y: 3 },
-    //       { x: 10, y: 3 },
-    //       { x: 11, y: 3 }
-    //     ]
-    //   },
-    //   {
-    //     "id": "ties",
-    //     "data": [
-    //       { x: 0, y: 0 },
-    //       { x: 1, y: 0 },
-    //       { x: 2, y: 0 },
-    //       { x: 3, y: 1 },
-    //       { x: 4, y: 1 },
-    //       { x: 5, y: 2 },
-    //       { x: 6, y: 2 },
-    //       { x: 7, y: 2 },
-    //       { x: 8, y: 2 },
-    //       { x: 9, y: 2 },
-    //       { x: 10, y: 2 },
-    //       { x: 11, y: 3 }
-    //     ]
-    //   },
-    // ];
 
     if (played > 0) {
       return (
@@ -203,21 +132,24 @@ class Results extends React.Component {
                 checked={this.state.selectedOption === "pie"}
                 onChange={this.handleOptionChange}
               />
-              Pie
+              {/* Pie */}
+              <i class="fas fa-chart-pie"></i>
             </label>
             <label>
               <input type="radio" name="chartType" value="bar"
                 checked={this.state.selectedOption === "bar"}
                 onChange={this.handleOptionChange}
               />
-              Bar
+              {/* Bar */}
+              <i class="fas fa-chart-bar"></i>
             </label>
             <label>
               <input type="radio" name="chartType" value="line"
                 checked={this.state.selectedOption === "line"}
                 onChange={this.handleOptionChange}
               />
-              Line
+              {/* Line */}
+              <i class="fas fa-chart-line"></i>
             </label>
           </div>
           <div className="pie">
