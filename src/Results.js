@@ -126,7 +126,7 @@ class Results extends React.Component {
             </div>
           </div>
           <div className="chartSelection">
-            Chart Type: 
+            {/* Chart Type:  */}
             <label>
               <input type="radio" name="chartType" value="pie"
                 checked={this.state.selectedOption === "pie"}
@@ -148,8 +148,8 @@ class Results extends React.Component {
                 checked={this.state.selectedOption === "line"}
                 onChange={this.handleOptionChange}
               />
-              {/* Line */}
               <i class="fas fa-chart-line"></i>
+              {/* Line */}
             </label>
           </div>
           <div className="pie">
