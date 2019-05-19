@@ -126,7 +126,7 @@ class Results extends React.Component {
             </div>
           </div>
           <div className="chartSelection">
-            {/* Chart Type:  */}
+    
             <label>
               <input type="radio" name="chartType" value="pie"
                 checked={this.state.selectedOption === "pie"}
