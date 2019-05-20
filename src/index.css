@@ -189,6 +189,10 @@ li button:hover {
   margin-left: 4px;
 }
 
+.chartSelection label:hover {
+  color: #333;
+}
+
 /* add media queries */
 @media screen and (max-width: 750px) {
   .game {
