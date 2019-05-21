@@ -41,6 +41,7 @@ Nope - Additional enhancements I could try:
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
 - Allow one-player mode for playing against the computer (choose skill levels where 'easy' is just randomly selected, medium attempts to block winning moves, and hard uses strategy to win)
 - Use localStorage to persist two-player results (either assume it's always the same two people playing, or set up players and track results against different opponents)
+- Deploy to Gatsby/Netlify to get experience with those tools
 
 ---
 

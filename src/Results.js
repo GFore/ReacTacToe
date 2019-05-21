@@ -133,7 +133,7 @@ class Results extends React.Component {
                 onChange={this.handleOptionChange}
               />
               {/* Pie */}
-              <i class="fas fa-chart-pie"></i>
+              <i className="fas fa-chart-pie"></i>
             </label>
             <label>
               <input type="radio" name="chartType" value="bar"
@@ -141,14 +141,14 @@ class Results extends React.Component {
                 onChange={this.handleOptionChange}
               />
               {/* Bar */}
-              <i class="fas fa-chart-bar"></i>
+              <i className="fas fa-chart-bar"></i>
             </label>
             <label>
               <input type="radio" name="chartType" value="line"
                 checked={this.state.selectedOption === "line"}
                 onChange={this.handleOptionChange}
               />
-              <i class="fas fa-chart-line"></i>
+              <i className="fas fa-chart-line"></i>
               {/* Line */}
             </label>
           </div>
