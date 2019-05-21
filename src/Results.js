@@ -19,7 +19,7 @@ class Results extends React.Component {
   };
 
   render() {
-    const { results, games } = this.props; // p1Wins, p2Wins, ties}
+    const { results, games, playerOneIsX } = this.props; // p1Wins, p2Wins, ties}
     const played = results.p1Wins + results.p2Wins + results.ties;
     const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties)
 
@@ -103,18 +103,24 @@ class Results extends React.Component {
           <div className="result-block">Games Played: {played}<br /></div>
           <div className="result-block" style={{backgroundColor: colorP1}}>
             <div className="result-block">
-              P1 Wins<br />{results.p1Wins}<br />
+              PLAYER 1<br />{playerOneIsX ? 'X' : 'O'}<br />
             </div>
             <div className="result-block">
-              P1 Win%<br />{((results.p1Wins / played) * 100).toFixed(1)}%<br />
+              Wins<br />{results.p1Wins}<br />
+            </div>
+            <div className="result-block">
+              Win%<br />{((results.p1Wins / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
           <div className="result-block" style={{backgroundColor: colorP2}}>
             <div className="result-block">
-              P2 Wins<br />{results.p2Wins}<br />
+              PLAYER 2<br />{playerOneIsX ? 'O' : 'X'}<br />
             </div>
             <div className="result-block">
-              P2 Win%<br />{((results.p2Wins / played) * 100).toFixed(1)}%<br />
+              Wins<br />{results.p2Wins}<br />
+            </div>
+            <div className="result-block">
+              Win%<br />{((results.p2Wins / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
           <div className="result-block" style={{backgroundColor: colorTie, color: colorTextSecondary }}>

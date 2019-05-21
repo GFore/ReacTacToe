@@ -200,8 +200,8 @@ class Game extends React.Component {
             <div className="game-info">
               <div  className="game-status">
                 <h2>{status}</h2>
-                {this.state.playerOneIsX ? 'P1: X ' : 'P1: O '}
-                {this.state.playerOneIsX ? ' P2: O ' : ' P2: X '}
+                {/* {this.state.playerOneIsX ? 'P1: X ' : 'P1: O '}
+                {this.state.playerOneIsX ? ' P2: O ' : ' P2: X '} */}
               </div>
               <div className="move-list">
                 <h4>Moves</h4>
@@ -238,7 +238,11 @@ class Game extends React.Component {
               </div>
             </div>
 
-            <Results results={this.state.results} games={this.state.games} />
+            <Results
+              results={this.state.results}
+              games={this.state.games}
+              playerOneIsX={this.state.playerOneIsX}
+            />
         </div>
         );
     }
