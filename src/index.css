@@ -104,13 +104,14 @@ ol, ul {padding-left: 30px;}
 
 .move-list h4, .game-results h4 {
   text-align: center;
-  margin-top: 10px;
+  margin: 10px 0 15px;
   opacity: 1;
+  font-size: 20px;
 }
 
 .game-results {
   height: 573px;
-  padding: 0 15px;
+  padding: 10px 15px 0;
   background-color: rgba(218, 165, 32, 0.2);
 }
 
@@ -161,7 +162,26 @@ li button:hover {
   display: flex;
   justify-content: space-around;
   margin: 3px 5px;
+  padding: 5px;
+}
+
+.result-subblock {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 3px 5px;
   padding: 2px 5px;
+  font-size: larger;
+  width: 33%;
+}
+
+.result-subblock h5 {
+  margin: 0 0 5px 0;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: lighter;
 }
 
 .pie {
@@ -171,7 +191,7 @@ li button:hover {
 }
 
 .chartSelection {
-  margin: 10px auto 5px;
+  margin: 15px auto 5px;
   text-align: center;
   display: flex;
   flex-direction: row;
