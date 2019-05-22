@@ -182,7 +182,7 @@ class Game extends React.Component {
             colors.X = colorTie;
             colors.O = colorTie;
         } else {
-            status = `Next turn: ${this.state.xIsNext ? 'X' : 'O'}`;
+            status = `Next: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
 
         return (
