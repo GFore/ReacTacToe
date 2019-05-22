@@ -28,9 +28,9 @@ Nope - Additional enhancements I could try:
 - ~~Reorganize wide-mode layout so buttons and status are in column with move list.~~  **_[DONE]_**
 - ~~Use a data viz library (eg., nivo) to display a live pie, bar, or line chart showing player 1 wins, player 2 wins, and ties. (Line chart has number of games as x-axis, or save a timestamp with each game to use time as x-axis). Allow user to switch between chart type.~~ **_[DONE]_**
 - ~~Add icon buttons for switching between chart types instead of radio input buttons.~~ **_[DONE]_**
-- Move Game Status above board in mobile mode and improve look of player to letter assignment info.
+- ~~Fix the responsiveness of charts in mobile mode and improve look of player to letter assignment info.~~ **_[DONE]_**
+- Move Game Status above the board and move buttons to a sticky footer when in mobile mode.
 - Sound effects or other animation when a game ends
-- Sticky footer in mobile mode with the game and stat buttons and fix responsiveness of charts when in mobile mode.
 - Deploy it live and add it to my portfolio
 - Refactor index.js into multiple child component files since it's turned into a hot mess
 
