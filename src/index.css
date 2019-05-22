@@ -224,11 +224,17 @@ li button:hover {
   .game-info {
     width: 75vw;
     height: fit-content;
+    border: none;
   }
 
   .game-status {
     width: 100%;
     font-size: 30px;
+    padding: 0;
+  }
+  
+  .game-status h2 {
+    margin: 15px 0 10px;
   }
 
   .square {
@@ -238,33 +244,41 @@ li button:hover {
   }
 
   .game-board-buttons {
+    padding-top: 0;
     width: 100%;
+    order: -1;
   }
+  .game-board {
+    margin-top: 15px;
+  }
+  
   .game-board-buttons button {
+    margin-top: 1px;
     width: 100%;
   }
-
+  
   .move-list {
     height: 160px;
     width: 66vw;
     margin-left: 0;
     font-size: 14px;
   }
-
+  
   ol {
     height: 120px;
     column-count: 2;
     column-fill: auto;
     padding-left: 40px;
   }
-
+  
   li button {
     font-size: 14px;
     margin-bottom: 3px;
     width: 60px;
   }
-
+  
   .game-results {
+    margin-top: 15px;
     width: 75vw;
   }
 }
