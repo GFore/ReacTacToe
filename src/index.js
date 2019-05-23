@@ -178,7 +178,7 @@ class Game extends React.Component {
         if (winner) {
             status = `${winner.player} WINS!`;
         } else if (!current.squares.includes(null)) {
-            status = `Tie game!`;
+            status = `Tie!`;
             colors.X = colorTie;
             colors.O = colorTie;
         } else {
