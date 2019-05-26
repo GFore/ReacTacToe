@@ -32,6 +32,7 @@ Nope - Additional enhancements I could try:
 - ~~Move Game Status above the board and move buttons to a sticky footer when in mobile mode.~~ **_[DONE]_**
 - Refactor index.js into multiple child component files since it's turned into a hot mess **_[IN PROGRESS]_**
 - Disable buttons in move list once game is finished
+- Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools
 - Sound effects or other animation when a game ends
 - Deploy it live and add it to my portfolio
 
