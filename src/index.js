@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Board from './Board.js'
@@ -7,9 +7,7 @@ import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
 
 const initialState = {
-  history: [{
-    squares: Array(9).fill(null),
-  }],
+  history: [{squares: Array(9).fill(null)}],
   stepNumber: 0,
   sortMovesAscending: true,
   xIsNext: true,
@@ -17,91 +15,90 @@ const initialState = {
   playerOneIsX: true,
 }
 
-class Game extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          ...initialState,
-          results: {p1Wins: 10, p2Wins: 8, ties: 11},
-          games: [{
-            id: 0,
-            winner: '',
-            squares: [],
-            winningLine: '',
-            results: {p1Wins: 10, p2Wins: 8, ties: 11},
-          }],
-        };
+class Game extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...initialState,
+      results: {p1Wins: 10, p2Wins: 8, ties: 11},
+      games: [{
+        id: 0,
+        winner: '',
+        squares: [],
+        winningLine: '',
+        results: {p1Wins: 10, p2Wins: 8, ties: 11},
+      }],
+    };
+  }
+
+  handleClick(i) {
+    const { stepNumber, xIsNext, games, playerOneIsX } = this.state;
+    const history = this.state.history.slice(0, stepNumber + 1);
+    const current = history[history.length -1];
+    const squares = current.squares.slice();  // returns a shallow copy of this.state.squares array into new variable squares
+
+    // return early if someone has won the game or if a Square is already filled
+    if (calculateWinner(squares) || squares[i]) {
+      return;
     }
 
-    handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
-        const current = history[history.length -1];
-        const squares = current.squares.slice();  // returns a shallow copy of this.state.squares array into new variable squares
+    squares[i] = xIsNext ? 'X' : 'O';
 
-        // return early if someone has won the game or if a Square is already filled
-        if (calculateWinner(squares) || squares[i]) {
-            return;
-        }
+    let addGame;
+    let newHighlighted = Array(9).fill(false);
+    let newResults = {};
+    let result;
+    let p1=0, p2=0, t=0;
+    const winner = calculateWinner(squares);
 
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-
-        const games = this.state.games.slice();
-        let addGame;
-        let newHighlighted = Array(9).fill(false);
-        let newResults = {};
-        let result;
-        let p1=0, p2=0, t=0;
-        const winner = calculateWinner(squares);
-
-        if (winner) {
-          winner.winningLine.forEach(i => newHighlighted[i] = true);
-          if (winner.player === 'X') {
-            result = this.state.playerOneIsX ? 'p1Wins' : 'p2Wins';
-          } else {
-            result = this.state.playerOneIsX ? 'p2Wins' : 'p1Wins';
-          }
-          if (result === 'p1Wins') {
-            p1++;
-          } else {
-            p2++;
-          }
-        } else if (!squares.includes(null)) {
-          newHighlighted = Array(9).fill(true);
-          result = 'ties';
-          t++;
-        }
-
-        if (result) {
-          newResults[result] = this.state.results[result] + 1;
-          addGame = {
-            id: games.length,
-            squares: squares,
-            winner: result,
-            winningLine: t === 0 ? winner.winningLine : null,
-            results: {
-              p1Wins: games[games.length-1].results.p1Wins + p1,
-              p2Wins: games[games.length-1].results.p2Wins + p2,
-              ties: games[games.length-1].results.ties + t}
-          }
-        }
-
-        if (addGame) {
-          // console.log("addGame >>>> ", addGame);
-          games.push(addGame);
-        }
-
-        this.setState({
-          games: games,
-          history: history.concat([{
-              squares: squares,
-              pos: i,
-          }]),
-          stepNumber: history.length,
-          xIsNext: !this.state.xIsNext,
-          highlighted: newHighlighted,
-          results: {...this.state.results, ...newResults}
-        });
+    if (winner) {
+      winner.winningLine.forEach(i => newHighlighted[i] = true);
+      if (winner.player === 'X') {
+        result = playerOneIsX ? 'p1Wins' : 'p2Wins';
+      } else {
+        result = playerOneIsX ? 'p2Wins' : 'p1Wins';
+      }
+      if (result === 'p1Wins') {
+        p1++;
+      } else {
+        p2++;
+      }
+    } else if (!squares.includes(null)) {
+      newHighlighted = Array(9).fill(true);
+      result = 'ties';
+      t++;
     }
+
+    if (result) {
+      newResults[result] = this.state.results[result] + 1;
+      addGame = {
+        id: games.length,
+        squares: squares,
+        winner: result,
+        winningLine: t === 0 ? winner.winningLine : null,
+        results: {
+          p1Wins: games[games.length-1].results.p1Wins + p1,
+          p2Wins: games[games.length-1].results.p2Wins + p2,
+          ties: games[games.length-1].results.ties + t}
+      }
+    }
+
+    if (addGame) {
+      games.push(addGame);
+    }
+
+    this.setState({
+      games: games,
+      history: history.concat([{
+        squares: squares,
+        pos: i,
+      }]),
+      stepNumber: history.length,
+      xIsNext: !xIsNext,
+      highlighted: newHighlighted,
+      results: {...this.state.results, ...newResults}
+    });
+  }
 
     handleMouseOverStep(i) {
       const newHighlighted = Array(9).fill(false);
