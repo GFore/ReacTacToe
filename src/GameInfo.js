@@ -2,7 +2,7 @@ import React from 'react';
 
 const GameInfo = props => {
 
-  const { status, sortMovesAscending, moves, historyLength, switchPlayers, updateState, undoLastMove } = props;
+  const { status, sortMovesAscending, moves, historyLength, playerOneIsX, switchPlayers, updateState, undoLastMove } = props;
 
   return (
     <div className="game-info">

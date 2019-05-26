@@ -1,7 +1,7 @@
 import Radium from 'radium';
-import React from 'react';
+import React, { Component } from 'react';
 
-class MoveButton extends React.Component {
+class MoveButton extends Component {
 
   styles = {
     ':hover': {
@@ -10,15 +10,18 @@ class MoveButton extends React.Component {
   };
 
   render() {
+
+    const {bolded, handleClick, handleMouse, label, disabled } = this.props;
     return (
       <button
-        className={this.props.bolded ? 'bolded' : ''}
-        onClick={() => this.props.handleClick()}
-        onMouseEnter={() => this.props.handleMouse()}
-        onMouseLeave={() => this.props.handleMouse()}
+        className={bolded ? 'bolded' : ''}
+        onClick={() => handleClick()}
+        onMouseEnter={() => handleMouse()}
+        onMouseLeave={() => handleMouse()}
         style={this.styles}
+        disabled={disabled}
       >
-        {this.props.label}
+        {label}
       </button>
     );
   }

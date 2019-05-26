@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NivoPieChart from './NivoPieChart.js';
 import NivoBarChart from './NivoBarChart.js';
 import NivoLineChart from './NivoLineChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
-class Results extends React.Component {
+class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {

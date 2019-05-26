@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 function Square(props) {
   return (
@@ -12,7 +12,7 @@ function Square(props) {
   );
 }
 
-class Board extends React.Component {
+class Board extends Component {
   renderSquare(i) {
     return (
       <Square

@@ -88,6 +88,10 @@ ol, ul {padding-left: 30px;}
   width: 100%;
 }
 
+.holder {
+  display: flex;
+}
+
 .move-list {
   display: flex;
   flex-direction: column;
@@ -219,6 +223,10 @@ li button:hover {
   .game {
     flex-direction: column;
     height: unset;
+  }
+
+  .holder {
+    display: unset;
   }
 
   .game-info {

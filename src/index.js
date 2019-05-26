@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Board from './Board.js'
+import GameInfo from './GameInfo.js'
 import MoveButton from './MoveButton.js'
 import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
@@ -50,6 +51,24 @@ class Game extends Component {
         results: {p1Wins: 10, p2Wins: 8, ties: 11},
       }],
     };
+  }
+
+  updateState(update, resetInitial=false) {
+    console.log("UPDATING STATE FOR >> ", update);
+    if (resetInitial) {
+      console.log("reseting initial")
+      this.setState({
+        ...this.state,
+        ...initialState,
+        ...update,
+      });
+
+    } else {
+      this.setState({
+        ...this.state,
+        ...update,
+      });
+    }
   }
 
   handleClick(i) {
@@ -187,6 +206,7 @@ class Game extends Component {
             handleMouse={() => this.handleMouseOverStep(step.pos)}
             label={`${step.squares[step.pos]} in ${step.pos}`}
             hoverColor={colors[step.squares[step.pos]]}
+            // disabled={!status.startsWith('Next')}
           />
         </li>
       );
@@ -212,51 +232,24 @@ class Game extends Component {
           mouseOverStep={(i) => this.handleMouseOverStep(i)}
           colors={colors}
         />
-        
-        <div className="game-info">
-          <div  className="game-status">
-            <h2>{status}</h2>
-          </div>
-          <div className="move-list">
-            <h4>Moves</h4>
-            <hr />
-            <div>
-              <ol>{sortMovesAscending ? moves : moves.reverse()}</ol>
-            </div>
-          </div>
-          <div className="game-board-buttons">
-            <button title="Start New Game"
-              onClick={() => this.setState({...initialState, playerOneIsX: playerOneIsX})}
-            >
-              <i className="fas fa-power-off"></i>
-            </button>
-            <button title="Switch Players"
-              onClick={() => this.switchPlayers()}
-              disabled={history.length !== 1}
-            >
-              <i className="fas fa-random"></i>
-            </button>
-            <button title="Undo Last Move"
-              onClick={() => this.undoLastMove()}
-              disabled={history.length === 1 || !status.startsWith('Next')}
-            >
-              <i className="fas fa-undo fa-sm"></i>
-            </button>
-            <button
-              title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
-              onClick={() => this.setState({sortMovesAscending: !sortMovesAscending})}
-              disabled={history.length === 1}
-            >
-              <i className={sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
-            </button>
-          </div>
-        </div>
+        <div className="holder">
+          <GameInfo
+            status={status}
+            sortMovesAscending={sortMovesAscending}
+            moves={moves}
+            historyLength={history.length}
+            playerOneIsX={playerOneIsX}
+            switchPlayers={() => this.switchPlayers()}
+            updateState={(update, resetInitial) => this.updateState(update, resetInitial)}
+            undoLastMove={() => this.undoLastMove()}
+          />
 
-        <Results
-          results={results}
-          games={games}
-          playerOneIsX={playerOneIsX}
-        />
+          <Results
+            results={results}
+            games={games}
+            playerOneIsX={playerOneIsX}
+          />
+        </div>
       </div>
     );
   }
