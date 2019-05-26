@@ -30,9 +30,10 @@ Nope - Additional enhancements I could try:
 - ~~Add icon buttons for switching between chart types instead of radio input buttons.~~ **_[DONE]_**
 - ~~Fix the responsiveness of charts in mobile mode and improve look of player to letter assignment info.~~ **_[DONE]_**
 - ~~Move Game Status above the board and move buttons to a sticky footer when in mobile mode.~~ **_[DONE]_**
+- Refactor index.js into multiple child component files since it's turned into a hot mess **_[IN PROGRESS]_**
+- Disable buttons in move list once game is finished
 - Sound effects or other animation when a game ends
 - Deploy it live and add it to my portfolio
-- Refactor index.js into multiple child component files since it's turned into a hot mess
 
 ---
 
