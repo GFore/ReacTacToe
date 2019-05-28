@@ -5,6 +5,8 @@ Oh, just brushing up on React basics via the official [React documentation Tutor
 - Stores a game’s history as a game progresses,
 - Allows players to review a game’s history and see previous versions of a game’s board.
 
+See the completed tutorial project on this [CodePen](https://codepen.io/gaearon/full/gWWZgR).
+
 ---
 
 ## Yeah, what else?
@@ -31,10 +33,10 @@ Nope - Additional enhancements I could try:
 - ~~Fix the responsiveness of charts in mobile mode and improve look of player to letter assignment info.~~ **_[DONE]_**
 - ~~Move Game Status above the board and move buttons to a sticky footer when in mobile mode.~~ **_[DONE]_**
 - ~~Refactor index.js into multiple child component files since it's turned into a hot mess.~~ **_[DONE]_** (Could simplify further and make it cleaner, but ready to move on to other things)
+- ~~Deploy it live to Github Pages to get practice doing that~~ **_[DONE]_**
 - Disable buttons in move list once game is finished
 - Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools
 - Sound effects or other animation when a game ends
-- Deploy it live to Github Pages to get practice doing that
 - Add the app to my portfolio
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 
