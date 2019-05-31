@@ -1,11 +1,11 @@
-## Dude, whatcha doin' here?
-Oh, just brushing up on React basics via the official [React documentation Tutorial](https://reactjs.org/tutorial/tutorial.html), which is a simple project that:
+## Really, dude, a tic-tac-toe game? Whatcha doin' here?
+Oh, just brushing up on React basics by building a simple tic-tac-toe game following the official [React documentation Tutorial](https://reactjs.org/tutorial/tutorial.html). This builds a web app that:
 - Lets you play tic-tac-toe,
 - Indicates when a player has won the game,
 - Stores a game’s history as a game progresses,
 - Allows players to review a game’s history and see previous versions of a game’s board.
 
-See the completed tutorial project on this [CodePen](https://codepen.io/gaearon/full/gWWZgR).
+The completed tutorial project can be seen at this [CodePen](https://codepen.io/gaearon/full/gWWZgR).
 
 ---
 
@@ -37,7 +37,7 @@ Nope - Additional enhancements I could try:
 - Disable buttons in move list once game is finished
 - Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools
 - Sound effects or other animation when a game ends
-- Add the app to my portfolio
+- Add the app to my portfolio **_[IN PROGRESS]_**
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 
 ---
