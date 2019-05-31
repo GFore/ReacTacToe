@@ -55,9 +55,7 @@ class Game extends Component {
   }
 
   updateState(update, resetInitial=false) {
-    console.log("UPDATING STATE FOR >> ", update);
     if (resetInitial) {
-      console.log("reseting initial")
       this.setState({
         ...this.state,
         ...initialState,
