@@ -39,6 +39,7 @@ Nope - Additional enhancements I could try:
 - Sound effects or other animation when a game ends
 - Add the app to my portfolio **_[IN PROGRESS]_**
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
+- Use localStorage to persist two-player results (either assume it's always the same two people playing, or set up players and track results against different opponents)
 
 ---
 
@@ -46,9 +47,13 @@ Nope - Additional enhancements I could try:
 - For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorius move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
 - Allow one-player mode for playing against the computer (choose skill levels where 'easy' is just randomly selected, medium attempts to block winning moves, and hard uses strategy to win)
-- Use localStorage to persist two-player results (either assume it's always the same two people playing, or set up players and track results against different opponents)
 - Deploy to Gatsby/Netlify to get experience with those tools
 
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
+See https://facebook.github.io/create-react-app/docs/deployment#github-pages-https-pagesgithubcom
+Process for updating live site with changes???
