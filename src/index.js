@@ -16,6 +16,13 @@ const initialState = {
   playerOneIsX: true,
 }
 
+// testing localStorage
+// localStorage.P1 = 20;
+// localStorage.P2 = 15;
+// localStorage.Ties = 10;
+
+console.log("localStorage >>> ", localStorage);
+
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -42,7 +49,7 @@ class Game extends Component {
     super(props);
     this.state = {
       ...initialState,
-      results: {p1Wins: 0, p2Wins: 0, ties: 0},
+      results: {p1Wins: localStorage.P1, p2Wins: localStorage.P2, ties: localStorage.Ties},
       // results: {p1Wins: 10, p2Wins: 8, ties: 11},
       games: [{
         id: 0,
