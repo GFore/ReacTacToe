@@ -49,7 +49,7 @@ class Game extends Component {
     super(props);
     this.state = {
       ...initialState,
-      results: {p1Wins: localStorage.P1, p2Wins: localStorage.P2, ties: localStorage.Ties},
+      results: { p1Wins: Number(localStorage.P1), p2Wins: Number(localStorage.P2), ties: Number(localStorage.Ties) },
       // results: {p1Wins: 10, p2Wins: 8, ties: 11},
       games: [{
         id: 0,
