@@ -39,7 +39,8 @@ Nope - Additional enhancements I could try:
 - Sound effects or other animation when a game ends
 - Add the app to my portfolio **_[IN PROGRESS]_**
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
-- Use localStorage to persist two-player results (either assume it's always the same two people playing, or set up players and track results against different opponents)
+- Use localStorage to persist two-player results (either assume it's always the same two people playing, or set up players and track results against different opponents) **_[IN PROGRESS]_**
+- Allow user to reset saved game results/history in localStorage
 
 ---
 
