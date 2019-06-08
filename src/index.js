@@ -36,7 +36,7 @@ if(!localStorage.Games) {
   }]);
 }
 
-console.log("localStorage >>> ", localStorage);
+// console.log("localStorage >>> ", localStorage);
 
 function calculateWinner(squares) {
   const lines = [
