@@ -16,10 +16,25 @@ const initialState = {
   playerOneIsX: true,
 }
 
-// testing localStorage
-// localStorage.P1 = 20;
-// localStorage.P2 = 15;
-// localStorage.Ties = 10;
+// Initialize localStorage if user has not played before
+if(!localStorage.P1) {
+  localStorage.P1 = '0';
+}
+if(!localStorage.P2) {
+  localStorage.P2 = '0';
+}
+if(!localStorage.Ties) {
+  localStorage.Ties = '0';
+}
+if(!localStorage.Games) {
+  localStorage.Games = JSON.stringify([{
+    id: 0,
+    winner: '',
+    squares: [],
+    winningLine: '',
+    results: {p1Wins: 0, p2Wins: 0, ties: 0},
+  }]);
+}
 
 console.log("localStorage >>> ", localStorage);
 
@@ -51,13 +66,14 @@ class Game extends Component {
       ...initialState,
       results: { p1Wins: Number(localStorage.P1), p2Wins: Number(localStorage.P2), ties: Number(localStorage.Ties) },
       // results: {p1Wins: 10, p2Wins: 8, ties: 11},
-      games: [{
-        id: 0,
-        winner: '',
-        squares: [],
-        winningLine: '',
-        results: {p1Wins: 0, p2Wins: 0, ties: 0},
-      }],
+      // games: [{
+      //   id: 0,
+      //   winner: '',
+      //   squares: [],
+      //   winningLine: '',
+      //   results: {p1Wins: 0, p2Wins: 0, ties: 0},
+      // }],
+      games: JSON.parse(localStorage.Games),
     };
   }
 
@@ -116,21 +132,27 @@ class Game extends Component {
     }
 
     if (result) {
+      const gameId = games.length;
       newResults[result] = this.state.results[result] + 1;
       addGame = {
-        id: games.length,
+        id: gameId,
         squares: squares,
         winner: result,
         winningLine: t === 0 ? winner.winningLine : null,
         results: {
-          p1Wins: games[games.length-1].results.p1Wins + p1,
-          p2Wins: games[games.length-1].results.p2Wins + p2,
-          ties: games[games.length-1].results.ties + t}
+          p1Wins: games[gameId-1].results.p1Wins + p1,
+          p2Wins: games[gameId-1].results.p2Wins + p2,
+          ties: games[gameId-1].results.ties + t}
       }
+
+      localStorage.P1 = +localStorage.P1 + p1;
+      localStorage.P2 = +localStorage.P2 + p2;
+      localStorage.Ties = +localStorage.Ties + t;
     }
 
     if (addGame) {
       games.push(addGame);
+      localStorage.Games = JSON.stringify(games);
     }
 
     this.setState({
