@@ -37,9 +37,10 @@ Nope - Additional enhancements I could try:
 - Disable buttons in move list once game is finished
 - Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools
 - Sound effects or other animation when a game ends
-- Add the app to my portfolio **_[IN PROGRESS]_**
+- ~~Add the app to my portfolio~~ **_[DONE]_**
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 - ~~Use localStorage to persist two-player results (assume always the same two people playing) and retreive those results into state when starting the game~~ **_[DONE]_**
+- ~~Confirm that browser supports localStorage and handle when it does not~~ **_[DONE]_**
 - Allow user to reset saved game results/history in localStorage and handle case where user device does not support localStorage
 
 ---
