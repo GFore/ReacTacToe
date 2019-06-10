@@ -56,6 +56,4 @@ Nope - Additional enhancements I could try:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-
-See https://facebook.github.io/create-react-app/docs/deployment#github-pages-https-pagesgithubcom
-Process for updating live site with changes???
+[Process for updating live GitHub Pages site with changes](https://facebook.github.io/create-react-app/docs/deployment#github-pages-https-pagesgithubcom)
