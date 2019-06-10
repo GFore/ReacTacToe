@@ -7,6 +7,34 @@ import MoveButton from './MoveButton.js'
 import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
 
+function storageAvailable(type) {
+  // Modified from MDN code found at:
+  // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability
+  let storage;
+  try {
+    storage = window[type];
+    const x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  }
+  catch(e) {
+    return e instanceof DOMException && (
+      // everything except Firefox
+      e.code === 22 ||
+      // Firefox
+      e.code === 1014 ||
+      // test name field too, because code might not be present
+      // everything except Firefox
+      e.name === 'QuotaExceededError' ||
+      // Firefox
+      e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      (storage && storage.length !== 0);
+  }
+}
+
+const canUseLocalStorage = storageAvailable('localStorage');
 const initialState = {
   history: [{squares: Array(9).fill(null)}],
   stepNumber: 0,
@@ -16,27 +44,27 @@ const initialState = {
   playerOneIsX: true,
 }
 
-// Initialize localStorage if user has not played before
-if(!localStorage.P1) {
-  localStorage.P1 = '0';
+// If browser supports localStorage then initialize localStorage if user has not played before
+if (canUseLocalStorage) {
+  if(!localStorage.P1) {
+    localStorage.P1 = '0';
+  }
+  if(!localStorage.P2) {
+    localStorage.P2 = '0';
+  }
+  if(!localStorage.Ties) {
+    localStorage.Ties = '0';
+  }
+  if(!localStorage.Games) {
+    localStorage.Games = JSON.stringify([{
+      id: 0,
+      winner: '',
+      squares: [],
+      winningLine: '',
+      results: {p1Wins: 0, p2Wins: 0, ties: 0},
+    }]);
+  }
 }
-if(!localStorage.P2) {
-  localStorage.P2 = '0';
-}
-if(!localStorage.Ties) {
-  localStorage.Ties = '0';
-}
-if(!localStorage.Games) {
-  localStorage.Games = JSON.stringify([{
-    id: 0,
-    winner: '',
-    squares: [],
-    winningLine: '',
-    results: {p1Wins: 0, p2Wins: 0, ties: 0},
-  }]);
-}
-
-// console.log("localStorage >>> ", localStorage);
 
 function calculateWinner(squares) {
   const lines = [
@@ -64,16 +92,19 @@ class Game extends Component {
     super(props);
     this.state = {
       ...initialState,
-      results: { p1Wins: Number(localStorage.P1), p2Wins: Number(localStorage.P2), ties: Number(localStorage.Ties) },
-      // results: {p1Wins: 10, p2Wins: 8, ties: 11},
-      // games: [{
-      //   id: 0,
-      //   winner: '',
-      //   squares: [],
-      //   winningLine: '',
-      //   results: {p1Wins: 0, p2Wins: 0, ties: 0},
-      // }],
-      games: JSON.parse(localStorage.Games),
+      results: { 
+        p1Wins: canUseLocalStorage ? Number(localStorage.P1) : 0,
+        p2Wins: canUseLocalStorage ? Number(localStorage.P2) : 0,
+        ties: canUseLocalStorage ? Number(localStorage.Ties) : 0,
+      },
+      games: canUseLocalStorage ? JSON.parse(localStorage.Games) :
+        [{
+          id: 0,
+          winner: '',
+          squares: [],
+          winningLine: '',
+          results: {p1Wins: 0, p2Wins: 0, ties: 0},
+        }],
     };
   }
 
@@ -145,14 +176,18 @@ class Game extends Component {
           ties: games[gameId-1].results.ties + t}
       }
 
-      localStorage.P1 = +localStorage.P1 + p1;
-      localStorage.P2 = +localStorage.P2 + p2;
-      localStorage.Ties = +localStorage.Ties + t;
+      if (canUseLocalStorage) {
+        localStorage.P1 = +localStorage.P1 + p1;
+        localStorage.P2 = +localStorage.P2 + p2;
+        localStorage.Ties = +localStorage.Ties + t;
+      }
     }
 
     if (addGame) {
       games.push(addGame);
-      localStorage.Games = JSON.stringify(games);
+      if (canUseLocalStorage) {
+        localStorage.Games = JSON.stringify(games);
+      }
     }
 
     this.setState({
