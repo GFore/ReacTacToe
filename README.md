@@ -41,7 +41,7 @@ Nope - Additional enhancements I could try:
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 - ~~Use localStorage to persist two-player results (assume always the same two people playing) and retreive those results into state when starting the game~~ **_[DONE]_**
 - ~~Confirm that browser supports localStorage and handle when it does not~~ **_[DONE]_**
-- Allow user to reset saved game results/history in localStorage and handle case where user device does not support localStorage
+- Allow user to reset saved game results/history in localStorage **_[IN PROCESS]_**
 
 ---
 
