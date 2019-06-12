@@ -124,6 +124,22 @@ class Game extends Component {
     }
   }
 
+  clearResults(update, resetInitial=false) {
+    if (resetInitial) {
+      this.setState({
+        ...this.state,
+        ...initialState,
+        ...update,
+      });
+
+    } else {
+      this.setState({
+        ...this.state,
+        ...update,
+      });
+    }
+  }
+
   handleClick(i) {
     const { stepNumber, xIsNext, games, playerOneIsX } = this.state;
     const history = this.state.history.slice(0, stepNumber + 1);
