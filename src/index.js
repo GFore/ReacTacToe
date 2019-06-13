@@ -124,20 +124,31 @@ class Game extends Component {
     }
   }
 
-  clearResults(update, resetInitial=false) {
-    if (resetInitial) {
-      this.setState({
-        ...this.state,
-        ...initialState,
-        ...update,
-      });
-
-    } else {
-      this.setState({
-        ...this.state,
-        ...update,
-      });
+  clearResults() {
+    if(canUseLocalStorage) {
+      localStorage.P1 = 0;
+      localStorage.P2 = 0;
+      localStorage.Ties = 0;
+      localStorage.Games = JSON.stringify([{
+        id: 0,
+        winner: '',
+        squares: [],
+        winningLine: '',
+        results: {p1Wins: 0, p2Wins: 0, ties: 0},
+      }]);
     }
+
+    this.setState({
+      ...initialState,
+      results: { p1Wins: 0, p2Wins: 0, ties: 0 },
+      games: [{
+        id: 0,
+        winner: '',
+        squares: [],
+        winningLine: '',
+        results: {p1Wins: 0, p2Wins: 0, ties: 0},
+      }],
+    });
   }
 
   handleClick(i) {
@@ -327,6 +338,7 @@ class Game extends Component {
             results={results}
             games={games}
             playerOneIsX={playerOneIsX}
+            clearResults={() => this.clearResults()}
           />
         </div>
       </div>
