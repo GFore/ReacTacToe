@@ -19,7 +19,7 @@ class Results extends Component {
   };
 
   render() {
-    const { results, games, playerOneIsX } = this.props; // p1Wins, p2Wins, ties}
+    const { results, games, playerOneIsX, clearResults } = this.props; // p1Wins, p2Wins, ties}
     const played = results.p1Wins + results.p2Wins + results.ties;
     const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties)
 
@@ -177,6 +177,7 @@ class Results extends Component {
               )
             }
           </div>
+          <button onClick={() => clearResults()}>Clear Game Results Data</button>
         </div>
       );
     } else {
