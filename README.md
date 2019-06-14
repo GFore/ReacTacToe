@@ -42,7 +42,7 @@ Nope - Additional enhancements I could try:
 - ~~Use localStorage to persist two-player results (assume always the same two people playing) and retreive those results into state when starting the game~~ **_[DONE]_**
 - ~~Confirm that browser supports localStorage and handle when it does not~~ **_[DONE]_**
 - ~~Allow user to reset saved game results/history in localStorage~~ **_[DONE]_**
-- Add a prompt to confirm the user meant to click the clear results button before clearing the results to prevent accidentally losing game history. 
+- ~~Add a prompt to confirm the user meant to click the clear results button before clearing the results to prevent accidentally losing game history~~ **_[DONE]_**
 
 ---
 

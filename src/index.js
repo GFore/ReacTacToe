@@ -125,30 +125,32 @@ class Game extends Component {
   }
 
   clearResults() {
-    if(canUseLocalStorage) {
-      localStorage.P1 = 0;
-      localStorage.P2 = 0;
-      localStorage.Ties = 0;
-      localStorage.Games = JSON.stringify([{
-        id: 0,
-        winner: '',
-        squares: [],
-        winningLine: '',
-        results: {p1Wins: 0, p2Wins: 0, ties: 0},
-      }]);
+    if (window.confirm('Are you sure you want to delete the history of played games?')) {
+      if(canUseLocalStorage) {
+        localStorage.P1 = 0;
+        localStorage.P2 = 0;
+        localStorage.Ties = 0;
+        localStorage.Games = JSON.stringify([{
+          id: 0,
+          winner: '',
+          squares: [],
+          winningLine: '',
+          results: {p1Wins: 0, p2Wins: 0, ties: 0},
+        }]);
+      }
+  
+      this.setState({
+        ...initialState,
+        results: { p1Wins: 0, p2Wins: 0, ties: 0 },
+        games: [{
+          id: 0,
+          winner: '',
+          squares: [],
+          winningLine: '',
+          results: {p1Wins: 0, p2Wins: 0, ties: 0},
+        }],
+      });
     }
-
-    this.setState({
-      ...initialState,
-      results: { p1Wins: 0, p2Wins: 0, ties: 0 },
-      games: [{
-        id: 0,
-        winner: '',
-        squares: [],
-        winningLine: '',
-        results: {p1Wins: 0, p2Wins: 0, ties: 0},
-      }],
-    });
   }
 
   handleClick(i) {
