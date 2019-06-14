@@ -10,7 +10,7 @@ The completed tutorial project can be seen at this [CodePen](https://codepen.io/
 ---
 
 ## Yeah, what else?
-Upon completion of the basic follow-along tutorial, these improvements are suggested as challenges to complete on your own, in order of increasing difficulty:
+After completing the basic app, the tutorial suggests making these improvements on your own in order to get more experience with React:
 1. ~~Display the location for each move in the move history list.~~ **_[DONE]_**
 2. ~~Bold the currently selected item in the move list.~~ **_[DONE]_**
 3. ~~Rewrite Board to use two loops to make the squares instead of hardcoding them.~~ **_[DONE]_**
@@ -41,7 +41,7 @@ Nope - Additional enhancements I could try:
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 - ~~Use localStorage to persist two-player results (assume always the same two people playing) and retreive those results into state when starting the game~~ **_[DONE]_**
 - ~~Confirm that browser supports localStorage and handle when it does not~~ **_[DONE]_**
-- ~~Allow user to reset saved game results/history in localStorage ~~ **_[DONE]_**
+- ~~Allow user to reset saved game results/history in localStorage~~ **_[DONE]_**
 - Add a prompt to confirm the user meant to click the clear results button before clearing the results to prevent accidentally losing game history. 
 
 ---
@@ -51,6 +51,8 @@ Nope - Additional enhancements I could try:
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
 - Allow one-player mode for playing against the computer (choose skill levels where 'easy' is just randomly selected, medium attempts to block winning moves, and hard uses strategy to win)
 - Deploy to Gatsby/Netlify to get experience with those tools
+- Refactor the app to use React Hooks for state management to get more experience using this more recent technique
+- Get experience working with MaterialUI by refactoring the app to use this library for styling
 
 ---
 
