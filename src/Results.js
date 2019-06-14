@@ -140,6 +140,14 @@ class Results extends Component {
             <h5>TIE %</h5>{((results.ties / played) * 100).toFixed(1)}%<br />
             </div>
           </div>
+          <div className="result-block-button">
+            <button
+              className="clear-button"
+              onClick={() => clearResults()}
+            >
+              Clear Game Results Data
+            </button>
+          </div>
           <div className="chartSelection">
     
             <label>
@@ -177,7 +185,7 @@ class Results extends Component {
               )
             }
           </div>
-          <button onClick={() => clearResults()}>Clear Game Results Data</button>
+          {/* <button onClick={() => clearResults()}>Clear Game Results Data</button> */}
         </div>
       );
     } else {
