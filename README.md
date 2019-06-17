@@ -43,11 +43,12 @@ Nope - Additional enhancements I could try:
 - ~~Confirm that browser supports localStorage and handle when it does not~~ **_[DONE]_**
 - ~~Allow user to reset saved game results/history in localStorage~~ **_[DONE]_**
 - ~~Add a prompt to confirm the user meant to click the clear results button before clearing the results to prevent accidentally losing game history~~ **_[DONE]_**
+- Add a title and favicon
 
 ---
 
 ## Stretch feature additions
-- For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorius move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
+- For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorious move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
 - Allow one-player mode for playing against the computer (choose skill levels where 'easy' is just randomly selected, medium attempts to block winning moves, and hard uses strategy to win)
 - Deploy to Gatsby/Netlify to get experience with those tools
