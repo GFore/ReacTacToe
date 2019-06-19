@@ -294,4 +294,10 @@ li button:hover {
     margin-top: 35px;
     width: 75vw;
   }
+
+  .pie {
+    height: 280px;
+    width: 280px;
+    margin: 0 auto;
+  }
 }

@@ -35,7 +35,7 @@ Nope - Additional enhancements I could try:
 - ~~Refactor index.js into multiple child component files since it's turned into a hot mess.~~ **_[DONE]_** (Could simplify further and make it cleaner, but ready to move on to other things)
 - ~~Deploy it live to Github Pages to get practice doing that~~ **_[DONE]_**
 - Disable buttons in move list once game is finished
-- Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools
+- ~~Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools~~ **_[DONE]_**
 - Sound effects or other animation when a game ends
 - ~~Add the app to my portfolio~~ **_[DONE]_**
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
@@ -47,7 +47,7 @@ Nope - Additional enhancements I could try:
 
 ---
 
-## Stretch feature additions
+## Stretch feature additions`
 - For multi-player game results, be able to see the winning boards (i.e., save a copy of history.squares for the victorious move). Allow pressing a play button to watch all the moves for a past game animated from start to the last move that resulted in a win or tie.
 - Have tabs that expand to show Moves and Results. Expand from the side of the board in wide mode or up from the bottom in narrow mode.
 - Allow one-player mode for playing against the computer (choose skill levels where 'easy' is just randomly selected, medium attempts to block winning moves, and hard uses strategy to win)
