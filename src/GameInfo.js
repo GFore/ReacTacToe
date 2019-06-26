@@ -1,4 +1,5 @@
 import React from 'react';
+import SwapVert from '@material-ui/icons/SwapVert'; 
 
 const GameInfo = props => {
 
@@ -39,7 +40,7 @@ const GameInfo = props => {
           onClick={() => updateState({sortMovesAscending: !sortMovesAscending})}
           disabled={historyLength === 1}
         >
-          <i className={sortMovesAscending ? "fas fa-sort-down" : "fas fa-sort-up"}></i>
+          <SwapVert />
         </button>
       </div>
     </div>

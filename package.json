@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://GFore.github.io/ReacTacToe",
   "dependencies": {
+    "@material-ui/core": "^4.1.3",
+    "@material-ui/icons": "^4.2.1",
     "@nivo/bar": "^0.57.0",
     "@nivo/line": "^0.57.1",
     "@nivo/pie": "^0.56.2",
