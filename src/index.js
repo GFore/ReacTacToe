@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import AppBar from '@material-ui/core/AppBar';
+import ToolBar from '@material-ui/core/ToolBar';
+import Typography from '@material-ui/core/Typography';
 import Board from './Board.js'
 import GameInfo from './GameInfo.js'
 import MoveButton from './MoveButton.js'
@@ -316,32 +319,39 @@ class Game extends Component {
     }
 
     return (
-      <div className="game">
-        <Board
-          squares={current.squares}
-          onClick={(i) => this.handleClick(i)}
-          highlighted={highlighted}
-          mouseOverStep={(i) => this.handleMouseOverStep(i)}
-          colors={colors}
-        />
-        <div className="holder">
-          <GameInfo
-            status={status}
-            sortMovesAscending={sortMovesAscending}
-            moves={moves}
-            historyLength={history.length}
-            playerOneIsX={playerOneIsX}
-            switchPlayers={() => this.switchPlayers()}
-            updateState={(update, resetInitial) => this.updateState(update, resetInitial)}
-            undoLastMove={() => this.undoLastMove()}
+      <div>
+        <AppBar color="primary" position="static" style={{ backgroundColor: 'rgba(218, 165, 32, 0.2)', margin: '-5px 0 20px -5px'}}>
+          <ToolBar>
+            <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
+          </ToolBar>
+        </AppBar>
+        <div className="game">
+          <Board
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+            highlighted={highlighted}
+            mouseOverStep={(i) => this.handleMouseOverStep(i)}
+            colors={colors}
           />
+          <div className="holder">
+            <GameInfo
+              status={status}
+              sortMovesAscending={sortMovesAscending}
+              moves={moves}
+              historyLength={history.length}
+              playerOneIsX={playerOneIsX}
+              switchPlayers={() => this.switchPlayers()}
+              updateState={(update, resetInitial) => this.updateState(update, resetInitial)}
+              undoLastMove={() => this.undoLastMove()}
+            />
 
-          <Results
-            results={results}
-            games={games}
-            playerOneIsX={playerOneIsX}
-            clearResults={() => this.clearResults()}
-          />
+            <Results
+              results={results}
+              games={games}
+              playerOneIsX={playerOneIsX}
+              clearResults={() => this.clearResults()}
+            />
+          </div>
         </div>
       </div>
     );
