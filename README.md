@@ -34,16 +34,16 @@ Nope - Additional enhancements I could try:
 - ~~Move Game Status above the board and move buttons to a sticky footer when in mobile mode.~~ **_[DONE]_**
 - ~~Refactor index.js into multiple child component files since it's turned into a hot mess.~~ **_[DONE]_** (Could simplify further and make it cleaner, but ready to move on to other things)
 - ~~Deploy it live to Github Pages to get practice doing that~~ **_[DONE]_**
-- Disable buttons in move list once game is finished
 - ~~Fix the overflow issue with nivo charts on some mobile devices in Chrome DevTools~~ **_[DONE]_**
-- Sound effects or other animation when a game ends
 - ~~Add the app to my portfolio~~ **_[DONE]_**
-- Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 - ~~Use localStorage to persist two-player results (assume always the same two people playing) and retreive those results into state when starting the game~~ **_[DONE]_**
 - ~~Confirm that browser supports localStorage and handle when it does not~~ **_[DONE]_**
 - ~~Allow user to reset saved game results/history in localStorage~~ **_[DONE]_**
 - ~~Add a prompt to confirm the user meant to click the clear results button before clearing the results to prevent accidentally losing game history~~ **_[DONE]_**
-- Add a title and favicon
+- Add a title and favicon **_[IN PROGRESS]_**
+- Disable buttons in move list once game is finished
+- Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
+- Sound effects or other animation when a game ends
 
 ---
 
@@ -53,7 +53,7 @@ Nope - Additional enhancements I could try:
 - Allow one-player mode for playing against the computer (choose skill levels where 'easy' is just randomly selected, medium attempts to block winning moves, and hard uses strategy to win)
 - Deploy to Gatsby/Netlify to get experience with those tools
 - Refactor the app to use React Hooks for state management to get more experience using this more recent technique
-- Get experience working with MaterialUI by refactoring the app to use this library for styling
+- Get experience working with Material-UI by refactoring the app to use this library for styling **_[IN PROGRESS]_**
 
 ---
 
