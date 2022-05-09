@@ -69,8 +69,8 @@ if (canUseLocalStorage) {
   }
 }
 
-function calculateWinner(squares) {
-  const lines = [
+const calculateWinner = (squares) => {
+  const winningLines = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -81,14 +81,16 @@ function calculateWinner(squares) {
     [2, 4, 6],
   ];
 
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+  let winner;
+  winningLines.forEach(winningLine => {
+    const [a, b, c] = winningLine;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return { player: squares[a], winningLine: lines[i] };
+      winner = { player: squares[a], winningLine };
     }
-  }
-  return null;
-}
+  })
+
+  return winner;
+};
 
 class Game extends Component {
   constructor(props) {
