@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import AppBar from '@material-ui/core/AppBar';
@@ -39,12 +39,12 @@ const storageAvailable = () => {
 
 const canUseLocalStorage = storageAvailable();
 const initialState = {
-  history: [{squares: Array(9).fill(null)}],
-  stepNumber: 0,
-  sortMovesAscending: true,
-  xIsNext: true,
   highlighted: Array(9).fill(false),
+  history: [{squares: Array(9).fill(null)}],
   playerOneIsX: true,
+  sortMovesAscending: true,
+  stepNumber: 0,
+  xIsNext: true,
 }
 
 // If browser supports localStorage then initialize localStorage if user has not played before
@@ -92,44 +92,42 @@ const calculateWinner = (squares) => {
   return winner;
 };
 
-class Game extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...initialState,
-      results: { 
-        p1Wins: canUseLocalStorage ? Number(localStorage.P1) : 0,
-        p2Wins: canUseLocalStorage ? Number(localStorage.P2) : 0,
-        ties: canUseLocalStorage ? Number(localStorage.Ties) : 0,
-      },
-      games: canUseLocalStorage ? JSON.parse(localStorage.Games) :
-        [{
-          id: 0,
-          winner: '',
-          squares: [],
-          winningLine: '',
-          results: {p1Wins: 0, p2Wins: 0, ties: 0},
-        }],
-    };
-  }
+const Game = () => {
+  const [state, setState] = useState({
+    ...initialState,
+    results: { 
+      p1Wins: canUseLocalStorage ? Number(localStorage.P1) : 0,
+      p2Wins: canUseLocalStorage ? Number(localStorage.P2) : 0,
+      ties: canUseLocalStorage ? Number(localStorage.Ties) : 0,
+    },
+    games: canUseLocalStorage ? JSON.parse(localStorage.Games) :
+      [{
+        id: 0,
+        winner: '',
+        squares: [],
+        winningLine: '',
+        results: {p1Wins: 0, p2Wins: 0, ties: 0},
+      }],
+  });
 
-  updateState(update, resetInitial=false) {
-    if (resetInitial) {
-      this.setState({
-        ...this.state,
-        ...initialState,
-        ...update,
-      });
+  const updateState = (update, resetInitial=false) => {
+    setState(currentState => {
+      if (resetInitial) {
+        return ({
+          ...currentState,
+          ...initialState,
+          ...update,
+        });
+      } else {
+        return ({
+          ...currentState,
+          ...update,
+        });
+      }
+    });
+  };
 
-    } else {
-      this.setState({
-        ...this.state,
-        ...update,
-      });
-    }
-  }
-
-  clearResults() {
+  const clearResults = () => {
     if (window.confirm('Are you sure you want to delete the history of played games?')) {
       if(canUseLocalStorage) {
         localStorage.P1 = 0;
@@ -144,7 +142,7 @@ class Game extends Component {
         }]);
       }
   
-      this.setState({
+      setState({
         ...initialState,
         results: { p1Wins: 0, p2Wins: 0, ties: 0 },
         games: [{
@@ -156,11 +154,11 @@ class Game extends Component {
         }],
       });
     }
-  }
+  };
 
-  handleClick(i) {
-    const { stepNumber, xIsNext, games, playerOneIsX } = this.state;
-    const history = this.state.history.slice(0, stepNumber + 1);
+  const handleClick = (i) => {
+    const { stepNumber, xIsNext, games, playerOneIsX } = state;
+    const history = state.history.slice(0, stepNumber + 1);
     const current = history[history.length -1];
     const squares = current.squares.slice();  // returns a shallow copy of this.state.squares array into new variable squares
 
@@ -198,7 +196,7 @@ class Game extends Component {
 
     if (result) {
       const gameId = games.length;
-      newResults[result] = this.state.results[result] + 1;
+      newResults[result] = state.results[result] + 1;
       addGame = {
         id: gameId,
         squares: squares,
@@ -224,140 +222,141 @@ class Game extends Component {
       }
     }
 
-    this.setState({
+    setState(currentState => ({
+      ...currentState,
       games: games,
-      history: history.concat([{
-        squares: squares,
-        pos: i,
-      }]),
+      highlighted: newHighlighted,
+      history: history.concat([{ squares: squares, pos: i }]),
+      results: { ...currentState.results, ...newResults },
       stepNumber: history.length,
       xIsNext: !xIsNext,
-      highlighted: newHighlighted,
-      results: {...this.state.results, ...newResults}
-    });
-  }
+    }));
+  };
 
-  handleMouseOverStep(i) {
+  const handleMouseOverStep = (i) => setState(currentState => {
     const newHighlighted = Array(9).fill(false);
-    newHighlighted[i] = !this.state.highlighted[i];
-    this.setState({
+    newHighlighted[i] = !currentState.highlighted[i];
+    return ({
+      ...currentState,
       highlighted: newHighlighted,
     })
-  }
+  });
 
-  showWinner(line) {
+  const showWinner = (line) => {
     const newHighlighted = Array(9).fill(false);
     line.forEach(i => newHighlighted[i] = true);
-    this.setState({
+    setState(currentState => ({
+      ...currentState,
       highlighted: newHighlighted,
-    })
-  }
+    }));
+  };
 
-  jumpTo(step) {
-    this.setState({
+  const jumpTo = (step) => {
+    setState(currentState => ({
+      ...currentState,
       stepNumber: step,
       xIsNext: (step % 2) === 0,
-    });
-  }
+    }));
+  };
 
-  switchPlayers() {
-    this.setState({
+  const switchPlayers = () => {
+    setState(currentState => ({
+      ...currentState,
       xIsNext: true,
-      playerOneIsX: !this.state.playerOneIsX,
-    });
-  }
+      playerOneIsX: !currentState.playerOneIsX,
+    }));
+  };
 
-  undoLastMove() {
-    if (this.state.history.length > 1) {
-      this.setState({
-        stepNumber: this.state.history.length - 2,
-        xIsNext: !this.state.xIsNext,
-        history: this.state.history.slice(0, this.state.history.length - 1),
+  const undoLastMove = () => {
+    if (state.history.length > 1) {
+      setState(currentState => ({
+        ...currentState,
         highlighted: Array(9).fill(false),
-      });
+        history: currentState.history.slice(0, currentState.history.length - 1),
+        stepNumber: currentState.history.length - 2,
+        xIsNext: !currentState.xIsNext,
+      }));
     }
-  }
+  };
 
-  render() {
-    const { highlighted, history, stepNumber, playerOneIsX, xIsNext, results, games, sortMovesAscending } = this.state;
-    const current = history[stepNumber];
-    const winner = calculateWinner(current.squares);
-    const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
+  const { highlighted, history, stepNumber, playerOneIsX, xIsNext, results, games, sortMovesAscending } = state;
+  const current = history[stepNumber];
+  const winner = calculateWinner(current.squares);
+  const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
 
-    const moves = history.map((step, move) => {
-      if (move === 0) {
-        return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)} >
-              Start
-            </button>
-          </li>
-        );
-      }
-
+  const moves = history.map((step, move) => {
+    if (move === 0) {
       return (
         <li key={move}>
-          <MoveButton
-            bolded={stepNumber === move}
-            handleClick={() => this.jumpTo(move)}
-            handleMouse={() => this.handleMouseOverStep(step.pos)}
-            label={`${step.squares[step.pos]} in ${step.pos}`}
-            hoverColor={colors[step.squares[step.pos]]}
-            // disabled={!status.startsWith('Next')}
-          />
+          <button onClick={() => jumpTo(move)} >
+            Start
+          </button>
         </li>
       );
-    });
-        
-    let status;
-    if (winner) {
-        status = `${winner.player} WINS!`;
-    } else if (!current.squares.includes(null)) {
-        status = `Tie!`;
-        colors.X = colorTie;
-        colors.O = colorTie;
-    } else {
-        status = `Next: ${xIsNext ? 'X' : 'O'}`;
     }
 
     return (
-      <div>
-        <AppBar color="primary" position="static" style={{ backgroundColor: 'rgba(218, 165, 32, 0.2)', margin: '-5px 0 20px -5px'}}>
-          <ToolBar>
-            <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
-          </ToolBar>
-        </AppBar>
-        <div className="game">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-            highlighted={highlighted}
-            mouseOverStep={(i) => this.handleMouseOverStep(i)}
-            colors={colors}
-          />
-          <div className="holder">
-            <GameInfo
-              status={status}
-              sortMovesAscending={sortMovesAscending}
-              moves={moves}
-              historyLength={history.length}
-              playerOneIsX={playerOneIsX}
-              switchPlayers={() => this.switchPlayers()}
-              updateState={(update, resetInitial) => this.updateState(update, resetInitial)}
-              undoLastMove={() => this.undoLastMove()}
-            />
+      <li key={move}>
+        <MoveButton
+          bolded={stepNumber === move}
+          handleClick={() => jumpTo(move)}
+          handleMouse={() => handleMouseOverStep(step.pos)}
+          label={`${step.squares[step.pos]} in ${step.pos}`}
+          hoverColor={colors[step.squares[step.pos]]}
+          // disabled={!status.startsWith('Next')}
+        />
+      </li>
+    );
+  });
+        
+  let status;
+  if (winner) {
+    status = `${winner.player} WINS!`;
+  } else if (!current.squares.includes(null)) {
+    status = `Tie!`;
+    colors.X = colorTie;
+    colors.O = colorTie;
+  } else {
+    status = `Next: ${xIsNext ? 'X' : 'O'}`;
+  }
 
-            <Results
-              results={results}
-              games={games}
-              playerOneIsX={playerOneIsX}
-              clearResults={() => this.clearResults()}
-            />
-          </div>
+  return (
+    <div>
+      <AppBar color="primary" position="static" style={{ backgroundColor: 'rgba(218, 165, 32, 0.2)', margin: '-5px 0 20px -5px'}}>
+        <ToolBar>
+          <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
+        </ToolBar>
+      </AppBar>
+      <div className="game">
+        <Board
+          squares={current.squares}
+          onClick={(i) => handleClick(i)}
+          highlighted={highlighted}
+          mouseOverStep={(i) => handleMouseOverStep(i)}
+          colors={colors}
+        />
+        <div className="holder">
+          <GameInfo
+            status={status}
+            sortMovesAscending={sortMovesAscending}
+            moves={moves}
+            historyLength={history.length}
+            playerOneIsX={playerOneIsX}
+            switchPlayers={switchPlayers}
+            updateState={(update, resetInitial) => updateState(update, resetInitial)}
+            undoLastMove={undoLastMove}
+          />
+
+          <Results
+            results={results}
+            games={games}
+            playerOneIsX={playerOneIsX}
+            clearResults={clearResults}
+          />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
   
 ReactDOM.render(<Game />, document.getElementById('root'));
