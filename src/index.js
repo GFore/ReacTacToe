@@ -242,14 +242,14 @@ const Game = () => {
     })
   });
 
-  const showWinner = (line) => {
-    const newHighlighted = Array(9).fill(false);
-    line.forEach(i => newHighlighted[i] = true);
-    setState(currentState => ({
-      ...currentState,
-      highlighted: newHighlighted,
-    }));
-  };
+  // const showWinner = (line) => {
+  //   const newHighlighted = Array(9).fill(false);
+  //   line.forEach(i => newHighlighted[i] = true);
+  //   setState(currentState => ({
+  //     ...currentState,
+  //     highlighted: newHighlighted,
+  //   }));
+  // };
 
   const jumpTo = (step) => {
     setState(currentState => ({
