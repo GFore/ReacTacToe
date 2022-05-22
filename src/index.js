@@ -322,7 +322,7 @@ const Game = () => {
 
   return (
     <div>
-      <AppBar color="primary" position="static" style={{ backgroundColor: 'rgba(218, 165, 32, 0.2)', margin: '-5px 0 20px -5px'}}>
+      <AppBar className="game-header" color="primary" position="static">
         <ToolBar>
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
         </ToolBar>

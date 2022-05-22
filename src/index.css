@@ -66,6 +66,12 @@ ol, ul {padding-left: 30px;}
 .game-board {
   border: 3px rgba(218, 165, 32, 0.2) solid;
 }
+
+.game-header {
+  background-color: rgba(218, 165, 32, 0.2) !important;
+  margin: -5px 0 0 -5px;
+}
+
 .game-info {
   height: 573px;
   border: 4px rgba(218, 165, 32, 0.2) solid;
@@ -232,6 +238,10 @@ li button:hover {
 
   .holder {
     display: unset;
+  }
+
+  .game-header {
+    margin-bottom: 20px;
   }
 
   .game-info {
