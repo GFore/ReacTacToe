@@ -57,7 +57,7 @@ ol, ul {padding-left: 30px;}
   flex-wrap: wrap;
   background-color: darkslategray;
   color: whitesmoke;
-  height: 98vh;
+  height: calc(100vh - 70px);
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -69,7 +69,7 @@ ol, ul {padding-left: 30px;}
 
 .game-header {
   background-color: rgba(218, 165, 32, 0.2) !important;
-  margin: -5px 0 0 -5px;
+  margin: -5px 0 5px -5px;
 }
 
 .game-info {
