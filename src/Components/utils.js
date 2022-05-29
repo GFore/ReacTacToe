@@ -26,3 +26,20 @@ const storageAvailable = () => {
 }
 
 export const canUseLocalStorage = storageAvailable();
+
+export const initializeLocalStorage = () => {
+  // Initialize localStorage if user has not played before
+  if (!localStorage.P1) localStorage.P1 = '0';
+  if (!localStorage.P2) localStorage.P2 = '0';
+  if (!localStorage.Ties) localStorage.Ties = '0';
+
+  if (!localStorage.Games) {
+    localStorage.Games = JSON.stringify([{
+      id: 0,
+      winner: '',
+      squares: [],
+      winningLine: '',
+      results: {p1Wins: 0, p2Wins: 0, ties: 0},
+    }]);
+  }
+};

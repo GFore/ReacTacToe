@@ -8,8 +8,9 @@ import GameInfo from './GameInfo.js'
 import MoveButton from './MoveButton.js'
 import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
-import { canUseLocalStorage } from './utils';
+import { canUseLocalStorage, initializeLocalStorage } from './utils';
 
+if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
   highlighted: Array(9).fill(false),
   history: [{squares: Array(9).fill(null)}],
@@ -17,29 +18,7 @@ const initialState = {
   sortMovesAscending: true,
   stepNumber: 0,
   xIsNext: true,
-}
-
-// If browser supports localStorage then initialize localStorage if user has not played before
-if (canUseLocalStorage) {
-  if(!localStorage.P1) {
-    localStorage.P1 = '0';
-  }
-  if(!localStorage.P2) {
-    localStorage.P2 = '0';
-  }
-  if(!localStorage.Ties) {
-    localStorage.Ties = '0';
-  }
-  if(!localStorage.Games) {
-    localStorage.Games = JSON.stringify([{
-      id: 0,
-      winner: '',
-      squares: [],
-      winningLine: '',
-      results: {p1Wins: 0, p2Wins: 0, ties: 0},
-    }]);
-  }
-}
+};
 
 const calculateWinner = (squares) => {
   const winningLines = [
