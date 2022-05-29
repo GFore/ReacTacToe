@@ -8,7 +8,7 @@ import GameInfo from './GameInfo.js'
 import MoveButton from './MoveButton.js'
 import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
-import { canUseLocalStorage, initializeLocalStorage } from './utils';
+import { calculateWinner, canUseLocalStorage, initializeLocalStorage } from './utils';
 
 if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
@@ -18,29 +18,6 @@ const initialState = {
   sortMovesAscending: true,
   stepNumber: 0,
   xIsNext: true,
-};
-
-const calculateWinner = (squares) => {
-  const winningLines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  let winner;
-  winningLines.forEach(winningLine => {
-    const [a, b, c] = winningLine;
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      winner = { player: squares[a], winningLine };
-    }
-  })
-
-  return winner;
 };
 
 const Game = () => {
