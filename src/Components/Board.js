@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 
-function Square(props) {
-  return (
-    <button
-      className={`square`}
-      onClick={props.onClick}
-      style={props.hilite ? { backgroundColor: props.colors[props.value]} : {}}
-    >
-      {props.value}
-    </button>
-  );
-}
+const Square = ({ colors, hilite, onClick, value }) => (
+  <button
+    className={`square`}
+    onClick={onClick}
+    style={hilite ? { backgroundColor: colors[value]} : null}
+  >
+    {value}
+  </button>
+);
 
 class Board extends Component {
   renderSquare(i) {
