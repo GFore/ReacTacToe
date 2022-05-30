@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/ToolBar';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +10,13 @@ import MoveButton from './MoveButton.js'
 import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
 import { calculateWinner, canUseLocalStorage, initializeLocalStorage } from './utils';
+
+const useStyles = makeStyles((theme) => {
+  console.log({theme});
+  return ({
+    whiteText: { color: theme.palette.common.white },
+  });
+});
 
 if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
@@ -37,6 +45,7 @@ const Game = () => {
         results: {p1Wins: 0, p2Wins: 0, ties: 0},
       }],
   });
+  const classes = useStyles();
 
   const updateState = (update, resetInitial=false) => {
     setState(currentState => {
