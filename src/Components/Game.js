@@ -258,7 +258,7 @@ const Game = () => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <AppBar className="game-header" color="primary" position="static">
         <ToolBar>
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
@@ -292,7 +292,7 @@ const Game = () => {
           />
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
   
