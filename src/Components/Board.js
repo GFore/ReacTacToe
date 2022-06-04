@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Square = ({ colors, hilite, onClick, value }) => (
   <button
@@ -10,38 +10,36 @@ const Square = ({ colors, hilite, onClick, value }) => (
   </button>
 );
 
-class Board extends Component {
-  renderSquare(i) {
-    return (
-      <Square
-        hilite={this.props.highlighted[i]}
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-        key={i}
-        colors={this.props.colors} 
-      />
-    );
-  }
+const Board = ({ colors, highlighted, mouseOverStep, onClick, squares }) => {
+  const renderSquare = (i) => (
+    <Square
+      colors={colors}
+      hilite={highlighted[i]}
+      key={`square_${i}`}
+      onClick={() => onClick(i)}
+      value={squares[i]}
+    />
+  );
 
-  renderBoard = () => {
+  const renderBoard = () => {
     let board = [];
 
     for (let i = 0; i < 3; i++) {
       let rows = [];
       for (let j = (i * 3); j < (i+1)*3; j++) {
-        rows.push(this.renderSquare(j))
+        rows.push(renderSquare(j))
       }
       
-      board.push(<div className="board-row" key={i}>{rows}</div>)
+      board.push(<div className="board-row" key={`row_${i}`}>{rows}</div>)
     }
     return board;
   }
 
-  render() {
-    return (
-      <div className="game-board">{this.renderBoard()}</div>
-    );
-  }
-}
+  return (
+    <div className="game-board">
+      {renderBoard()}
+    </div>
+  );
+};
 
 export default Board;
