@@ -12,7 +12,7 @@ import { colorP1, colorP2, colorTie } from './constants';
 import { calculateWinner, canUseLocalStorage, initializeLocalStorage } from './utils';
 
 const useStyles = makeStyles((theme) => {
-  console.log({theme});
+  // console.log({theme});
   return ({
     whiteText: { color: theme.palette.common.white },
   });
@@ -266,11 +266,11 @@ const Game = () => {
       </AppBar>
       <div className="game">
         <Board
-          squares={current.squares}
-          onClick={(i) => handleClick(i)}
-          highlighted={highlighted}
-          mouseOverStep={(i) => handleMouseOverStep(i)}
           colors={colors}
+          highlighted={highlighted}
+          onClick={(i) => handleClick(i)}
+          squares={current.squares}
+          // mouseOverStep={(i) => handleMouseOverStep(i)}
         />
         <div className="holder">
           <GameInfo

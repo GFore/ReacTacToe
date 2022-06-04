@@ -10,7 +10,7 @@ const Square = ({ colors, hilite, onClick, value }) => (
   </button>
 );
 
-const Board = ({ colors, highlighted, mouseOverStep, onClick, squares }) => {
+const Board = ({ colors, highlighted, /* mouseOverStep,*/ onClick, squares }) => {
   const renderSquare = (i) => (
     <Square
       colors={colors}
