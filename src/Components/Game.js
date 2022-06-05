@@ -274,14 +274,14 @@ const Game = () => {
         />
         <div className="holder">
           <GameInfo
-            status={status}
-            sortMovesAscending={sortMovesAscending}
-            moves={moves}
             historyLength={history.length}
+            moves={moves}
             playerOneIsX={playerOneIsX}
+            sortMovesAscending={sortMovesAscending}
+            status={status}
             switchPlayers={switchPlayers}
-            updateState={(update, resetInitial) => updateState(update, resetInitial)}
             undoLastMove={undoLastMove}
+            updateState={(update, resetInitial) => updateState(update, resetInitial)}
           />
 
           <Results
