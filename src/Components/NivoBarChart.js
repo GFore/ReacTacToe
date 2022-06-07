@@ -8,23 +8,15 @@ const theme = {
     fontSize: "14px",
     tickColor: "#eee",
     ticks: {
-      line: {
-        stroke: "#555555"
-      },
-      text: {
-        fill: "#ffffff"
-      }
+      line: { stroke: "#555555" },
+      text: { fill: "#fff" },
     },
     legend: {
-      text: {
-        fill: "#aaaaaa"
-      }
-    }
+      text: { fill: "#aaa" },
+    },
   },
   grid: {
-    line: {
-      stroke: "#777"
-    }
+    line: { stroke: "#777" },
   },
   tooltip: {
     container: {
@@ -51,20 +43,10 @@ const NivoBarChart = ({ data, maxValue }) => (
       motionDamping={15}
       axisTop={null}
       axisRight={null}
-      axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-      }}
-      axisLeft={{
-          tickSize: 1,
-          tickPadding: 5,
-          tickRotation: 0,
-      }}
+      axisBottom={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
+      axisLeft={{ tickSize: 1, tickPadding: 5, tickRotation: 0 }}
       tooltip={({ id, value, color }) => (
-        <strong style={{ color }}>
-          {id}{id === 'ties' ? '' : ' wins'}: {value}
-        </strong>
+        <strong style={{ color }}>{id}{id === 'ties' ? '' : ' wins'}: {value}</strong>
       )}
       theme={theme}
   />
