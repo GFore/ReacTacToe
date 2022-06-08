@@ -176,7 +176,7 @@ li button:hover {
   padding: 5px;
 }
 
-.result-subblock {
+.result-block > div {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -188,7 +188,7 @@ li button:hover {
   width: 33%;
 }
 
-.result-subblock h5 {
+.result-block h5 {
   margin: 0 0 5px 0;
   font-size: x-small;
   font-style: italic;

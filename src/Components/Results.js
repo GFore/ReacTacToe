@@ -56,49 +56,71 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
   const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties)
   const { barData, lineData, pieData } = getChartData(games, results);
 
+  const summaryInfo = [
+    {
+      bgColor: colorP1,
+      label1: 'PLAYER 1', value1: playerOneIsX ? 'X' : 'O',
+      label2: 'WINS', value2: results.p1Wins,
+      label3: 'WIN %', value3: `${((results.p1Wins / played) * 100).toFixed(1)}%`,
+    },
+    {
+      bgColor: colorP2,
+      label1: 'PLAYER 2', value1: playerOneIsX ? 'O' : 'X',
+      label2: 'WINS', value2: results.p2Wins,
+      label3: 'WIN %', value3: `${((results.p2Wins / played) * 100).toFixed(1)}%`,
+    },
+    {
+      bgColor: colorTie, fColor: colorTextSecondary,
+      label1: 'GAMES PLAYED', value1: played,
+      label2: 'TIES', value2: results.ties,
+      label3: 'TIE %', value3: `${((results.ties / played) * 100).toFixed(1)}%`,
+    },
+  ];
+
   if (played > 0) {
     return (
       <div className="game-results">
         <h4>Game Results</h4>
         <div className="result-block" style={{backgroundColor: colorP1}}>
-          <div className="result-subblock">
+          <div>
             <h5>PLAYER 1</h5>
             {playerOneIsX ? 'X' : 'O'}
           </div>
-          <div className="result-subblock">
+          <div>
             <h5>WINS</h5>
             {results.p1Wins}
           </div>
-          <div className="result-subblock">
+          <div>
             <h5>WIN %</h5>
             {((results.p1Wins / played) * 100).toFixed(1)}%
           </div>
         </div>
         <div className="result-block" style={{backgroundColor: colorP2}}>
-          <div className="result-subblock">
+          <div>
             <h5>PLAYER 2</h5>
             {playerOneIsX ? 'O' : 'X'}
           </div>
-          <div className="result-subblock">
+          <div>
             <h5>WINS</h5>
             {results.p2Wins}
           </div>
-          <div className="result-subblock">
+          <div>
             <h5>WIN %</h5>
             {((results.p2Wins / played) * 100).toFixed(1)}%
           </div>
         </div>
         <div className="result-block" style={{backgroundColor: colorTie, color: colorTextSecondary }}>
-          <div className="result-subblock">
+          <div>
             <h5>GAMES PLAYED</h5>
             {played}
           </div>
-          <div className="result-subblock">
+          <div>
             <h5>TIES</h5>
             {results.ties}
           </div>
-          <div className="result-subblock">
-          <h5>TIE %</h5>{((results.ties / played) * 100).toFixed(1)}%<br />
+          <div>
+            <h5>TIE %</h5>
+            {((results.ties / played) * 100).toFixed(1)}%
           </div>
         </div>
         <div className="result-block-button">
