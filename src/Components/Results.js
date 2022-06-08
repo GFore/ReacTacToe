@@ -135,7 +135,7 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
             {/* Line */}
           </label>
         </div>
-        <div className="pie">
+        <div className="chartWrapper">
           {selectedOption === "pie" ?
             <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
             : (selectedOption === "bar" ?

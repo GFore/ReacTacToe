@@ -195,9 +195,9 @@ li button:hover {
   font-weight: lighter;
 }
 
-.pie {
-  height: 300px;
-  width: 300px;
+.chartWrapper {
+  height: 250px;
+  width: 250px;
   margin: 0 auto;
 }
 
@@ -305,7 +305,7 @@ li button:hover {
     width: 75vw;
   }
 
-  .pie {
+  .chartWrapper {
     height: 280px;
     width: 280px;
     margin: 0 auto;
