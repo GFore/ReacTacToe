@@ -45,6 +45,19 @@ const getChartData = (games, results) => {
   return { barData, lineData, pieData };
 };
 
+const ResultsSummary = ({ summaryInfo }) => (
+  <React.Fragment>
+    <h4>Game Results</h4>
+    {summaryInfo.map(row => (
+      <div className="result-block" style={{backgroundColor: row.bgColor, color: row.fColor }}>
+        <div><h5>{row.label1}</h5>{row.value1}</div>
+        <div><h5>{row.label2}</h5>{row.value2}</div>
+        <div><h5>{row.label3}</h5>{row.value3}</div>
+      </div>
+    ))}
+  </React.Fragment>
+);
+
 const Results = ({ clearResults, games, playerOneIsX, results }) => {
   const [selectedOption, setSelectedOption] = useState('pie');
 
@@ -58,13 +71,13 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
 
   const summaryInfo = [
     {
-      bgColor: colorP1,
+      bgColor: colorP1, fColor: 'inherit',
       label1: 'PLAYER 1', value1: playerOneIsX ? 'X' : 'O',
       label2: 'WINS', value2: results.p1Wins,
       label3: 'WIN %', value3: `${((results.p1Wins / played) * 100).toFixed(1)}%`,
     },
     {
-      bgColor: colorP2,
+      bgColor: colorP2, fColor: 'inherit',
       label1: 'PLAYER 2', value1: playerOneIsX ? 'O' : 'X',
       label2: 'WINS', value2: results.p2Wins,
       label3: 'WIN %', value3: `${((results.p2Wins / played) * 100).toFixed(1)}%`,
@@ -80,49 +93,8 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
   if (played > 0) {
     return (
       <div className="game-results">
-        <h4>Game Results</h4>
-        <div className="result-block" style={{backgroundColor: colorP1}}>
-          <div>
-            <h5>PLAYER 1</h5>
-            {playerOneIsX ? 'X' : 'O'}
-          </div>
-          <div>
-            <h5>WINS</h5>
-            {results.p1Wins}
-          </div>
-          <div>
-            <h5>WIN %</h5>
-            {((results.p1Wins / played) * 100).toFixed(1)}%
-          </div>
-        </div>
-        <div className="result-block" style={{backgroundColor: colorP2}}>
-          <div>
-            <h5>PLAYER 2</h5>
-            {playerOneIsX ? 'O' : 'X'}
-          </div>
-          <div>
-            <h5>WINS</h5>
-            {results.p2Wins}
-          </div>
-          <div>
-            <h5>WIN %</h5>
-            {((results.p2Wins / played) * 100).toFixed(1)}%
-          </div>
-        </div>
-        <div className="result-block" style={{backgroundColor: colorTie, color: colorTextSecondary }}>
-          <div>
-            <h5>GAMES PLAYED</h5>
-            {played}
-          </div>
-          <div>
-            <h5>TIES</h5>
-            {results.ties}
-          </div>
-          <div>
-            <h5>TIE %</h5>
-            {((results.ties / played) * 100).toFixed(1)}%
-          </div>
-        </div>
+        <ResultsSummary summaryInfo={summaryInfo} />
+
         <div className="result-block-button">
           <button
             className="clear-button"
