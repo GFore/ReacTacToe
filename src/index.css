@@ -195,6 +195,21 @@ li button:hover {
   font-weight: lighter;
 }
 
+.result-block-button {
+  display: flex;
+  justify-content: center;
+}
+
+.result-block-button > button {
+  margin-top: 6px;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.result-block-button > button:hover {
+  background-color: ivory;
+}
+
 .chartWrapper {
   height: 250px;
   width: 250px;
@@ -222,11 +237,6 @@ li button:hover {
 
 .chartSelection label:hover {
   color: #333;
-}
-
-.result-block-button {
-  display: flex;
-  justify-content: center;
 }
 
 /* add media queries */

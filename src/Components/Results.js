@@ -45,7 +45,7 @@ const getChartData = (games, results) => {
   return { barData, lineData, pieData };
 };
 
-const ResultsSummary = ({ summaryInfo }) => (
+const ResultsSummary = ({ clearResults, summaryInfo }) => (
   <React.Fragment>
     <h4>Game Results</h4>
     {summaryInfo.map(row => (
@@ -55,6 +55,11 @@ const ResultsSummary = ({ summaryInfo }) => (
         <div><h5>{row.label3}</h5>{row.value3}</div>
       </div>
     ))}
+    <div className="result-block-button">
+      <button onClick={clearResults}>
+        Clear Game History
+      </button>
+    </div>
   </React.Fragment>
 );
 
@@ -93,16 +98,8 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
   if (played > 0) {
     return (
       <div className="game-results">
-        <ResultsSummary summaryInfo={summaryInfo} />
+        <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo} />
 
-        <div className="result-block-button">
-          <button
-            className="clear-button"
-            onClick={() => clearResults()}
-          >
-            Clear Game Results Data
-          </button>
-        </div>
         <div className="chartSelection">
           <label>
             <input type="radio" name="chartType" value="pie"
