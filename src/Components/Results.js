@@ -63,6 +63,20 @@ const ResultsSummary = ({ clearResults, summaryInfo }) => (
   </React.Fragment>
 );
 
+const SelectChartType = ({ handleOptionChange, selectedOption }) => (
+  <div className="chartSelection">
+    {["pie", "bar", "line"].map(type => (
+      <label key={`chart_type_${type}`}>
+        <input type="radio" name="chartType" value={type}
+          checked={selectedOption === type}
+          onChange={handleOptionChange}
+        />
+        <i className={`fas fa-chart-${type}`}></i>
+      </label>
+    ))}
+  </div>
+);
+
 const Results = ({ clearResults, games, playerOneIsX, results }) => {
   const [selectedOption, setSelectedOption] = useState('pie');
 
@@ -99,33 +113,8 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
     return (
       <div className="game-results">
         <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo} />
+        <SelectChartType handleOptionChange={handleOptionChange} selectedOption={selectedOption} />
 
-        <div className="chartSelection">
-          <label>
-            <input type="radio" name="chartType" value="pie"
-              checked={selectedOption === "pie"}
-              onChange={handleOptionChange}
-            />
-            {/* Pie */}
-            <i className="fas fa-chart-pie"></i>
-          </label>
-          <label>
-            <input type="radio" name="chartType" value="bar"
-              checked={selectedOption === "bar"}
-              onChange={handleOptionChange}
-            />
-            {/* Bar */}
-            <i className="fas fa-chart-bar"></i>
-          </label>
-          <label>
-            <input type="radio" name="chartType" value="line"
-              checked={selectedOption === "line"}
-              onChange={handleOptionChange}
-            />
-            <i className="fas fa-chart-line"></i>
-            {/* Line */}
-          </label>
-        </div>
         <div className="chartWrapper">
           {selectedOption === "pie" ?
             <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
