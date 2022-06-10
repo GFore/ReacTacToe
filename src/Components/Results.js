@@ -48,8 +48,8 @@ const getChartData = (games, results) => {
 const ResultsSummary = ({ clearResults, summaryInfo }) => (
   <React.Fragment>
     <h4>Game Results</h4>
-    {summaryInfo.map(row => (
-      <div className="result-block" style={{backgroundColor: row.bgColor, color: row.fColor }}>
+    {summaryInfo.map((row, i) => (
+      <div key={`results_row_${i}`} className="result-block" style={{backgroundColor: row.bgColor, color: row.fColor }}>
         <div><h5>{row.label1}</h5>{row.value1}</div>
         <div><h5>{row.label2}</h5>{row.value2}</div>
         <div><h5>{row.label3}</h5>{row.value3}</div>
