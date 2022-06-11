@@ -4,7 +4,9 @@ import NivoBarChart from './NivoBarChart.js';
 import NivoLineChart from './NivoLineChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
-const getChartData = (games, results) => {
+const getDetails = (games, results) => {
+  const gameCount = results.p1Wins + results.p2Wins + results.ties;
+  const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties);
   const pieData = [
     { id: "P1 Wins", label: "Player 1 Wins", value: results.p1Wins, },
     { id: "P2 Wins", label: "Player 2 Wins", value: results.p2Wins, },
@@ -42,7 +44,7 @@ const getChartData = (games, results) => {
     return line;
   });
 
-  return { barData, lineData, pieData };
+  return { gameCount, maxValue, barData, lineData, pieData };
 };
 
 const ResultsSummary = ({ clearResults, summaryInfo }) => (
@@ -79,37 +81,32 @@ const SelectChartType = ({ handleOptionChange, selectedOption }) => (
 
 const Results = ({ clearResults, games, playerOneIsX, results }) => {
   const [selectedOption, setSelectedOption] = useState('pie');
+  const handleOptionChange = changeEvent => setSelectedOption(changeEvent.target.value);
 
-  const handleOptionChange = changeEvent => {
-    setSelectedOption(changeEvent.target.value);
-  };
-
-  const played = results.p1Wins + results.p2Wins + results.ties;
-  const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties)
-  const { barData, lineData, pieData } = getChartData(games, results);
+  const { gameCount, maxValue, barData, lineData, pieData } = getDetails(games, results);
 
   const summaryInfo = [
     {
       bgColor: colorP1, fColor: 'inherit',
       label1: 'PLAYER 1', value1: playerOneIsX ? 'X' : 'O',
       label2: 'WINS', value2: results.p1Wins,
-      label3: 'WIN %', value3: `${((results.p1Wins / played) * 100).toFixed(1)}%`,
+      label3: 'WIN %', value3: `${((results.p1Wins / gameCount) * 100).toFixed(1)}%`,
     },
     {
       bgColor: colorP2, fColor: 'inherit',
       label1: 'PLAYER 2', value1: playerOneIsX ? 'O' : 'X',
       label2: 'WINS', value2: results.p2Wins,
-      label3: 'WIN %', value3: `${((results.p2Wins / played) * 100).toFixed(1)}%`,
+      label3: 'WIN %', value3: `${((results.p2Wins / gameCount) * 100).toFixed(1)}%`,
     },
     {
       bgColor: colorTie, fColor: colorTextSecondary,
-      label1: 'GAMES PLAYED', value1: played,
+      label1: 'GAMES PLAYED', value1: gameCount,
       label2: 'TIES', value2: results.ties,
-      label3: 'TIE %', value3: `${((results.ties / played) * 100).toFixed(1)}%`,
+      label3: 'TIE %', value3: `${((results.ties / gameCount) * 100).toFixed(1)}%`,
     },
   ];
 
-  if (played > 0) {
+  if (gameCount > 0) {
     return (
       <div className="game-results">
         <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo} />
@@ -125,7 +122,6 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
             )
           }
         </div>
-        {/* <button onClick={() => clearResults()}>Clear Game Results Data</button> */}
       </div>
     );
   } else {
