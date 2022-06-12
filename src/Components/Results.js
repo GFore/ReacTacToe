@@ -114,14 +114,9 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
         <SelectChartType handleOptionChange={handleOptionChange} selectedOption={selectedOption} />
 
         <div className="chartWrapper">
-          {selectedOption === "pie" ?
-            <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]} />
-            : (selectedOption === "bar" ?
-              <NivoBarChart data={barData} maxValue={maxValue + 2} />
-              :
-              <NivoLineChart data={lineData} colors={[colorP1, colorP2, colorTie]} />
-            )
-          }
+          {selectedOption === "pie" && <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]}/>}
+          {selectedOption === "bar" && <NivoBarChart data={barData} maxValue={maxValue + 2}/>}
+          {selectedOption === "line" && <NivoLineChart data={lineData} colors={[colorP1, colorP2, colorTie]}/>}
         </div>
       </div>
     );
