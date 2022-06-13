@@ -4,10 +4,8 @@ import NivoBarChart from './NivoBarChart.js';
 import NivoLineChart from './NivoLineChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 
-const getDetails = (games, results, playerOneIsX) => {
+const getDetails = (chartType, games, results, playerOneIsX) => {
   const gameCount = results.p1Wins + results.p2Wins + results.ties;
-  const maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties);
-
   const summaryInfo = [
     {
       bgColor: colorP1, fColor: 'inherit',
@@ -29,44 +27,52 @@ const getDetails = (games, results, playerOneIsX) => {
     },
   ];
 
-  const pieData = [
-    { id: "P1 Wins", label: "Player 1 Wins", value: results.p1Wins, },
-    { id: "P2 Wins", label: "Player 2 Wins", value: results.p2Wins, },
-    { id: "Ties", label: "Tie Games", value: results.ties, }
-  ];
+  let chartData;
+  let chartParams = { colors: [colorP1, colorP2, colorTie] };
 
-  const barData = [
-    { player: "P1 Wins", p1: results.p1Wins, p1Color: colorP1, p2: 0, p2Color: colorP2, ties: 0, tiesColor: colorTie },
-    { player: "P2 Wins", p1: 0, p1Color: colorP1, p2: results.p2Wins, p2Color: colorP2, ties: 0, tiesColor: colorTie },
-    { player: "Ties", p1: 0, p1Color: colorP1, p2: 0, p2Color: colorP2, ties: results.ties, tiesColor: colorTie }
-  ];
+  switch (chartType) {
+    case "pie": {
+      chartData = [
+        { id: "P1 Wins", label: "Player 1 Wins", value: results.p1Wins, },
+        { id: "P2 Wins", label: "Player 2 Wins", value: results.p2Wins, },
+        { id: "Ties", label: "Tie Games", value: results.ties, }
+      ];
+      break;
+    }
+    case "bar": {
+      chartData = [
+        { player: "P1 Wins", p1: results.p1Wins, p1Color: colorP1, p2: 0, p2Color: colorP2, ties: 0, tiesColor: colorTie },
+        { player: "P2 Wins", p1: 0, p1Color: colorP1, p2: results.p2Wins, p2Color: colorP2, ties: 0, tiesColor: colorTie },
+        { player: "Ties", p1: 0, p1Color: colorP1, p2: 0, p2Color: colorP2, ties: results.ties, tiesColor: colorTie }
+      ];
+      chartParams = { maxValue: Math.max(results.p1Wins, results.p2Wins, results.ties) + 2 };
+      break;
+    }
+    default: {
+      const myData = [{id: 'p1', data: []}, {id: 'p2', data: []}, {id: 'ties', data: []}];
     
-  const myData = [
-    {id: 'p1', data: []},
-    {id: 'p2', data: []},
-    {id: 'ties', data: []},
-  ];
+      chartData = myData.map(line => {
+        games.forEach(game => {
+          let talley;
+          switch (line.id) {
+            case 'p1':
+              talley = game.results.p1Wins;
+              break;
+            case 'p2':
+              talley = game.results.p2Wins;
+              break;
+            default:
+            talley = game.results.ties;
+          }
+    
+          line.data.push({x: game.id, y: talley})
+        });
+        return line;
+      });
+    }
+  } 
 
-  const lineData = myData.map(line => {
-    games.forEach(game => {
-      let talley;
-      switch (line.id) {
-        case 'p1':
-          talley = game.results.p1Wins;
-          break;
-        case 'p2':
-          talley = game.results.p2Wins;
-          break;
-        default:
-        talley = game.results.ties;
-      }
-
-      line.data.push({x: game.id, y: talley})
-    });
-    return line;
-  });
-
-  return { gameCount, maxValue, summaryInfo, barData, lineData, pieData };
+  return { gameCount, summaryInfo, chartData, chartParams };
 };
 
 const ResultsSummary = ({ clearResults, summaryInfo }) => (
@@ -87,12 +93,12 @@ const ResultsSummary = ({ clearResults, summaryInfo }) => (
   </React.Fragment>
 );
 
-const SelectChartType = ({ handleOptionChange, selectedOption }) => (
+const SelectChartType = ({ handleOptionChange, chartType }) => (
   <div className="chartSelection">
     {["pie", "bar", "line"].map(type => (
       <label key={`chart_type_${type}`}>
         <input type="radio" name="chartType" value={type}
-          checked={selectedOption === type}
+          checked={chartType === type}
           onChange={handleOptionChange}
         />
         <i className={`fas fa-chart-${type}`}></i>
@@ -101,22 +107,28 @@ const SelectChartType = ({ handleOptionChange, selectedOption }) => (
   </div>
 );
 
-const Results = ({ clearResults, games, playerOneIsX, results }) => {
-  const [selectedOption, setSelectedOption] = useState('pie');
-  const handleOptionChange = changeEvent => setSelectedOption(changeEvent.target.value);
+const DisplayChart = ({ data, params, type }) => {
+  switch (type) {
+    case "pie": return <NivoPieChart data={data} {...params} />;
+    case "bar": return <NivoBarChart data={data} {...params} />;
+    case "line": return <NivoLineChart data={data} {...params} />;
+    default: return null;
+  }
+};
 
-  const { gameCount, maxValue, summaryInfo, barData, lineData, pieData } = getDetails(games, results, playerOneIsX);
+const Results = ({ clearResults, games, playerOneIsX, results }) => {
+  const [chartType, setChartType] = useState('pie');
+  const handleOptionChange = changeEvent => setChartType(changeEvent.target.value);
+
+  const { gameCount, summaryInfo, chartData, chartParams } = getDetails(chartType, games, results, playerOneIsX);
 
   if (gameCount > 0) {
     return (
       <div className="game-results">
-        <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo} />
-        <SelectChartType handleOptionChange={handleOptionChange} selectedOption={selectedOption} />
-
+        <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo}/>
+        <SelectChartType handleOptionChange={handleOptionChange} chartType={chartType}/>
         <div className="chartWrapper">
-          {selectedOption === "pie" && <NivoPieChart data={pieData} colors={[colorP1, colorP2, colorTie]}/>}
-          {selectedOption === "bar" && <NivoBarChart data={barData} maxValue={maxValue + 2}/>}
-          {selectedOption === "line" && <NivoLineChart data={lineData} colors={[colorP1, colorP2, colorTie]}/>}
+          <DisplayChart data={chartData} params={chartParams} type={chartType}/>
         </div>
       </div>
     );
