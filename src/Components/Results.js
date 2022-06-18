@@ -127,9 +127,7 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
     <div className="game-results">
       <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo}/>
       <SelectChartType handleOptionChange={e => setChartType(e.target.value)} chartType={chartType}/>
-      <div className="chartWrapper">
-        <DisplayChart data={chartData} params={chartParams} type={chartType}/>
-      </div>
+      <DisplayChart data={chartData} params={chartParams} type={chartType}/>
     </div>
   );
 };
