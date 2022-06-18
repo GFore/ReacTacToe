@@ -118,23 +118,20 @@ const DisplayChart = ({ data, params, type }) => {
 
 const Results = ({ clearResults, games, playerOneIsX, results }) => {
   const [chartType, setChartType] = useState('pie');
-  const handleOptionChange = changeEvent => setChartType(changeEvent.target.value);
 
   const { gameCount, summaryInfo, chartData, chartParams } = getDetails(chartType, games, results, playerOneIsX);
 
-  if (gameCount > 0) {
-    return (
-      <div className="game-results">
-        <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo}/>
-        <SelectChartType handleOptionChange={handleOptionChange} chartType={chartType}/>
-        <div className="chartWrapper">
-          <DisplayChart data={chartData} params={chartParams} type={chartType}/>
-        </div>
+  if (!gameCount) return null;
+
+  return (
+    <div className="game-results">
+      <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo}/>
+      <SelectChartType handleOptionChange={e => setChartType(e.target.value)} chartType={chartType}/>
+      <div className="chartWrapper">
+        <DisplayChart data={chartData} params={chartParams} type={chartType}/>
       </div>
-    );
-  } else {
-    return null;
-  }
+    </div>
+  );
 };
 
 export default Results;
