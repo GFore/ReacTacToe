@@ -3,15 +3,11 @@ import SwapVert from '@material-ui/icons/SwapVert';
 
 const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, status, switchPlayers, undoLastMove, updateState }) => (
   <div className="game-info">
-    <div className="game-status">
-      <h2>{status}</h2>
-    </div>
+    <div className="game-status"><h2>{status}</h2></div>
     <div className="move-list">
       <h4>Moves</h4>
       <hr />
-      <div>
-        <ol>{sortMovesAscending ? moves : moves.reverse()}</ol>
-      </div>
+      <ol>{sortMovesAscending ? moves : moves.reverse()}</ol>
     </div>
     <div className="game-board-buttons">
       <button title="Start New Game"
