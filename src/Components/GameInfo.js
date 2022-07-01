@@ -1,5 +1,8 @@
 import React from 'react';
+import Power from '@material-ui/icons/PowerSettingsNew'; 
+import Shuffle from '@material-ui/icons/Shuffle'; 
 import SwapVert from '@material-ui/icons/SwapVert'; 
+import Undo from '@material-ui/icons/Undo'; 
 
 const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, status, switchPlayers, undoLastMove, updateState }) => (
   <div className="game-info">
@@ -13,19 +16,19 @@ const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, stat
       <button title="Start New Game"
         onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
       >
-        <i className="fas fa-power-off"></i>
+        <Power />
       </button>
       <button title="Switch Players"
         onClick={() => switchPlayers()}
         disabled={historyLength !== 1}
       >
-        <i className="fas fa-random"></i>
+        <Shuffle />
       </button>
       <button title="Undo Last Move"
         onClick={() => undoLastMove()}
         disabled={historyLength === 1 || !status.startsWith('Next')}
       >
-        <i className="fas fa-undo fa-sm"></i>
+        <Undo />
       </button>
       <button
         title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
