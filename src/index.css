@@ -78,24 +78,17 @@ ol, ul {padding-left: 30px;}
   justify-content: space-between;
 }
 
-.game-board-buttons {
-  display: flex;
-  justify-content: center;
+.game-btn-group {
+  margin: 0 2px;
 }
 
-.game-board-buttons button {
-  background-color: lightgray;
-  border-radius: 2px;
-  padding: 10px 9px;
-  margin: 5px 1px 1px;
-  font-size: 16px;
-  width: 100%;
+.game-btn-group button {
+  flex-grow: 1;
 }
 
 .holder {
   display: flex;
 }
-
 
 .game-results {
   height: 573px;
@@ -275,18 +268,12 @@ ol, ul {padding-left: 30px;}
     width: 25vw;
   }
 
-  .game-board-buttons {
-    padding-top: 0;
-    width: 100%;
-    order: -1;
-  }
   .game-board {
     margin-top: 15px;
   }
-  
-  .game-board-buttons button {
-    margin-top: 1px;
-    width: 100%;
+
+  .game-btn-group {
+    order: -1;
   }
   
   .move-list {
