@@ -97,25 +97,18 @@ ol, ul {padding-left: 30px;}
 }
 
 .game-status {
-  width: 170px;
   text-align: center;
   font-size: 20px;
-  padding: 10px 15px 15px;
+  padding: 0px 15px;
 }
 
 .move-list {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   align-content: flex-start;
-  height: 380px;
-  display: inline-block;
-  text-align: left;
   font-size: 20px;
   padding: 0 15px 5px;
-}
-
-.move-list * {
-  opacity: unset;
 }
 
 .move-list h4, .game-results h4 {
@@ -125,32 +118,7 @@ ol, ul {padding-left: 30px;}
   font-size: 20px;
 }
 
-.move-list ol {
-  list-style: none;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 5px;
-  counter-reset:step-counter -1;
-}
-.move-list ol li {
-  counter-increment: step-counter;
-}
-.move-list ol li:before {
-  content: counter(step-counter)". ";
-}
-
-.move-list li button {
-  background-color: rgba(218, 165, 32, 0);
-  color: whitesmoke;
-  border: none;
-  margin-bottom: 5px;
-  font-weight: normal;
-  width: 100px;
-  margin-left: -5px;
-  font-size: 20px;
-}
-
-.move-list li button:hover {
+.move-list button {
   color: white;
   font-weight: 900;
 }

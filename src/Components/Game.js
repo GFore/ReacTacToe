@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/ToolBar';
 import Typography from '@material-ui/core/Typography';
 
@@ -221,28 +222,25 @@ const Game = () => {
   const winner = calculateWinner(current.squares);
   const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
 
-  const moves = history.map((step, move) => {
+  const moveBtns = history.map((step, move) => {
     if (move === 0) {
       return (
-        <li key={move}>
-          <button onClick={() => jumpTo(move)} >
-            Start
-          </button>
-        </li>
+        <Button key={'start_btn'} onClick={() => jumpTo(move)} variant="outlined">
+          0. Start
+        </Button>
       );
     }
 
     return (
-      <li key={move}>
-        <MoveButton
-          bolded={stepNumber === move}
-          handleClick={() => jumpTo(move)}
-          handleMouse={() => handleMouseOverStep(step.pos)}
-          label={`${step.squares[step.pos]} in ${step.pos}`}
-          hoverColor={colors[step.squares[step.pos]]}
-          // disabled={!status.startsWith('Next')}
-        />
-      </li>
+      <MoveButton
+        key={`move_${move}`}
+        bolded={stepNumber === move}
+        handleClick={() => jumpTo(move)}
+        handleMouse={() => handleMouseOverStep(step.pos)}
+        label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
+        hoverColor={colors[step.squares[step.pos]]}
+        // disabled={!status.startsWith('Next')}
+      />
     );
   });
         
@@ -275,7 +273,7 @@ const Game = () => {
         <div className="holder">
           <GameInfo
             historyLength={history.length}
-            moves={moves}
+            moves={moveBtns}
             playerOneIsX={playerOneIsX}
             sortMovesAscending={sortMovesAscending}
             status={status}

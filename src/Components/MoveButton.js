@@ -1,5 +1,6 @@
 import Radium from 'radium';
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 let MoveButton = ({ bolded, disabled, handleClick, handleMouse, hoverColor, label }) => {
   const styles = {
@@ -9,16 +10,17 @@ let MoveButton = ({ bolded, disabled, handleClick, handleMouse, hoverColor, labe
   };
 
   return (
-    <button
+    <Button
       className={bolded ? 'bolded' : ''}
       onClick={handleClick}
       onMouseEnter={handleMouse}
       onMouseLeave={handleMouse}
       style={styles}
       disabled={disabled}
+      variant="outlined"
     >
       {label}
-    </button>
+    </Button>
   );
 };
 

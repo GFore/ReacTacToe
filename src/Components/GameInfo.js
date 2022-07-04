@@ -15,8 +15,7 @@ const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, stat
       <div className="game-status"><h2>{status}</h2></div>
       <div className="move-list">
         <h4>Moves</h4>
-        <hr />
-        <ol>{sortMovesAscending ? moves : moves.reverse()}</ol>
+        {sortMovesAscending ? moves : moves.reverse()}
       </div>
       <ButtonGroup variant="contained" className='game-btn-group'>
         <Button title="Start New Game" onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}><Power /></Button>
