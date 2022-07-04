@@ -79,7 +79,7 @@ ol, ul {padding-left: 30px;}
 }
 
 .game-btn-group {
-  margin: 0 2px;
+  margin: 0;
 }
 
 .game-btn-group button {
@@ -88,9 +88,11 @@ ol, ul {padding-left: 30px;}
 
 .holder {
   display: flex;
+  width: 573px;
 }
 
 .game-results {
+  flex: 1 1 auto;
   height: 573px;
   padding: 10px 15px 0;
   background-color: rgba(218, 165, 32, 0.2);
@@ -208,6 +210,7 @@ ol, ul {padding-left: 30px;}
 
   .holder {
     display: unset;
+    width: unset
   }
 
   .game-header {
@@ -240,9 +243,9 @@ ol, ul {padding-left: 30px;}
     margin-top: 15px;
   }
 
-  .game-btn-group {
+  /* .game-btn-group {
     order: -1;
-  }
+  } */
   
   .move-list {
     height: 160px;
