@@ -9,7 +9,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, status, switchPlayers, undoLastMove, updateState }) => {
   const hasMoves = historyLength !== 1;
   const cannotUndo = !hasMoves || !status.startsWith('Next');
-  
+
   return (
     <div className="game-info">
       <ButtonGroup variant="contained" className='game-btn-group'>
@@ -39,9 +39,11 @@ const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, stat
           <SwapVert />
         </Button>
       </ButtonGroup>
-      <div className="game-status"><h2>{status}</h2></div>
-      <div className="move-list">
+      <div className="game-status">
+        <h2>{status}</h2>
         <h4>Moves</h4>
+      </div>
+      <div className="move-list">
         {sortMovesAscending ? moves : moves.reverse()}
       </div>
     </div>

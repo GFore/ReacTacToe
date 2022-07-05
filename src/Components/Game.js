@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import ToolBar from '@material-ui/core/ToolBar';
 import Typography from '@material-ui/core/Typography';
 
@@ -224,11 +224,12 @@ const Game = () => {
 
   const moveBtns = history.map((step, move) => {
     if (move === 0) {
-      return (
-        <Button key={'start_btn'} onClick={() => jumpTo(move)} variant="outlined">
-          0. Start
-        </Button>
-      );
+      return null;
+      // return (
+      //   <Button key={'start_btn'} onClick={() => jumpTo(move)} variant="outlined">
+      //     0. Start
+      //   </Button>
+      // );
     }
 
     return (
@@ -242,7 +243,7 @@ const Game = () => {
         // disabled={!status.startsWith('Next')}
       />
     );
-  });
+  }).filter(x => x);
         
   let status;
   if (winner) {
