@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import NivoPieChart from './NivoPieChart.js';
 import NivoBarChart from './NivoBarChart.js';
 import NivoLineChart from './NivoLineChart.js';
@@ -95,15 +97,19 @@ const ResultsSummary = ({ clearResults, summaryInfo }) => (
 
 const SelectChartType = ({ handleOptionChange, chartType }) => (
   <div className="chartSelection">
-    {["pie", "bar", "line"].map(type => (
-      <label key={`chart_type_${type}`}>
-        <input type="radio" name="chartType" value={type}
-          checked={chartType === type}
-          onChange={handleOptionChange}
-        />
-        <i className={`fas fa-chart-${type}`}></i>
-      </label>
-    ))}
+    <ButtonGroup variant="contained" className='game-btn-group'>
+      {["pie", "bar", "line"].map(type => (
+        <Button
+          key={`chart_type_${type}`}
+          title={type.toUpperCase()}
+          onClick={() => handleOptionChange({target: {value: type}})}
+          disabled={chartType === type}
+          style={chartType === type ? { color: 'white', borderTop: '1px solid gray', borderBottom: '1px solid gray' } : null }
+        >
+          <i className={`fas fa-chart-${type}`}></i>
+        </Button>
+      ))}
+    </ButtonGroup>
   </div>
 );
 
