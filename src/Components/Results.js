@@ -102,7 +102,7 @@ const SelectChartType = ({ handleOptionChange, chartType }) => (
         <Button
           key={`chart_type_${type}`}
           title={`${type.toUpperCase()} CHART`}
-          onClick={() => handleOptionChange({target: {value: type}})}
+          onClick={() => handleOptionChange(type)}
           disabled={chartType === type}
           style={chartType === type ? { color: 'white', borderTop: '1px solid gray', borderBottom: '1px solid gray' } : null }
         >
@@ -132,7 +132,7 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
   return (
     <div className="game-results">
       <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo}/>
-      <SelectChartType handleOptionChange={e => setChartType(e.target.value)} chartType={chartType}/>
+      <SelectChartType handleOptionChange={e => setChartType(e)} chartType={chartType}/>
       <DisplayChart data={chartData} params={chartParams} type={chartType}/>
     </div>
   );
