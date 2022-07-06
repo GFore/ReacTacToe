@@ -180,25 +180,19 @@ ol, ul {padding-left: 30px;}
 
 .chartSelection {
   margin: 15px auto 5px;
-  text-align: center;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly
+  justify-content: center
 }
 
-.chartSelection label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 8px;
-  font-size: 20px;
+.chartSelection > div {
+  width: 75%;
 }
 .chartSelection label i {
   margin-left: 4px;
 }
 
-.chartSelection label:hover {
-  color: #333;
+.game-btn-group button:hover, .chartSelection button:hover {
+  color: rgb(104, 101, 9);
 }
 
 /* add media queries */

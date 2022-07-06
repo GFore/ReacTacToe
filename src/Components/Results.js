@@ -101,7 +101,7 @@ const SelectChartType = ({ handleOptionChange, chartType }) => (
       {["pie", "bar", "line"].map(type => (
         <Button
           key={`chart_type_${type}`}
-          title={type.toUpperCase()}
+          title={`${type.toUpperCase()} CHART`}
           onClick={() => handleOptionChange({target: {value: type}})}
           disabled={chartType === type}
           style={chartType === type ? { color: 'white', borderTop: '1px solid gray', borderBottom: '1px solid gray' } : null }
