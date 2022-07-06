@@ -242,29 +242,19 @@ ol, ul {padding-left: 30px;}
   .game-board {
     margin-top: 15px;
   }
-
-  /* .game-btn-group {
-    order: -1;
-  } */
   
   .move-list {
-    height: 160px;
+    height: 120px;
     width: 66vw;
     margin-left: 0;
     font-size: 14px;
+    align-self: center;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
   
-  .move-list ol {
-    height: 120px;
-    column-count: 2;
-    column-fill: auto;
-    padding-left: 40px;
-  }
-  
-  .move-list li button {
-    font-size: 14px;
-    margin-bottom: 3px;
-    width: 60px;
+  .move-list button {
+    width: 33%;
   }
   
   .game-results {
