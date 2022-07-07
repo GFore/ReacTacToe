@@ -104,11 +104,7 @@ const SelectChartType = ({ chartType, clearResults, handleOptionChange }) => (
           <i className={`fas fa-chart-${type}`}></i>
         </Button>
       ))}
-      <Button
-        title={'Clear Game History'}
-        onClick={clearResults}
-        style={{ borderLeft: 'groove' }}
-      >
+      <Button className='groove-left' onClick={clearResults} title={'Clear Game History'}>
         <i className={`fas fa-trash`}></i>
       </Button>
     </ButtonGroup>
