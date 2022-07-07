@@ -45,6 +45,7 @@ Nope - The additional enhancements below will allow me to build more React skill
 - Add a title and favicon
 - Disable buttons in move list once game is finished
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
+- Migrate FontAwesome icons from JS import and className method to React component version
 
 ---
 
