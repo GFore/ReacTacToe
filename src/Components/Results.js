@@ -77,7 +77,7 @@ const getDetails = (chartType, games, results, playerOneIsX) => {
   return { gameCount, summaryInfo, chartData, chartParams };
 };
 
-const ResultsSummary = ({ clearResults, summaryInfo }) => (
+const ResultsSummary = ({ summaryInfo }) => (
   <React.Fragment>
     <h4>Game Results</h4>
     {summaryInfo.map((row, i) => (
@@ -87,15 +87,10 @@ const ResultsSummary = ({ clearResults, summaryInfo }) => (
         <div><h5>{row.label3}</h5>{row.value3}</div>
       </div>
     ))}
-    <div className="result-block-button">
-      <button onClick={clearResults}>
-        Clear Game History
-      </button>
-    </div>
   </React.Fragment>
 );
 
-const SelectChartType = ({ handleOptionChange, chartType }) => (
+const SelectChartType = ({ chartType, clearResults, handleOptionChange }) => (
   <div className="chartSelection">
     <ButtonGroup variant="contained" className='game-btn-group'>
       {["pie", "bar", "line"].map(type => (
@@ -109,6 +104,13 @@ const SelectChartType = ({ handleOptionChange, chartType }) => (
           <i className={`fas fa-chart-${type}`}></i>
         </Button>
       ))}
+      <Button
+        title={'Clear Game History'}
+        onClick={clearResults}
+        style={{ borderLeft: 'groove' }}
+      >
+        <i className={`fas fa-trash`}></i>
+      </Button>
     </ButtonGroup>
   </div>
 );
@@ -131,8 +133,8 @@ const Results = ({ clearResults, games, playerOneIsX, results }) => {
 
   return (
     <div className="game-results">
-      <ResultsSummary clearResults={clearResults} summaryInfo={summaryInfo}/>
-      <SelectChartType handleOptionChange={e => setChartType(e)} chartType={chartType}/>
+      <ResultsSummary summaryInfo={summaryInfo}/>
+      <SelectChartType chartType={chartType} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
       <DisplayChart data={chartData} params={chartParams} type={chartType}/>
     </div>
   );
