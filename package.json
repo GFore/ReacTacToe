@@ -10,7 +10,7 @@
     "@nivo/line": "^0.57.1",
     "@nivo/pie": "^0.56.2",
     "gh-pages": "^4.0.0",
-    "radium": "^0.25.1",
+    "radium": "^0.26.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"
