@@ -9,7 +9,7 @@
     "@nivo/bar": "^0.57.0",
     "@nivo/line": "^0.57.1",
     "@nivo/pie": "^0.56.2",
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^4.0.0",
     "radium": "^0.25.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
