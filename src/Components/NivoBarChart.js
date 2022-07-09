@@ -34,7 +34,7 @@ const NivoBarChart = ({ data, maxValue }) => (
       maxValue={maxValue}
       colorBy="id"
       colors={({ id, data }) => data[`${id}Color`]}
-      margin={{ 'top': 30, 'right': 10, 'bottom': 70, 'left': 20 }}
+      margin={{ 'top': 30, 'right': 20, 'bottom': 60, 'left': 20 }}
       padding={0.35}
       borderColor={{ 'from': 'color', 'modifiers': [['darker', 0.2]] }}
       enableLabel={false}

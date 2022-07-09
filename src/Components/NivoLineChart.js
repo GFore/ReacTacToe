@@ -28,7 +28,7 @@ const NivoLineChart = ({ data, colors }) => {
       <ResponsiveLine
         data={data}
         curve={"monotoneX"}   
-        margin={{ top: 30, right: 10, bottom: 90, left: 45 }}
+        margin={{ top: 30, right: 30, bottom: 70, left: 45 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}
         axisTop={null}
