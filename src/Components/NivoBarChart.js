@@ -3,7 +3,6 @@ import { ResponsiveBar } from '@nivo/bar';
 import { colorTextSecondary } from './constants';
 
 const theme = {
-  // background: "#222222",
   axis: {
     fontSize: "14px",
     tickColor: "#eee",
@@ -39,15 +38,15 @@ const NivoBarChart = ({ data, maxValue }) => (
       padding={0.35}
       borderColor={{ 'from': 'color', 'modifiers': [['darker', 0.2]] }}
       enableLabel={false}
-      animate={true}
-      motionStiffness={90}
-      motionDamping={15}
       axisTop={null}
       axisRight={null}
       axisBottom={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
       axisLeft={{ tickSize: 1, tickPadding: 5, tickRotation: 0 }}
-      tooltip={({ id, value, color }) => (
-        <strong style={{ color }}>{id}{id === 'ties' ? '' : ' wins'}: {value}</strong>
+      animate={true}
+      tooltip={({ color, indexValue, value }) => (
+        <div style={{ padding: 6, backgroundColor: colorTextSecondary, borderRadius: 10 }}>
+          <strong style={{ color }}>{`${indexValue}: ${value}`}</strong>
+        </div>
       )}
       theme={theme}
     />
