@@ -16,14 +16,8 @@ const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, stat
   return (
     <div className="game-info">
       <ButtonGroup variant="contained" className='game-btn-group'>
-        <Button title="Start New Game" onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}><Power /></Button>
-        <Button
-          className={hasMoves ? 'groove-left-shaded' : 'groove-left'}
-          title="Switch Players"
-          onClick={switchPlayers}
-          disabled={hasMoves}
-        >
-          <Shuffle />
+        <Button title="Start New Game" onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}>
+          <Power />
         </Button>
         <Button
           className={cannotUndo ? 'groove-left-shaded' : 'groove-left'}
@@ -34,12 +28,12 @@ const GameInfo = ({ historyLength, moves, playerOneIsX, sortMovesAscending, stat
           <Undo />
         </Button>
         <Button
-          className={hasMoves ? 'groove-left' : 'groove-left-shaded'}
-          title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
-          onClick={() => updateState({sortMovesAscending: !sortMovesAscending})}
-          disabled={!hasMoves}
+          className={hasMoves ? 'groove-left-shaded' : 'groove-left'}
+          title="Switch Players"
+          onClick={switchPlayers}
+          disabled={hasMoves}
         >
-          <SwapVert />
+          <Shuffle />
         </Button>
       </ButtonGroup>
       <div className="game-status">
