@@ -46,6 +46,9 @@ Nope - The additional enhancements below will allow me to build more React skill
 - Disable buttons in move list once game is finished
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 - Migrate FontAwesome icons from JS import and className method to React component version
+- Upgrade the app from React v16 to v18 to get practice doing that type of upgrade and dealing with any breaking changes or new and improved techniques v18 provides
+- Improve the mobile UX (e.g., tooltips for buttons only assist laptop/desktop users, so need to make buttons more self-explantory or add labels, and improve layout so it is obvious which player is X and which is O)
+- Change color of New Game button when a game ends so it's obvious to user how to start new game
 
 ---
 
@@ -62,3 +65,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 [Process for updating live GitHub Pages site with changes](https://facebook.github.io/create-react-app/docs/deployment#github-pages-https-pagesgithubcom)
+(tldr: after committing and pushing latest changes, `npm run deploy` will build the app and push it to GitHub Pages)
