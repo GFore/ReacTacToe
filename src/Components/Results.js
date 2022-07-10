@@ -47,7 +47,7 @@ const getDetails = (chartType, games, results, playerOneIsX) => {
         { player: "P2 Wins", p1: 0, p1Color: colorP1, p2: results.p2Wins, p2Color: colorP2, ties: 0, tiesColor: colorTie },
         { player: "Ties", p1: 0, p1Color: colorP1, p2: 0, p2Color: colorP2, ties: results.ties, tiesColor: colorTie }
       ];
-      chartParams = { maxValue: Math.max(results.p1Wins, results.p2Wins, results.ties) + 2 };
+      chartParams = { maxValue: Math.max(results.p1Wins, results.p2Wins, results.ties) };
       break;
     }
     default: {
@@ -71,6 +71,8 @@ const getDetails = (chartType, games, results, playerOneIsX) => {
         });
         return line;
       });
+
+      chartParams.maxValue = Math.max(results.p1Wins, results.p2Wins, results.ties);
     }
   } 
 

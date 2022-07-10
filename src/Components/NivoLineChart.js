@@ -21,7 +21,7 @@ const theme = {
   },
 };
 
-const NivoLineChart = ({ data, colors }) => {
+const NivoLineChart = ({ colors, data, maxValue }) => {
   const gameCount = data[0].data.length;
   return (
     <div className="chartWrapper">
@@ -29,8 +29,8 @@ const NivoLineChart = ({ data, colors }) => {
         data={data}
         curve={"monotoneX"}   
         margin={{ top: 30, right: 30, bottom: 70, left: 45 }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', stacked: false, min: 0, max: 'auto' }}
+        xScale={{ type: gameCount < 10 ? 'point' : 'linear' }}
+        yScale={{ type: 'linear', stacked: false, min: 0, max: maxValue }}
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -38,7 +38,7 @@ const NivoLineChart = ({ data, colors }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          tickValues: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+          tickValues: gameCount < 10 ? gameCount : 10,
           legend: 'Games Played',
           legendOffset: 36,
           legendPosition: 'middle'
@@ -48,7 +48,7 @@ const NivoLineChart = ({ data, colors }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          // tickValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+          tickValues: maxValue < 10 ? maxValue : 10,
           legend: 'Count',
           legendOffset: -40,
           legendPosition: 'middle'

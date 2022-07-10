@@ -41,7 +41,7 @@ const NivoBarChart = ({ data, maxValue }) => (
       axisTop={null}
       axisRight={null}
       axisBottom={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
-      axisLeft={{ tickSize: 1, tickPadding: 5, tickRotation: 0 }}
+      axisLeft={{ tickSize: 1, tickPadding: 5, tickRotation: 0, tickValues: maxValue < 10 ? maxValue : 10 }}
       animate={true}
       tooltip={({ color, indexValue, value }) => (
         <div style={{ padding: 6, backgroundColor: colorTextSecondary, borderRadius: 10 }}>
