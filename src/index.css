@@ -10,20 +10,6 @@ body {
   background-color: darkslategray;
 }
 
-.square {
-  background: whitesmoke;
-  border: 1px solid #999;
-  float: left;
-  font-size: 140px;
-  font-weight: bold;
-  height: 190px;
-  width: 190px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-}
-
 .game {
   display: flex;
   flex-direction: row;
@@ -198,12 +184,6 @@ body {
   
   .game-status h2 {
     margin: 15px 0 10px;
-  }
-
-  .square {
-    font-size: 90px;
-    height: 25vw;
-    width: 25vw;
   }
 
   .game-board {

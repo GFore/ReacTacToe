@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
@@ -51,6 +53,7 @@ const Game = () => {
   const [showResults, setShowResults] = useState(true);
 
   // const classes = useStyles();
+  const theme = useTheme();
 
   const updateState = (update, resetInitial=false) => {
     setState(currentState => {
@@ -261,7 +264,7 @@ const Game = () => {
   }
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <AppBar className="game-header" color="primary" position="static">
         <ToolBar>
           <Grid container justifyContent="space-between">
@@ -305,7 +308,7 @@ const Game = () => {
           }
         </div>
       </div>
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
   
