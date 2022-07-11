@@ -34,6 +34,14 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: 'rgba(218, 165, 32, 0.2)',
       margin: '-5px 0 20px -5px',
     },
+    statsContainer: {
+      display: 'flex',
+      width: 573,
+    },
+    narrowStatsContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
   });
 });
 
@@ -301,7 +309,7 @@ const Game = () => {
           squares={current.squares}
           // mouseOverStep={(i) => handleMouseOverStep(i)}
         />
-        <div className="holder">
+        <div className={hasNarrowView ? classes.narrowStatsContainer : classes.statsContainer}>
           <GameInfo
             historyLength={history.length}
             moves={moveBtns}

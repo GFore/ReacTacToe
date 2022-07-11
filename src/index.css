@@ -10,18 +10,6 @@ body {
   background-color: darkslategray;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: darkslategray;
-  color: whitesmoke;
-  height: calc(100vh - 70px);
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-}
-
 .game-info {
   height: 573px;
   border: 4px rgba(218, 165, 32, 0.2) solid;
@@ -45,11 +33,6 @@ body {
 .game-btn-group .groove-left-shaded {
   background-color: #e0e0e0 !important;
   border-left: groove;
-}
-
-.holder {
-  display: flex;
-  width: 573px;
 }
 
 .game-results {
@@ -147,16 +130,6 @@ body {
 
 /* add media queries */
 @media screen and (max-width: 750px) {
-  .game {
-    flex-direction: column;
-    height: unset;
-  }
-
-  .holder {
-    display: unset;
-    width: unset
-  }
-
   .game-info {
     width: 75vw;
     height: fit-content;
