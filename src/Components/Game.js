@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
@@ -19,10 +19,21 @@ const useStyles = makeStyles((theme) => {
   // console.log({theme});
   return ({
     whiteText: { color: theme.palette.common.white },
+    game: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      backgroundColor: 'darkslategray',
+      color: 'whitesmoke',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 'auto',
+      paddingBottom: 20,
+    },
     gameHeader: {
       backgroundColor: 'rgba(218, 165, 32, 0.2)',
       margin: '-5px 0 20px -5px',
-    }
+    },
   });
 });
 
@@ -56,7 +67,7 @@ const Game = () => {
   const [showResults, setShowResults] = useState(true);
 
   const classes = useStyles();
-  const theme = useTheme();
+  const hasNarrowView = useMediaQuery(theme => theme.breakpoints.down(750));
 
   const updateState = (update, resetInitial=false) => {
     setState(currentState => {
@@ -267,7 +278,7 @@ const Game = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <React.Fragment>
       <AppBar className={classes.gameHeader} color="primary" position="static">
         <ToolBar>
           <Grid container justifyContent="space-between">
@@ -281,9 +292,10 @@ const Game = () => {
           </Grid>
         </ToolBar>
       </AppBar>
-      <div className="game">
+      <div className={classes.game}>
         <Board
           colors={colors}
+          hasNarrowView={hasNarrowView}
           highlighted={highlighted}
           onClick={(i) => handleClick(i)}
           squares={current.squares}
@@ -311,7 +323,7 @@ const Game = () => {
           }
         </div>
       </div>
-    </ThemeProvider>
+    </React.Fragment>
   );
 };
   

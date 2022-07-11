@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(() => {
   // console.log({theme});
   return ({
     // whiteText: { color: theme.palette.common.white },
@@ -40,9 +39,8 @@ const Square = ({ classes, colors, hasNarrowView, hilite, onClick, value }) => (
   </button>
 );
 
-const Board = ({ colors, highlighted, /* mouseOverStep,*/ onClick, squares }) => {
+const Board = ({ colors, hasNarrowView, highlighted, /* mouseOverStep,*/ onClick, squares }) => {
   const classes = useStyles();
-  const hasNarrowView = useMediaQuery(theme => theme.breakpoints.down(750));
 
   const renderSquare = (i) => (
     <Square
