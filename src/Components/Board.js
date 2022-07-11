@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => {
         marginTop: -1,
         padding: 0,
         textAlign: 'center',
-      }
+      },
     },
     narrowSquare: {
-      fontSize: 90,
-      height: '25vw',
-      width: '25vw',
+      fontSize: '90px !important',
+      height: '25vw !important',
+      width: '25vw !important',
     },
   });
 });
