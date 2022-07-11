@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => {
   // console.log({theme});
   return ({
     // whiteText: { color: theme.palette.common.white },
+    gameBoard: { border: '3px rgba(218, 165, 32, 0.2) solid' },
     square: {
       background: 'whitesmoke',
       border: '1px solid #999',
@@ -68,7 +69,7 @@ const Board = ({ colors, highlighted, /* mouseOverStep,*/ onClick, squares }) =>
   }
 
   return (
-    <div className="game-board">
+    <div className={classes.gameBoard}>
       {renderBoard()}
     </div>
   );

@@ -22,13 +22,9 @@ body {
   margin: auto;
 }
 
-.game-board {
-  border: 3px rgba(218, 165, 32, 0.2) solid;
-}
-
 .game-header {
   background-color: rgba(218, 165, 32, 0.2) !important;
-  margin: -5px 0 5px -5px;
+  margin: -5px 0 15px -5px;
 }
 
 .game-info {
@@ -184,10 +180,6 @@ body {
   
   .game-status h2 {
     margin: 15px 0 10px;
-  }
-
-  .game-board {
-    margin-top: 15px;
   }
   
   .move-list {
