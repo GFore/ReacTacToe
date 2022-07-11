@@ -20,24 +20,16 @@ const useStyles = makeStyles((theme) => {
       textAlign: 'center',
     },
     narrowSquare: {
-      background: 'whitesmoke',
-      border: '1px solid #999',
-      float: 'left',
       fontSize: 90,
-      fontWeight: 'bold',
       height: '25vw',
       width: '25vw',
-      marginRight: -1,
-      marginTop: -1,
-      padding: 0,
-      textAlign: 'center',
     },
   });
 });
 
 const Square = ({ classes, colors, hasNarrowView, hilite, onClick, value }) => (
   <button
-    className={hasNarrowView ? classes.narrowSquare : classes.square}
+    className={`${classes.square}${hasNarrowView ? ' ' : ''}${hasNarrowView ? classes.narrowSquare : ''}`}
     onClick={onClick}
     style={hilite ? { backgroundColor: colors[value]} : null}
   >
