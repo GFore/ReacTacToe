@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
+import TableChartIcon from '@material-ui/icons/TableChart';
 import AppBar from '@material-ui/core/AppBar';
-// import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import ToolBar from '@material-ui/core/ToolBar';
 import Typography from '@material-ui/core/Typography';
 
@@ -12,12 +14,12 @@ import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
 import { calculateWinner, canUseLocalStorage, initializeLocalStorage } from './utils';
 
-const useStyles = makeStyles((theme) => {
-  // console.log({theme});
-  return ({
-    whiteText: { color: theme.palette.common.white },
-  });
-});
+// const useStyles = makeStyles((theme) => {
+//   // console.log({theme});
+//   return ({
+//     whiteText: { color: theme.palette.common.white },
+//   });
+// });
 
 if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
@@ -46,7 +48,9 @@ const Game = () => {
         results: {p1Wins: 0, p2Wins: 0, ties: 0},
       }],
   });
-  const classes = useStyles();
+  const [showResults, setShowResults] = useState(true);
+
+  // const classes = useStyles();
 
   const updateState = (update, resetInitial=false) => {
     setState(currentState => {
@@ -260,7 +264,15 @@ const Game = () => {
     <React.Fragment>
       <AppBar className="game-header" color="primary" position="static">
         <ToolBar>
+          <Grid container justifyContent="space-between">
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
+          <IconButton
+            color="inherit"
+            onClick={() => setShowResults(curr => !curr)}
+          >
+            <TableChartIcon />
+          </IconButton>
+          </Grid>
         </ToolBar>
       </AppBar>
       <div className="game">
@@ -283,12 +295,14 @@ const Game = () => {
             updateState={(update, resetInitial) => updateState(update, resetInitial)}
           />
 
-          <Results
-            results={results}
-            games={games}
-            playerOneIsX={playerOneIsX}
-            clearResults={clearResults}
-          />
+          {showResults &&
+            <Results
+              results={results}
+              games={games}
+              playerOneIsX={playerOneIsX}
+              clearResults={clearResults}
+            />
+          }
         </div>
       </div>
     </React.Fragment>
