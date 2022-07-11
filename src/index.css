@@ -22,11 +22,6 @@ body {
   margin: auto;
 }
 
-.game-header {
-  background-color: rgba(218, 165, 32, 0.2) !important;
-  margin: -5px 0 15px -5px;
-}
-
 .game-info {
   height: 573px;
   border: 4px rgba(218, 165, 32, 0.2) solid;
@@ -160,10 +155,6 @@ body {
   .holder {
     display: unset;
     width: unset
-  }
-
-  .game-header {
-    margin-bottom: 20px;
   }
 
   .game-info {

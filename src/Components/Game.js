@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,12 +15,16 @@ import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
 import { calculateWinner, canUseLocalStorage, initializeLocalStorage } from './utils';
 
-// const useStyles = makeStyles((theme) => {
-//   // console.log({theme});
-//   return ({
-//     whiteText: { color: theme.palette.common.white },
-//   });
-// });
+const useStyles = makeStyles((theme) => {
+  // console.log({theme});
+  return ({
+    whiteText: { color: theme.palette.common.white },
+    gameHeader: {
+      backgroundColor: 'rgba(218, 165, 32, 0.2)',
+      margin: '-5px 0 20px -5px',
+    }
+  });
+});
 
 if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
@@ -52,7 +55,7 @@ const Game = () => {
   });
   const [showResults, setShowResults] = useState(true);
 
-  // const classes = useStyles();
+  const classes = useStyles();
   const theme = useTheme();
 
   const updateState = (update, resetInitial=false) => {
@@ -265,7 +268,7 @@ const Game = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar className="game-header" color="primary" position="static">
+      <AppBar className={classes.gameHeader} color="primary" position="static">
         <ToolBar>
           <Grid container justifyContent="space-between">
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
