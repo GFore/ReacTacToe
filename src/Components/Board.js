@@ -6,19 +6,21 @@ const useStyles = makeStyles((theme) => {
   // console.log({theme});
   return ({
     // whiteText: { color: theme.palette.common.white },
-    gameBoard: { border: '3px rgba(218, 165, 32, 0.2) solid' },
-    square: {
-      background: 'whitesmoke',
-      border: '1px solid #999',
-      float: 'left',
-      fontSize: 140,
-      fontWeight: 'bold',
-      height: 190,
-      width: 190,
-      marginRight: -1,
-      marginTop: -1,
-      padding: 0,
-      textAlign: 'center',
+    gameBoard: {
+      border: '3px rgba(218, 165, 32, 0.2) solid',
+      '& button': {
+        background: 'whitesmoke',
+        border: '1px solid #999',
+        float: 'left',
+        fontSize: 140,
+        fontWeight: 'bold',
+        height: 190,
+        width: 190,
+        marginRight: -1,
+        marginTop: -1,
+        padding: 0,
+        textAlign: 'center',
+      }
     },
     narrowSquare: {
       fontSize: 90,
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => {
 
 const Square = ({ classes, colors, hasNarrowView, hilite, onClick, value }) => (
   <button
-    className={`${classes.square}${hasNarrowView ? ' ' : ''}${hasNarrowView ? classes.narrowSquare : ''}`}
+    className={hasNarrowView ? classes.narrowSquare : null}
     onClick={onClick}
     style={hilite ? { backgroundColor: colors[value]} : null}
   >
