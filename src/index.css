@@ -10,14 +10,6 @@ body {
   background-color: darkslategray;
 }
 
-ol, ul {padding-left: 30px;}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
 .square {
   background: whitesmoke;
   border: 1px solid #999;
@@ -31,14 +23,6 @@ ol, ul {padding-left: 30px;}
   padding: 0;
   text-align: center;
 }
-
-.highlighted {
-  background-color: goldenrod;
-}
-
-.square:focus {outline: none;}
-
-.kbd-navigation .square:focus {background: #ddd;}
 
 .game {
   display: flex;

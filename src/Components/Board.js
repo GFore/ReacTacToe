@@ -30,7 +30,7 @@ const Board = ({ colors, highlighted, /* mouseOverStep,*/ onClick, squares }) =>
         rows.push(renderSquare(j))
       }
       
-      board.push(<div className="board-row" key={`row_${i}`}>{rows}</div>)
+      board.push(<div key={`row_${i}`}>{rows}</div>)
     }
     return board;
   }
