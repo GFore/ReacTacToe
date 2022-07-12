@@ -26,31 +26,29 @@ const theme = {
 };
 
 const NivoBarChart = ({ data, maxValue }) => (
-  <div className="chartWrapper">
-    <ResponsiveBar
-      data={data}
-      indexBy='player'
-      keys={['p1', 'p2', 'ties']}
-      maxValue={maxValue}
-      colorBy="id"
-      colors={({ id, data }) => data[`${id}Color`]}
-      margin={{ 'top': 30, 'right': 20, 'bottom': 60, 'left': 20 }}
-      padding={0.35}
-      borderColor={{ 'from': 'color', 'modifiers': [['darker', 0.2]] }}
-      enableLabel={false}
-      axisTop={null}
-      axisRight={null}
-      axisBottom={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
-      axisLeft={{ tickSize: 1, tickPadding: 5, tickRotation: 0, tickValues: maxValue < 10 ? maxValue : 10 }}
-      animate={true}
-      tooltip={({ color, indexValue, value }) => (
-        <div style={{ padding: 6, backgroundColor: colorTextSecondary, borderRadius: 10 }}>
-          <strong style={{ color }}>{`${indexValue}: ${value}`}</strong>
-        </div>
-      )}
-      theme={theme}
-    />
-  </div>
+  <ResponsiveBar
+    data={data}
+    indexBy='player'
+    keys={['p1', 'p2', 'ties']}
+    maxValue={maxValue}
+    colorBy="id"
+    colors={({ id, data }) => data[`${id}Color`]}
+    margin={{ 'top': 30, 'right': 20, 'bottom': 60, 'left': 20 }}
+    padding={0.35}
+    borderColor={{ 'from': 'color', 'modifiers': [['darker', 0.2]] }}
+    enableLabel={false}
+    axisTop={null}
+    axisRight={null}
+    axisBottom={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
+    axisLeft={{ tickSize: 1, tickPadding: 5, tickRotation: 0, tickValues: maxValue < 10 ? maxValue : 10 }}
+    animate={true}
+    tooltip={({ color, indexValue, value }) => (
+      <div style={{ padding: 6, backgroundColor: colorTextSecondary, borderRadius: 10 }}>
+        <strong style={{ color }}>{`${indexValue}: ${value}`}</strong>
+      </div>
+    )}
+    theme={theme}
+  />
 );
 
 export default NivoBarChart;

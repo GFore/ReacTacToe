@@ -179,9 +179,9 @@ const SelectChartType = ({ chartType, classes, clearResults, handleOptionChange 
 
 const DisplayChart = ({ data, params, type }) => {
   switch (type) {
-    case "pie": return <NivoPieChart data={data} {...params} />;
-    case "bar": return <NivoBarChart data={data} {...params} />;
-    case "line": return <NivoLineChart data={data} {...params} />;
+    case "pie": return <div className="chartWrapper"><NivoPieChart data={data} {...params} /></div>;
+    case "bar": return <div className="chartWrapper"><NivoBarChart data={data} {...params} /></div>;
+    case "line": return <div className="chartWrapper"><NivoLineChart data={data} {...params} /></div>;
     default: return null;
   }
 };
