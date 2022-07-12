@@ -41,14 +41,14 @@ Nope - The additional enhancements below will allow me to build more React skill
 - ~~Allow user to reset saved game results/history in localStorage~~ **_[DONE]_**
 - ~~Add a prompt to confirm the user meant to click the clear results button before clearing the results to prevent accidentally losing game history~~ **_[DONE]_**
 - ~~Refactor the app to use React Hooks for state management to get more experience using this more recent technique~~ **_[DONE]_**
-- Get more experience working with Material-UI styling by refactoring the app to migrate from a single CSS file to CSS in JSX, allowing the styles to be closer to the affected components **_[IN PROGRESS]_**
+- ~~Get more experience working with Material-UI styling by refactoring the app to migrate from a single CSS file to CSS in JSX, allowing the styles to be closer to the affected components~~ **_[DONE]_**
+- Improve the mobile UX (e.g., tooltips for buttons only assist laptop/desktop users, so need to make buttons more self-explantory or add labels, and improve layout so it is obvious which player is X and which is O) **_[IN PROGRESS]_**
+- Change color of New Game button when a game ends so it's obvious to user how to start new game
 - Add a title and favicon
 - Disable buttons in move list once game is finished
 - Implement rem units instead of using px so fonts stay proportional (and to get practice using this more modern technique)
 - Migrate FontAwesome icons from JS import and className method to React component version
 - Upgrade the app from React v16 to v18 to get practice doing that type of upgrade and dealing with any breaking changes or new and improved techniques v18 provides
-- Improve the mobile UX (e.g., tooltips for buttons only assist laptop/desktop users, so need to make buttons more self-explantory or add labels, and improve layout so it is obvious which player is X and which is O)
-- Change color of New Game button when a game ends so it's obvious to user how to start new game
 
 ---
 
