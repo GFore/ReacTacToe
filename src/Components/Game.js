@@ -15,35 +15,31 @@ import Results from './Results.js'
 import { colorP1, colorP2, colorTie } from './constants';
 import { calculateWinner, canUseLocalStorage, initializeLocalStorage } from './utils';
 
-const useStyles = makeStyles((theme) => {
-  // console.log({theme});
-  return ({
-    whiteText: { color: theme.palette.common.white },
-    game: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      backgroundColor: 'darkslategray',
-      color: 'whitesmoke',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: 'auto',
-      paddingBottom: 20,
-    },
-    gameHeader: {
-      backgroundColor: 'rgba(218, 165, 32, 0.2)',
-      margin: '-5px 0 20px -5px',
-    },
-    statsContainer: {
-      display: 'flex',
-      width: 573,
-    },
-    narrowStatsContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-  });
-});
+const useStyles = makeStyles(() => ({
+  game: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: 'darkslategray',
+    color: 'whitesmoke',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+    paddingBottom: 20,
+  },
+  gameHeader: {
+    backgroundColor: 'rgba(218, 165, 32, 0.2)',
+    margin: '-5px 0 20px -5px',
+  },
+  statsContainer: {
+    display: 'flex',
+    width: 573,
+  },
+  narrowStatsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
 
 if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
@@ -252,23 +248,16 @@ const Game = () => {
   const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
 
   const moveBtns = history.map((step, move) => {
-    if (move === 0) {
-      return null;
-      // return (
-      //   <Button key={'start_btn'} onClick={() => jumpTo(move)} variant="outlined">
-      //     0. Start
-      //   </Button>
-      // );
-    }
+    if (move === 0) return null;
 
     return (
       <MoveButton
         key={`move_${move}`}
-        bolded={stepNumber === move}
         handleClick={() => jumpTo(move)}
         handleMouse={() => handleMouseOverStep(step.pos)}
-        label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
         hoverColor={colors[step.squares[step.pos]]}
+        label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
+        selected={stepNumber === move}
         // disabled={!status.startsWith('Next')}
       />
     );

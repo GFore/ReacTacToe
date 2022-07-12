@@ -1,21 +1,17 @@
 import Radium from 'radium';
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { colorP1, colorP2 } from './constants';
 
-let MoveButton = ({ bolded, disabled, handleClick, handleMouse, hoverColor, label }) => {
-  const styles = {
-    ':hover': {
-      backgroundColor: hoverColor
-    }
-  };
+let MoveButton = ({ disabled, handleClick, handleMouse, hoverColor, label, selected }) => {
+  const selectedClass = hoverColor === colorP1 ? "selectedP1" : (hoverColor === colorP2 ? "selectedP2" : '');
 
   return (
     <Button
-      className={bolded ? 'bolded' : ''}
+      className={selected ? selectedClass : ''}
       onClick={handleClick}
       onMouseEnter={handleMouse}
       onMouseLeave={handleMouse}
-      style={styles}
       disabled={disabled}
       variant="outlined"
     >

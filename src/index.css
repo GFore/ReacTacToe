@@ -9,8 +9,3 @@ body {
   margin: 5px;
   background-color: darkslategray;
 }
-
-.bolded {
-  font-weight: 900;
-  border: 1px solid gray;
-}

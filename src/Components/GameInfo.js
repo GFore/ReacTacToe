@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import { colorP1, colorP2 } from './constants';
 
 const useStyles = makeStyles(() => ({
   gameInfo: {
@@ -54,6 +55,8 @@ const useStyles = makeStyles(() => ({
     fontSize: 20,
     padding: '0 15px 5px',
     '& button': { color: 'white', fontWeight: 900 },
+    '& button.selectedP1': { border: '1px solid gray', backgroundColor: colorP1 },
+    '& button.selectedP2': { border: '1px solid gray', backgroundColor: colorP2 },
   },
   narrowMoveList: {
     display: 'flex',
@@ -68,6 +71,8 @@ const useStyles = makeStyles(() => ({
     padding: 0,
     fontSize: 14,
     '& button': { color: 'white', fontWeight: 900, width: '33%', padding: '5px 12px' },
+    '& button.selectedP1': { border: '1px solid gray', backgroundColor: colorP1 },
+    '& button.selectedP2': { border: '1px solid gray', backgroundColor: colorP2 },
   },
 }));
 
