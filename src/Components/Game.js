@@ -311,8 +311,9 @@ const Game = () => {
         />
         <div className={hasNarrowView ? classes.narrowStatsContainer : classes.statsContainer}>
           <GameInfo
+            hasNarrowView={hasNarrowView}
             historyLength={history.length}
-            moves={moveBtns}
+            moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
             playerOneIsX={playerOneIsX}
             sortMovesAscending={sortMovesAscending}
             status={status}
