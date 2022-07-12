@@ -67,6 +67,8 @@ const useStyles = makeStyles(() => ({
   },
   disabledBtn: { color: 'white !important', borderTop: '1px solid gray', borderBottom: '1px solid gray' },
   grooveLeft: { borderLeft: 'groove' },
+  chartWrapper: { height: 250, width: 250, margin: '0 auto' },
+  narrowChartWrapper: { height: 280, width: 280, margin: '0 auto' },
 }));
 
 
@@ -177,11 +179,11 @@ const SelectChartType = ({ chartType, classes, clearResults, handleOptionChange 
   </div>
 );
 
-const DisplayChart = ({ data, params, type }) => {
+const DisplayChart = ({ cName, data, params, type }) => {
   switch (type) {
-    case "pie": return <div className="chartWrapper"><NivoPieChart data={data} {...params} /></div>;
-    case "bar": return <div className="chartWrapper"><NivoBarChart data={data} {...params} /></div>;
-    case "line": return <div className="chartWrapper"><NivoLineChart data={data} {...params} /></div>;
+    case "pie": return <div className={cName}><NivoPieChart data={data} {...params} /></div>;
+    case "bar": return <div className={cName}><NivoBarChart data={data} {...params} /></div>;
+    case "line": return <div className={cName}><NivoLineChart data={data} {...params} /></div>;
     default: return null;
   }
 };
@@ -198,7 +200,7 @@ const Results = ({ clearResults, games, hasNarrowView, playerOneIsX, results }) 
     <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults}>
       <ResultsSummary classes={classes} summaryInfo={summaryInfo}/>
       <SelectChartType chartType={chartType} classes={classes} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
-      <DisplayChart data={chartData} params={chartParams} type={chartType}/>
+      <DisplayChart cName={hasNarrowView ? classes.narrowChartWrapper : classes.chartWrapper} data={chartData} params={chartParams} type={chartType}/>
     </div>
   );
 };

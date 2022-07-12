@@ -14,18 +14,3 @@ body {
   font-weight: 900;
   border: 1px solid gray;
 }
-
-.chartWrapper {
-  height: 250px;
-  width: 250px;
-  margin: 0 auto;
-}
-
-/* add media queries */
-@media screen and (max-width: 750px) {
-  .chartWrapper {
-    height: 280px;
-    width: 280px;
-    margin: 0 auto;
-  }
-}
