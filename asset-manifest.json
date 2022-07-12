@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ReacTacToe/static/css/main.4aa8ef8f.css",
-    "main.js": "/ReacTacToe/static/js/main.23ed8dbb.js",
+    "main.css": "/ReacTacToe/static/css/main.60e64c60.css",
+    "main.js": "/ReacTacToe/static/js/main.315896d3.js",
     "index.html": "/ReacTacToe/index.html",
-    "main.4aa8ef8f.css.map": "/ReacTacToe/static/css/main.4aa8ef8f.css.map",
-    "main.23ed8dbb.js.map": "/ReacTacToe/static/js/main.23ed8dbb.js.map"
+    "main.60e64c60.css.map": "/ReacTacToe/static/css/main.60e64c60.css.map",
+    "main.315896d3.js.map": "/ReacTacToe/static/js/main.315896d3.js.map"
   },
   "entrypoints": [
-    "static/css/main.4aa8ef8f.css",
-    "static/js/main.23ed8dbb.js"
+    "static/css/main.60e64c60.css",
+    "static/js/main.315896d3.js"
   ]
 }
