@@ -26,33 +26,6 @@ body {
   border: 1px solid gray;
 }
 
-.result-block {
-  text-align: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 3px 5px;
-  padding: 5px;
-}
-
-.result-block > div {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  margin: 3px 5px;
-  padding: 2px 5px;
-  font-size: larger;
-  width: 33%;
-}
-
-.result-block h5 {
-  margin: 0 0 5px 0;
-  font-size: x-small;
-  font-style: italic;
-  font-weight: lighter;
-}
-
 .chartWrapper {
   height: 250px;
   width: 250px;

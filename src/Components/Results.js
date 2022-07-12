@@ -34,6 +34,30 @@ const useStyles = makeStyles(() => ({
       fontSize: 20,
     },
   },
+  resultBlock: {
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'space-around',
+    margin: '3px 5px',
+    padding: 5,
+    '& > div': {
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignContent: 'center',
+      margin: '3px 5px',
+      padding: '2px 5px',
+      fontSize: 'larger',
+      width: '33%',
+    },
+    '& h5': {
+      margin: '0 0 5px 0',
+      fontSize: 'x-small',
+      fontStyle: 'italic',
+      fontWeight: 'lighter',
+    },
+  },
 }));
 
 
@@ -110,11 +134,11 @@ const getDetails = (chartType, games, results, playerOneIsX) => {
   return { gameCount, summaryInfo, chartData, chartParams };
 };
 
-const ResultsSummary = ({ summaryInfo }) => (
+const ResultsSummary = ({ classes, summaryInfo }) => (
   <React.Fragment>
     <h4>Game Results</h4>
     {summaryInfo.map((row, i) => (
-      <div key={`results_row_${i}`} className="result-block" style={{backgroundColor: row.bgColor, color: row.fColor }}>
+      <div key={`results_row_${i}`} className={classes.resultBlock} style={{backgroundColor: row.bgColor, color: row.fColor }}>
         <div><h5>{row.label1}</h5>{row.value1}</div>
         <div><h5>{row.label2}</h5>{row.value2}</div>
         <div><h5>{row.label3}</h5>{row.value3}</div>
@@ -163,7 +187,7 @@ const Results = ({ clearResults, games, hasNarrowView, playerOneIsX, results }) 
 
   return (
     <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults}>
-      <ResultsSummary summaryInfo={summaryInfo}/>
+      <ResultsSummary classes={classes} summaryInfo={summaryInfo}/>
       <SelectChartType chartType={chartType} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
       <DisplayChart data={chartData} params={chartParams} type={chartType}/>
     </div>
