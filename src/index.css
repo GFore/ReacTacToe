@@ -10,17 +10,6 @@ body {
   background-color: darkslategray;
 }
 
-.game-btn-group { margin: 0 }
-
-.game-btn-group button { flex-grow: 1 }
-
-.game-btn-group .groove-left { border-left: groove }
-
-.game-btn-group .groove-left-shaded {
-  background-color: #e0e0e0 !important;
-  border-left: groove;
-}
-
 .bolded {
   font-weight: 900;
   border: 1px solid gray;
@@ -30,23 +19,6 @@ body {
   height: 250px;
   width: 250px;
   margin: 0 auto;
-}
-
-.chartSelection {
-  margin: 15px auto 5px;
-  display: flex;
-  justify-content: center
-}
-
-.chartSelection > div {
-  width: 75%;
-}
-.chartSelection label i {
-  margin-left: 4px;
-}
-
-.game-btn-group button:hover, .chartSelection button:hover {
-  color: rgb(104, 101, 9);
 }
 
 /* add media queries */

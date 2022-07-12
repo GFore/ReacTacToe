@@ -23,7 +23,6 @@ const useStyles = makeStyles(() => ({
   narrowGameResults: {
     flex: '1 1 auto',
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
-    height: 573,
     width: '75vw',
     padding: '10px 15px 0',
     marginTop: 35,
@@ -58,6 +57,16 @@ const useStyles = makeStyles(() => ({
       fontWeight: 'lighter',
     },
   },
+  chartSelection: {
+    margin: '15px auto 5px',
+    display: 'flex',
+    justifyContent: 'center',
+    '& > div': { margin: 0, width: '75%' },
+    '& button': { flexGrow: 1, padding: '10px 16px' },
+    '& button:hover': { color: 'rgb(104, 101, 9)' },
+  },
+  disabledBtn: { color: 'white !important', borderTop: '1px solid gray', borderBottom: '1px solid gray' },
+  grooveLeft: { borderLeft: 'groove' },
 }));
 
 
@@ -147,21 +156,21 @@ const ResultsSummary = ({ classes, summaryInfo }) => (
   </React.Fragment>
 );
 
-const SelectChartType = ({ chartType, clearResults, handleOptionChange }) => (
-  <div className="chartSelection">
-    <ButtonGroup variant="contained" className='game-btn-group'>
+const SelectChartType = ({ chartType, classes, clearResults, handleOptionChange }) => (
+  <div className={classes.chartSelection}>
+    <ButtonGroup variant="contained">
       {["pie", "bar", "line"].map(type => (
         <Button
           key={`chart_type_${type}`}
-          title={`${type.toUpperCase()} CHART`}
+          className={chartType === type ? classes.disabledBtn : null }
           onClick={() => handleOptionChange(type)}
           disabled={chartType === type}
-          style={chartType === type ? { color: 'white', borderTop: '1px solid gray', borderBottom: '1px solid gray' } : null }
+          title={`${type.toUpperCase()} CHART`}
         >
           <i className={`fas fa-chart-${type}`}></i>
         </Button>
       ))}
-      <Button className='groove-left' onClick={clearResults} title={'Clear Game History'}>
+      <Button className={classes.grooveLeft} onClick={clearResults} title={'Clear Game History'}>
         <i className={`fas fa-trash`}></i>
       </Button>
     </ButtonGroup>
@@ -188,7 +197,7 @@ const Results = ({ clearResults, games, hasNarrowView, playerOneIsX, results }) 
   return (
     <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults}>
       <ResultsSummary classes={classes} summaryInfo={summaryInfo}/>
-      <SelectChartType chartType={chartType} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
+      <SelectChartType chartType={chartType} classes={classes} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
       <DisplayChart data={chartData} params={chartParams} type={chartType}/>
     </div>
   );
