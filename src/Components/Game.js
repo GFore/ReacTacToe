@@ -324,10 +324,11 @@ const Game = () => {
 
           {showResults &&
             <Results
-              results={results}
-              games={games}
-              playerOneIsX={playerOneIsX}
               clearResults={clearResults}
+              games={games}
+              hasNarrowView={hasNarrowView}
+              playerOneIsX={playerOneIsX}
+              results={results}
             />
           }
         </div>

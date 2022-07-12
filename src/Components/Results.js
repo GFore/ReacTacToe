@@ -1,10 +1,41 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import NivoPieChart from './NivoPieChart.js';
 import NivoBarChart from './NivoBarChart.js';
 import NivoLineChart from './NivoLineChart.js';
 import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
+
+const useStyles = makeStyles(() => ({
+  gameResults: {
+    flex: '1 1 auto',
+    backgroundColor: 'rgba(218, 165, 32, 0.2)',
+    height: 573,
+    padding: '10px 15px 0',
+    '& h4': {
+      textAlign: 'center',
+      margin: '10px 0 15px',
+      opacity: 1,
+      fontSize: 20,
+    },
+  },
+  narrowGameResults: {
+    flex: '1 1 auto',
+    backgroundColor: 'rgba(218, 165, 32, 0.2)',
+    height: 573,
+    width: '75vw',
+    padding: '10px 15px 0',
+    marginTop: 35,
+    '& h4': {
+      textAlign: 'center',
+      margin: '10px 0 15px',
+      opacity: 1,
+      fontSize: 20,
+    },
+  },
+}));
+
 
 const getDetails = (chartType, games, results, playerOneIsX) => {
   const gameCount = results.p1Wins + results.p2Wins + results.ties;
@@ -122,15 +153,16 @@ const DisplayChart = ({ data, params, type }) => {
   }
 };
 
-const Results = ({ clearResults, games, playerOneIsX, results }) => {
+const Results = ({ clearResults, games, hasNarrowView, playerOneIsX, results }) => {
   const [chartType, setChartType] = useState('pie');
+  const classes = useStyles();
 
   const { gameCount, summaryInfo, chartData, chartParams } = getDetails(chartType, games, results, playerOneIsX);
 
   if (!gameCount) return null;
 
   return (
-    <div className="game-results">
+    <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults}>
       <ResultsSummary summaryInfo={summaryInfo}/>
       <SelectChartType chartType={chartType} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
       <DisplayChart data={chartData} params={chartParams} type={chartType}/>
