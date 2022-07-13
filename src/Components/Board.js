@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme) => {
   // console.log({theme});
   return ({
     // whiteText: { color: theme.palette.common.white },
@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => {
       border: '3px rgba(218, 165, 32, 0.2) solid',
       marginBottom: 20,
       '& button': {
+        color: theme.palette.common.black,
         background: 'whitesmoke',
         border: '1px solid #999',
         float: 'left',
