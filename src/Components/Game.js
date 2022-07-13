@@ -30,6 +30,8 @@ const useStyles = makeStyles(() => ({
   gameHeader: {
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
     margin: '-5px 0 20px -5px',
+    '& h1': { paddingRight: 8 },
+    '& button.bottomMargin': { marginBottom: 8 },
   },
 }));
 
@@ -64,6 +66,7 @@ const Game = () => {
 
   const classes = useStyles();
   const hasNarrowView = useMediaQuery(theme => theme.breakpoints.down(800));
+  const hasVeryNarrowView = useMediaQuery(theme => theme.breakpoints.down(325));
 
   const updateState = (update, resetInitial=false) => {
     setState(currentState => {
@@ -268,12 +271,12 @@ const Game = () => {
 
   return (
     <React.Fragment>
-      <AppBar className={classes.gameHeader} color="primary" position="static">
+      <AppBar className={classes.gameHeader} color="primary" position="static" style={hasVeryNarrowView ? { marginBottom: 0 } : null}>
         <ToolBar>
-          <Grid container justifyContent="space-between">
+          <Grid container justifyContent={hasVeryNarrowView ? "center" : "space-between"}>
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
           {hasNarrowView ?
-            <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)}>
+            <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
               {showResults ? 'Game' : 'Results'}
             </Button>
             :
@@ -313,6 +316,7 @@ const Game = () => {
             clearResults={clearResults}
             games={games}
             hasNarrowView={hasNarrowView}
+            hasVeryNarrowView={hasVeryNarrowView}
             playerOneIsX={playerOneIsX}
             results={results}
           />

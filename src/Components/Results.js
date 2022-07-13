@@ -66,8 +66,8 @@ const useStyles = makeStyles(() => ({
   },
   disabledBtn: { color: 'white !important', borderTop: '1px solid gray', borderBottom: '1px solid gray' },
   grooveLeft: { borderLeft: 'groove' },
-  chartWrapper: { height: 250, width: 250, margin: '0 auto' },
-  narrowChartWrapper: { height: 280, width: 280, margin: '0 auto' },
+  chartWrapper: { height: 280, width: 280, margin: '0 auto' },
+  narrowChartWrapper: { height: 220, width: 220, margin: '0 auto' },
 }));
 
 
@@ -187,7 +187,7 @@ const DisplayChart = ({ cName, data, params, type }) => {
   }
 };
 
-const Results = ({ clearResults, games, hasNarrowView, playerOneIsX, results }) => {
+const Results = ({ clearResults, games, hasNarrowView, hasVeryNarrowView, playerOneIsX, results }) => {
   const [chartType, setChartType] = useState('pie');
   const classes = useStyles();
 
@@ -196,10 +196,10 @@ const Results = ({ clearResults, games, hasNarrowView, playerOneIsX, results }) 
   if (!gameCount) return null;
 
   return (
-    <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults}>
+    <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults} style={hasVeryNarrowView ? { padding: 0, backgroundColor: 'unset' } : null}>
       <ResultsSummary classes={classes} summaryInfo={summaryInfo}/>
       <SelectChartType chartType={chartType} classes={classes} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
-      <DisplayChart cName={hasNarrowView ? classes.narrowChartWrapper : classes.chartWrapper} data={chartData} params={chartParams} type={chartType}/>
+      <DisplayChart cName={hasVeryNarrowView ? classes.narrowChartWrapper : classes.chartWrapper} data={chartData} params={chartParams} type={chartType}/>
     </div>
   );
 };
