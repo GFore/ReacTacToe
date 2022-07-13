@@ -7,6 +7,7 @@ const useStyles = makeStyles(() => {
     // whiteText: { color: theme.palette.common.white },
     gameBoard: {
       border: '3px rgba(218, 165, 32, 0.2) solid',
+      marginBottom: 20,
       '& button': {
         background: 'whitesmoke',
         border: '1px solid #999',
@@ -69,7 +70,7 @@ const Board = ({ colors, hasNarrowView, highlighted, /* mouseOverStep,*/ onClick
   }
 
   return (
-    <div className={classes.gameBoard}>
+    <div className={classes.gameBoard} style={hasNarrowView ? { marginBottom: 0 } : null }>
       {renderBoard()}
     </div>
   );

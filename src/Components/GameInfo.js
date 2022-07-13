@@ -12,11 +12,13 @@ import { colorP1, colorP2 } from './constants';
 
 const useStyles = makeStyles(() => ({
   gameInfo: {
-    height: 573,
     border: '4px rgba(218, 165, 32, 0.2) solid',
     display: 'flex',
+    flex: '1 1 auto',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    maxWidth: 300,
+    marginBottom: 20,
   },
   narrowGameInfo: {
     width: '75vw',

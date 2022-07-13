@@ -11,8 +11,9 @@ const useStyles = makeStyles(() => ({
   gameResults: {
     flex: '1 1 auto',
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
-    height: 573,
     padding: '10px 15px 0',
+    marginBottom: 20,
+    maxWidth: 500,
     '& h4': {
       textAlign: 'center',
       margin: '10px 0 15px',
@@ -21,9 +22,8 @@ const useStyles = makeStyles(() => ({
     },
   },
   narrowGameResults: {
-    flex: '1 1 auto',
+    borderRadius: 20,
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
-    width: '75vw',
     padding: '10px 15px 0',
     marginTop: 35,
     '& h4': {

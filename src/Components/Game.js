@@ -23,21 +23,12 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'darkslategray',
     color: 'whitesmoke',
     justifyContent: 'center',
-    alignItems: 'center',
     margin: 'auto',
-    paddingBottom: 20,
+    padding: 20,
   },
   gameHeader: {
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
     margin: '-5px 0 20px -5px',
-  },
-  statsContainer: {
-    display: 'flex',
-    width: 573,
-  },
-  narrowStatsContainer: {
-    display: 'flex',
-    flexDirection: 'column',
   },
 }));
 
@@ -71,7 +62,7 @@ const Game = () => {
   const [showResults, setShowResults] = useState(true);
 
   const classes = useStyles();
-  const hasNarrowView = useMediaQuery(theme => theme.breakpoints.down(750));
+  const hasNarrowView = useMediaQuery(theme => theme.breakpoints.down(800));
 
   const updateState = (update, resetInitial=false) => {
     setState(currentState => {
@@ -298,32 +289,29 @@ const Game = () => {
           squares={current.squares}
           // mouseOverStep={(i) => handleMouseOverStep(i)}
         />
-        <div className={hasNarrowView ? classes.narrowStatsContainer : classes.statsContainer}>
-          <GameInfo
+        <GameInfo
+          hasNarrowView={hasNarrowView}
+          historyLength={history.length}
+          moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
+          playerOneIsX={playerOneIsX}
+          sortMovesAscending={sortMovesAscending}
+          status={status}
+          switchPlayers={switchPlayers}
+          undoLastMove={undoLastMove}
+          updateState={(update, resetInitial) => updateState(update, resetInitial)}
+        />
+        {showResults &&
+          <Results
+            clearResults={clearResults}
+            games={games}
             hasNarrowView={hasNarrowView}
-            historyLength={history.length}
-            moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
             playerOneIsX={playerOneIsX}
-            sortMovesAscending={sortMovesAscending}
-            status={status}
-            switchPlayers={switchPlayers}
-            undoLastMove={undoLastMove}
-            updateState={(update, resetInitial) => updateState(update, resetInitial)}
+            results={results}
           />
-
-          {showResults &&
-            <Results
-              clearResults={clearResults}
-              games={games}
-              hasNarrowView={hasNarrowView}
-              playerOneIsX={playerOneIsX}
-              results={results}
-            />
-          }
-        </div>
+        }
       </div>
     </React.Fragment>
   );
 };
-  
+
 export default Game;
