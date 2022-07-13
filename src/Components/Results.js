@@ -67,7 +67,7 @@ const useStyles = makeStyles(() => ({
   },
   disabledBtn: { color: 'white !important', borderTop: '1px solid gray', borderBottom: '1px solid gray' },
   grooveLeft: { borderLeft: 'groove' },
-  chartWrapper: { height: 280, width: 280, margin: '0 auto' },
+  chartWrapper: { height: 250, width: 280, margin: '0 auto' },
   narrowChartWrapper: { height: 220, width: 220, margin: '0 auto' },
 }));
 

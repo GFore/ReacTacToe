@@ -277,7 +277,7 @@ const Game = () => {
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
           {hasNarrowView &&
             <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
-              {showResults ? 'Game' : 'Results'}
+              {showResults ? 'Play' : 'Results'}
             </Button>
           }
           {!hasNarrowView && !showResults &&
