@@ -25,7 +25,6 @@ const useStyles = makeStyles(() => ({
     borderRadius: 20,
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
     padding: '10px 15px 0',
-    marginTop: 35,
     '& h4': {
       textAlign: 'center',
       margin: '10px 0 15px',

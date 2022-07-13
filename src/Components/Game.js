@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ToolBar from '@material-ui/core/ToolBar';
@@ -271,35 +272,42 @@ const Game = () => {
         <ToolBar>
           <Grid container justifyContent="space-between">
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
-          <IconButton
-            color="inherit"
-            onClick={() => setShowResults(curr => !curr)}
-          >
-            <TableChartIcon />
-          </IconButton>
+          {hasNarrowView ?
+            <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)}>
+              {showResults ? 'Game' : 'Results'}
+            </Button>
+            :
+            <IconButton color="inherit" onClick={() => setShowResults(curr => !curr)}>
+              <TableChartIcon />
+            </IconButton>
+          }
           </Grid>
         </ToolBar>
       </AppBar>
       <div className={classes.game}>
-        <Board
-          colors={colors}
-          hasNarrowView={hasNarrowView}
-          highlighted={highlighted}
-          onClick={(i) => handleClick(i)}
-          squares={current.squares}
-          // mouseOverStep={(i) => handleMouseOverStep(i)}
-        />
-        <GameInfo
-          hasNarrowView={hasNarrowView}
-          historyLength={history.length}
-          moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
-          playerOneIsX={playerOneIsX}
-          sortMovesAscending={sortMovesAscending}
-          status={status}
-          switchPlayers={switchPlayers}
-          undoLastMove={undoLastMove}
-          updateState={(update, resetInitial) => updateState(update, resetInitial)}
-        />
+        {(!hasNarrowView || !showResults) &&
+          <Board
+            colors={colors}
+            hasNarrowView={hasNarrowView}
+            highlighted={highlighted}
+            onClick={(i) => handleClick(i)}
+            squares={current.squares}
+            // mouseOverStep={(i) => handleMouseOverStep(i)}
+          />
+        }
+        {(!hasNarrowView || !showResults) &&
+          <GameInfo
+            hasNarrowView={hasNarrowView}
+            historyLength={history.length}
+            moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
+            playerOneIsX={playerOneIsX}
+            sortMovesAscending={sortMovesAscending}
+            status={status}
+            switchPlayers={switchPlayers}
+            undoLastMove={undoLastMove}
+            updateState={(update, resetInitial) => updateState(update, resetInitial)}
+          />
+        }
         {showResults &&
           <Results
             clearResults={clearResults}
