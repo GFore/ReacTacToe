@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Close from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import NivoPieChart from './NivoPieChart.js';
 import NivoBarChart from './NivoBarChart.js';
 import NivoLineChart from './NivoLineChart.js';
@@ -17,7 +20,6 @@ const useStyles = makeStyles(() => ({
     '& h4': {
       textAlign: 'center',
       margin: '10px 0 15px',
-      opacity: 1,
       fontSize: 20,
     },
   },
@@ -28,7 +30,6 @@ const useStyles = makeStyles(() => ({
     '& h4': {
       textAlign: 'center',
       margin: '10px 0 15px',
-      opacity: 1,
       fontSize: 20,
     },
   },
@@ -144,9 +145,24 @@ const getDetails = (chartType, games, results, playerOneIsX) => {
   return { gameCount, summaryInfo, chartData, chartParams };
 };
 
-const ResultsSummary = ({ classes, summaryInfo }) => (
+const ResultsSummary = ({ classes, hideResults, showCloseBtn, summaryInfo }) => (
   <React.Fragment>
-    <h4>Game Results</h4>
+    <Grid container>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={8}><h4>Game Results</h4></Grid>
+      <Grid item xs={2} container justifyContent='flex-end'>
+        {showCloseBtn &&
+          <IconButton
+            color="inherit"
+            onClick={() => hideResults()}
+            title='Hide Results'
+            edge="end"
+          >
+            <Close />
+          </IconButton>
+        }
+      </Grid>
+    </Grid>
     {summaryInfo.map((row, i) => (
       <div key={`results_row_${i}`} className={classes.resultBlock} style={{backgroundColor: row.bgColor, color: row.fColor }}>
         <div><h5>{row.label1}</h5>{row.value1}</div>
@@ -187,7 +203,7 @@ const DisplayChart = ({ cName, data, params, type }) => {
   }
 };
 
-const Results = ({ clearResults, games, hasNarrowView, hasVeryNarrowView, playerOneIsX, results }) => {
+const Results = ({ clearResults, games, hasNarrowView, hasVeryNarrowView, hideResults, playerOneIsX, results }) => {
   const [chartType, setChartType] = useState('pie');
   const classes = useStyles();
 
@@ -197,7 +213,7 @@ const Results = ({ clearResults, games, hasNarrowView, hasVeryNarrowView, player
 
   return (
     <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults} style={hasVeryNarrowView ? { padding: 0, backgroundColor: 'unset' } : null}>
-      <ResultsSummary classes={classes} summaryInfo={summaryInfo}/>
+      <ResultsSummary classes={classes} hideResults={hideResults} showCloseBtn={!hasNarrowView} summaryInfo={summaryInfo}/>
       <SelectChartType chartType={chartType} classes={classes} clearResults={clearResults} handleOptionChange={e => setChartType(e)}/>
       <DisplayChart cName={hasVeryNarrowView ? classes.narrowChartWrapper : classes.chartWrapper} data={chartData} params={chartParams} type={chartType}/>
     </div>
