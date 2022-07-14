@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     '& button': {
       color: theme.palette.common.black,
-      background: 'whitesmoke',
       border: '1px solid #999',
       float: 'left',
       fontSize: 140,
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 0,
     '& button': {
       color: theme.palette.common.black,
-      background: 'whitesmoke',
       border: '1px solid #999',
       float: 'left',
       fontSize: 'max(70px, 20vw)',
@@ -41,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Square = ({ colors, hilite, onClick, value }) => (
-  <button onClick={onClick} style={hilite ? { backgroundColor: colors[value]} : null}>
+  <button onClick={onClick} style={{ backgroundColor: hilite ? colors[value] : 'whitesmoke', cursor: (!value && onClick) ? 'pointer' : 'default'}}>
     {value}
   </button>
 );
