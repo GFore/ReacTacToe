@@ -118,7 +118,7 @@ const Game = () => {
     const { stepNumber, xIsNext, games, playerOneIsX } = state;
     const history = state.history.slice(0, stepNumber + 1);
     const current = history[history.length -1];
-    const squares = current.squares.slice();  // returns a shallow copy of this.state.squares array into new variable squares
+    const squares = current.squares.slice();
 
     // return early if someone has won the game or if a Square is already filled
     if (calculateWinner(squares) || squares[i]) {
@@ -241,22 +241,6 @@ const Game = () => {
   const current = history[stepNumber];
   const winner = calculateWinner(current.squares);
   const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
-
-  const moveBtns = history.map((step, move) => {
-    if (move === 0) return null;
-
-    return (
-      <MoveButton
-        key={`move_${move}`}
-        handleClick={() => jumpTo(move)}
-        handleMouse={() => handleMouseOverStep(step.pos)}
-        hoverColor={colors[step.squares[step.pos]]}
-        label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
-        selected={stepNumber === move}
-        // disabled={!status.startsWith('Next')}
-      />
-    );
-  }).filter(x => x);
         
   let status;
   if (winner) {
@@ -266,8 +250,25 @@ const Game = () => {
     colors.X = colorTie;
     colors.O = colorTie;
   } else {
-    status = `Next: ${xIsNext ? 'X' : 'O'}`;
+    status = `Next Turn: ${xIsNext ? 'X' : 'O'}`;
   }
+
+  const gameCompleted = status && !status.startsWith('Next');
+
+  const moveBtns = history.map((step, move) => {
+    if (move === 0) return null;
+
+    return (
+      <MoveButton
+        key={`move_${move}`}
+        handleClick={!gameCompleted ? () => jumpTo(move) : null}
+        handleMouse={() => handleMouseOverStep(step.pos)}
+        hoverColor={colors[step.squares[step.pos]]}
+        label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
+        selected={stepNumber === move}
+      />
+    );
+  }).filter(x => x);
 
   return (
     <React.Fragment>
@@ -294,9 +295,8 @@ const Game = () => {
             colors={colors}
             hasNarrowView={hasNarrowView}
             highlighted={highlighted}
-            onClick={(i) => handleClick(i)}
+            onClick={gameCompleted ? null : (i) => handleClick(i)}
             squares={current.squares}
-            // mouseOverStep={(i) => handleMouseOverStep(i)}
           />
         }
         {(!hasNarrowView || !showResults) &&

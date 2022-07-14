@@ -44,7 +44,7 @@ const Square = ({ colors, hilite, onClick, value }) => (
   </button>
 );
 
-const Board = ({ colors, hasNarrowView, highlighted, /* mouseOverStep,*/ onClick, squares }) => {
+const Board = ({ colors, hasNarrowView, highlighted, onClick, squares }) => {
   const classes = useStyles();
 
   const renderSquare = (i) => (
@@ -52,7 +52,7 @@ const Board = ({ colors, hasNarrowView, highlighted, /* mouseOverStep,*/ onClick
       key={`square_${i}`}
       colors={colors}
       hilite={highlighted[i]}
-      onClick={() => onClick(i)}
+      onClick={onClick ? () => onClick(i) : null}
       value={squares[i]}
     />
   );
