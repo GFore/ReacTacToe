@@ -17,6 +17,8 @@ const useStyles = makeStyles((theme) => {
         fontWeight: 'bold',
         height: 190,
         width: 190,
+        // height: 'min(190px, 10vw)',
+        // width: 'min(190px, 10vw)',
         marginRight: -1,
         marginTop: -1,
         padding: 0,
@@ -25,8 +27,8 @@ const useStyles = makeStyles((theme) => {
     },
     narrowSquare: {
       fontSize: '90px !important',
-      height: '25vw !important',
-      width: '25vw !important',
+      height: 'max(90px, 25vw) !important',
+      width: 'max(90px, 25vw) !important',
     },
   });
 });
