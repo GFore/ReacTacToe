@@ -24,8 +24,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   narrowGameResults: {
+    flex: '1 1 auto',
     borderRadius: 20,
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
+    maxWidth: 500,
     padding: '10px 15px 0',
     '& h4': {
       textAlign: 'center',

@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
   gameHeader: {
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
-    margin: '-5px 0 20px -5px',
+    marginBottom: 20,
     '& h1': { paddingRight: 8 },
     '& button.bottomMargin': { marginBottom: 8 },
   },
@@ -271,7 +271,7 @@ const Game = () => {
 
   return (
     <React.Fragment>
-      <AppBar className={classes.gameHeader} color="primary" position="static" style={hasVeryNarrowView ? { marginBottom: 0 } : null}>
+      <AppBar className={classes.gameHeader} color="primary" position="static" style={hasVeryNarrowView ? { marginBottom: 10 } : null}>
         <ToolBar>
           <Grid container justifyContent={hasVeryNarrowView ? "center" : "space-between"}>
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
