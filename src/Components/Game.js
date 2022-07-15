@@ -200,15 +200,6 @@ const Game = () => {
     })
   });
 
-  // const showWinner = (line) => {
-  //   const newHighlighted = Array(9).fill(false);
-  //   line.forEach(i => newHighlighted[i] = true);
-  //   setState(currentState => ({
-  //     ...currentState,
-  //     highlighted: newHighlighted,
-  //   }));
-  // };
-
   const jumpTo = (step) => {
     setState(currentState => ({
       ...currentState,
@@ -270,6 +261,16 @@ const Game = () => {
     );
   }).filter(x => x);
 
+  const showWinner = () => {
+    const newHighlighted = Array(9).fill(false);
+
+    winner.winningLine.forEach(i => newHighlighted[i] = true);
+    setState(currentState => ({
+      ...currentState,
+      highlighted: newHighlighted,
+    }));
+  };
+
   return (
     <React.Fragment>
       <AppBar className={classes.gameHeader} color="primary" position="static" style={hasVeryNarrowView ? { marginBottom: 10 } : null}>
@@ -310,6 +311,7 @@ const Game = () => {
             switchPlayers={switchPlayers}
             undoLastMove={undoLastMove}
             updateState={(update, resetInitial) => updateState(update, resetInitial)}
+            showWinner={winner ? () => showWinner() : null}
           />
         }
         {showResults &&

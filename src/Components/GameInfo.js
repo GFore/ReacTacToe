@@ -78,7 +78,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, sortMovesAscending, status, switchPlayers, undoLastMove, updateState }) => {
+const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, showWinner, sortMovesAscending, status, switchPlayers, undoLastMove, updateState }) => {
   const classes = useStyles();
   const hasMoves = historyLength !== 1;
   const cannotUndo = !hasMoves || !status.startsWith('Next');
@@ -108,7 +108,7 @@ const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, sortMoves
         </Button>
       </ButtonGroup>
       <div className={hasNarrowView ? classes.narrowGameStatus : classes.gameStatus}>
-        <h2>{status}</h2>
+        <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
         <Grid container>
           <Grid item xs={3}></Grid>
           <Grid item xs={6}><h4>Moves</h4></Grid>
