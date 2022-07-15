@@ -195,7 +195,16 @@ const Game = () => {
 
   const handleMouseOverStep = (i) => setState(currentState => {
     const newHighlighted = Array(9).fill(false);
-    newHighlighted[i] = !currentState.highlighted[i];
+    newHighlighted[i] = true;
+    return ({
+      ...currentState,
+      highlighted: newHighlighted,
+    })
+  });
+
+  const handleMouseLeave = () => setState(currentState => {
+    const newHighlighted = Array(9).fill(false);
+    newHighlighted[history[stepNumber].pos] = true;
     return ({
       ...currentState,
       highlighted: newHighlighted,
@@ -258,6 +267,7 @@ const Game = () => {
         key={`move_${move}`}
         handleClick={() => jumpTo(gameCompleted, move)}
         handleMouse={() => handleMouseOverStep(step.pos)}
+        handleMouseLeave={handleMouseLeave}
         hoverColor={colors[step.squares[step.pos]]}
         label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
         selected={stepNumber === move}
@@ -272,6 +282,7 @@ const Game = () => {
     setState(currentState => ({
       ...currentState,
       highlighted: newHighlighted,
+      stepNumber: currentState.history.length - 1,
     }));
   };
 
