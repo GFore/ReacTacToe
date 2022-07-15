@@ -63,12 +63,14 @@ const Game = () => {
       }],
   });
   const [showResults, setShowResults] = useState(true);
+  const [gameCompleted, setGameCompleted] = useState(false);
 
   const classes = useStyles();
   const hasNarrowView = useMediaQuery(theme => theme.breakpoints.down(800));
   const hasVeryNarrowView = useMediaQuery(theme => theme.breakpoints.down(325));
 
   const updateState = (update, resetInitial=false) => {
+    if (resetInitial) setGameCompleted(false);
     setState(currentState => {
       if (resetInitial) {
         return ({
@@ -136,14 +138,11 @@ const Game = () => {
 
     if (winner) {
       winner.winningLine.forEach(i => newHighlighted[i] = true);
-      if (winner.player === 'X') {
-        result = playerOneIsX ? 'p1Wins' : 'p2Wins';
-      } else {
-        result = playerOneIsX ? 'p2Wins' : 'p1Wins';
-      }
-      if (result === 'p1Wins') {
+      if ((winner.player === 'X' && playerOneIsX) || (winner.player !== 'X' && !playerOneIsX)) {
+        result = 'p1Wins';
         p1++;
       } else {
+        result = 'p2Wins';
         p2++;
       }
     } else if (!squares.includes(null)) {
@@ -171,18 +170,21 @@ const Game = () => {
         localStorage.P2 = +localStorage.P2 + p2;
         localStorage.Ties = +localStorage.Ties + t;
       }
+      setGameCompleted(true);
     }
 
+    const newGames = games.slice();
+
     if (addGame) {
-      games.push(addGame);
+      newGames.push(addGame);
       if (canUseLocalStorage) {
-        localStorage.Games = JSON.stringify(games);
+        localStorage.Games = JSON.stringify(newGames);
       }
     }
 
     setState(currentState => ({
       ...currentState,
-      games: games,
+      games: newGames,
       highlighted: newHighlighted,
       history: history.concat([{ squares: squares, pos: i }]),
       results: { ...currentState.results, ...newResults },
@@ -200,11 +202,15 @@ const Game = () => {
     })
   });
 
-  const jumpTo = (step) => {
+  const jumpTo = (completed, step) => {
+    const update = { stepNumber: step };
+    if (!completed) {
+      update.xIsNext = (step % 2) === 0;
+    }
+
     setState(currentState => ({
       ...currentState,
-      stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      ...update,
     }));
   };
 
@@ -229,14 +235,14 @@ const Game = () => {
   };
 
   const { highlighted, history, stepNumber, playerOneIsX, xIsNext, results, games, sortMovesAscending } = state;
-  const current = history[stepNumber];
-  const winner = calculateWinner(current.squares);
+  const currentSquares = gameCompleted ? games[games.length - 1].squares : history[stepNumber].squares;
+  const winner = calculateWinner(currentSquares);
   const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
         
   let status;
   if (winner) {
     status = `${winner.player} WINS!`;
-  } else if (!current.squares.includes(null)) {
+  } else if (!currentSquares.includes(null)) {
     status = `Tie!`;
     colors.X = colorTie;
     colors.O = colorTie;
@@ -244,15 +250,13 @@ const Game = () => {
     status = `Next Turn: ${xIsNext ? 'X' : 'O'}`;
   }
 
-  const gameCompleted = status && !status.startsWith('Next');
-
   const moveBtns = history.map((step, move) => {
     if (move === 0) return null;
 
     return (
       <MoveButton
         key={`move_${move}`}
-        handleClick={!gameCompleted ? () => jumpTo(move) : null}
+        handleClick={() => jumpTo(gameCompleted, move)}
         handleMouse={() => handleMouseOverStep(step.pos)}
         hoverColor={colors[step.squares[step.pos]]}
         label={`${move}. ${step.squares[step.pos]} in ${step.pos}`}
@@ -297,7 +301,7 @@ const Game = () => {
             hasNarrowView={hasNarrowView}
             highlighted={highlighted}
             onClick={gameCompleted ? null : (i) => handleClick(i)}
-            squares={current.squares}
+            squares={currentSquares}
           />
         }
         {(!hasNarrowView || !showResults) &&
