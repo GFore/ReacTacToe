@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: 20,
   },
   narrowGameInfo: {
-    width: '75vw',
+    width: 'clamp(270px, 75vw, 510px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     fontSize: 30,
     padding: 0,
-    '& h2': { margin: '15px 0 10px' },
+    '& h2': { fontSize: 'clamp(28px, 8vw, 45px)', margin: '15px 0 10px' },
     '& h4': { margin: 0 },
     '& button': { padding: 2 },
   },
