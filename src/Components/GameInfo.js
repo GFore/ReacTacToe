@@ -109,22 +109,24 @@ const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, showWinne
       </ButtonGroup>
       <div className={hasNarrowView ? classes.narrowGameStatus : classes.gameStatus}>
         <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
-        <Grid container>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={6}><h4>Moves</h4></Grid>
-          <Grid item xs={3} container justifyContent='flex-end'>
-            {canSort &&
-              <IconButton
-                color="inherit"
-                disabled={!hasMoves}
-                onClick={() => updateState({sortMovesAscending: !sortMovesAscending})}
-                title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
-              >
-                <SwapVert />
-              </IconButton>
-            }
+        {moves.length > 0 &&
+          <Grid container>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}><h4>Moves</h4></Grid>
+            <Grid item xs={3} container justifyContent='flex-end'>
+              {canSort &&
+                <IconButton
+                  color="inherit"
+                  disabled={!hasMoves}
+                  onClick={() => updateState({sortMovesAscending: !sortMovesAscending})}
+                  title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
+                >
+                  <SwapVert />
+                </IconButton>
+              }
+            </Grid>
           </Grid>
-        </Grid>
+        }
       </div>
       <div className={hasNarrowView ? classes.narrowMoveList : classes.moveList}>
         {moves}
