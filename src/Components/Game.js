@@ -256,7 +256,7 @@ const Game = () => {
     colors.X = colorTie;
     colors.O = colorTie;
   } else {
-    status = `Next Turn: ${xIsNext ? 'X' : 'O'}`;
+    status = `Next Move: ${xIsNext ? 'X' : 'O'}`;
   }
 
   const moveBtns = history.map((step, move) => {

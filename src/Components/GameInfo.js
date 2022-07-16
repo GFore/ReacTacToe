@@ -1,6 +1,5 @@
 import React from 'react';
 import Power from '@material-ui/icons/PowerSettingsNew';
-import Shuffle from '@material-ui/icons/Shuffle';
 import SwapVert from '@material-ui/icons/SwapVert';
 import Undo from '@material-ui/icons/Undo';
 import { makeStyles } from '@material-ui/core/styles';
@@ -87,29 +86,26 @@ const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, showWinne
   return (
     <div className={hasNarrowView ? classes.narrowGameInfo : classes.gameInfo}>
       <ButtonGroup variant="contained" className={classes.gameBtnGroup}>
-        <Button title="Start New Game" onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}>
-          <Power />
+        <Button
+          title="Start New Game"
+          onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
+          startIcon={<Power />}
+        >
+          New Game
         </Button>
         <Button
           className={cannotUndo ? classes.grooveLeftShaded : classes.grooveLeft}
-          title="Undo Last Move"
+          title="Undo Move"
           onClick={undoLastMove}
           disabled={cannotUndo}
+          startIcon={<Undo />}
         >
-          <Undo />
-        </Button>
-        <Button
-          className={hasMoves ? classes.grooveLeftShaded : classes.grooveLeft}
-          title="Switch Players"
-          onClick={switchPlayers}
-          disabled={hasMoves}
-        >
-          <Shuffle />
+          Undo Move
         </Button>
       </ButtonGroup>
       <div className={hasNarrowView ? classes.narrowGameStatus : classes.gameStatus}>
         <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
-        {moves.length > 0 &&
+        {moves.length > 0 ?
           <Grid container>
             <Grid item xs={3}></Grid>
             <Grid item xs={6}><h4>Moves</h4></Grid>
@@ -126,6 +122,19 @@ const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, showWinne
               }
             </Grid>
           </Grid>
+          :
+          <Button
+            title={`Set ${playerOneIsX ? 'Player 2' : 'Player 1'} to X`}
+            onClick={switchPlayers}
+            variant="contained"
+            color="primary"
+          >
+            <Grid container direction='column' style={{ padding: 10 }}>
+              <Grid item style={{ fontSize: '1rem' }}>{`Player 1: ${playerOneIsX ? 'X' : 'O'}`}</Grid>
+              <Grid item style={{ fontSize: '1rem' }}>{`Player 2: ${playerOneIsX ? 'O' : 'X'}`}</Grid>
+              <Grid item style={{ fontSize: '.75rem' }}>{`(${hasNarrowView ? 'tap' : 'click'} to swap sides)`}</Grid>
+            </Grid>
+          </Button>
         }
       </div>
       <div className={hasNarrowView ? classes.narrowMoveList : classes.moveList}>
