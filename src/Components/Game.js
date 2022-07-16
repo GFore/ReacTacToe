@@ -294,13 +294,13 @@ const Game = () => {
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
           {hasNarrowView &&
             <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
-              {showResults ? 'Play' : 'Results'}
+              {showResults ? 'Game' : 'Results'}
             </Button>
           }
           {!hasNarrowView && !showResults &&
-            <IconButton color="inherit" onClick={() => setShowResults(true)} title="Show Game Results">
-              <TableChartIcon />
-            </IconButton>
+            <Button color="primary" variant='contained' onClick={() => setShowResults(true)}>
+              Show Results
+            </Button>
           }
           </Grid>
         </ToolBar>
