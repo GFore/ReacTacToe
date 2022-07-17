@@ -314,9 +314,8 @@ const Game = () => {
             highlighted={highlighted}
             onClick={gameCompleted ? null : (i) => handleClick(i)}
             playerOneIsX={playerOneIsX}
-            showWinner={winner ? () => showWinner() : null}
+            playing={status.startsWith('Next')}
             squares={currentSquares}
-            status={status}
             undoLastMove={undoLastMove}
             updateState={(update, resetInitial) => updateState(update, resetInitial)}
           />

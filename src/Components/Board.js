@@ -67,7 +67,7 @@ const Square = ({ colors, hilite, onClick, value }) => (
   </button>
 );
 
-const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, playerOneIsX, showWinner, squares, status, undoLastMove, updateState }) => {
+const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, playerOneIsX, playing,squares, undoLastMove, updateState }) => {
   const classes = useStyles();
 
   const renderSquare = (i) => (
@@ -105,7 +105,7 @@ const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, player
             title="Start New Game"
             onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
             startIcon={<Power />}
-            color={!status.startsWith('Next') ? 'primary' : 'default'}
+            color={playing ? 'default' : 'primary'}
           >
             {hasNarrowView ? 'New' : 'New Game'}
           </Button>
