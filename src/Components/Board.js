@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
   boardWrapper: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems:'center',
+    marginBottom: 20,
   },
   gameBoard: {
     border: '3px rgba(218, 165, 32, 0.2) solid',
@@ -47,7 +49,13 @@ const useStyles = makeStyles((theme) => ({
   },
   btnWrapper: {
     padding: '0 4px',
-    '& h2': { flex: '1 1 auto', margin: 0, textAlign: 'center' },
+    width: 573,
+    '& h2': { flex: '1 1 auto', margin: 0, textAlign: 'right' },
+  },
+  narrowBtnWrapper: {
+    padding: '0 4px',
+    width: 'clamp(273px, 75vw, 513px)',
+    '& h2': { flex: '1 1 auto', margin: 0, textAlign: 'right', fontSize: 'clamp(14px, 4vw, 21px)' },
   },
   grooveLeft: { borderLeft: 'groove' },
   grooveLeftShaded: { backgroundColor: '#e0e0e0 !important', borderLeft: 'groove' },
@@ -91,15 +99,15 @@ const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, player
       <div className={hasNarrowView ? classes.narrowGameBoard : classes.gameBoard}>
         {renderBoard()}
       </div>
-      <Grid container justifyContent='flex-start' className={classes.btnWrapper}>
-        <ButtonGroup variant="contained">
+      <Grid container alignItems='center' justifyContent='space-between' className={hasNarrowView ? classes.narrowBtnWrapper : classes.btnWrapper}>
+        <ButtonGroup variant="contained" size={hasNarrowView ? 'small' : 'medium'}>
           <Button
             title="Start New Game"
             onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
             startIcon={<Power />}
             color={!status.startsWith('Next') ? 'primary' : 'default'}
           >
-            {cannotUndo ? 'New Game' : 'Start Over'}
+            {hasNarrowView ? 'New' : 'New Game'}
           </Button>
           <Button
             className={cannotUndo ? classes.grooveLeftShaded : classes.grooveLeft}
@@ -107,12 +115,11 @@ const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, player
             onClick={undoLastMove}
             disabled={cannotUndo}
             startIcon={<Undo />}
-            // color="primary"
           >
-            Undo Move
+            {hasNarrowView ? 'Undo' : 'Undo Move'}
           </Button>
         </ButtonGroup>
-        <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
+        <h2>{`${playerOneIsX ? 'P1: X, P2: O' : 'P1: O, P2: X'}`}</h2>
       </Grid>
     </div>
   );

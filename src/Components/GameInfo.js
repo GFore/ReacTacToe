@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     maxWidth: 300,
+    minWidth: 150,
     marginBottom: 20,
   },
   narrowGameInfo: {
@@ -25,13 +26,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  gameBtnGroup: {
-    margin: 0,
-    '& button': { flexGrow: 1 },
-    '& button:hover': { color: 'rgb(104, 101, 9)'},
-  },
-  grooveLeft: { borderLeft: 'groove' },
-  grooveLeftShaded: { backgroundColor: '#e0e0e0 !important', borderLeft: 'groove' },
   gameStatus: {
     textAlign: 'center',
     fontSize: 20,
@@ -44,7 +38,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     fontSize: 30,
     padding: 0,
-    '& h2': { fontSize: 'clamp(28px, 8vw, 45px)', margin: '15px 0 10px' },
+    '& h2': { fontSize: 'clamp(28px, 8vw, 45px)', margin: '15px 0 20px' },
     '& h4': { margin: 0 },
     '& button': { padding: 2 },
   },
@@ -77,32 +71,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, showWinner, sortMovesAscending, status, switchPlayers, undoLastMove, updateState }) => {
+const GameInfo = ({ hasNarrowView, moves, playerOneIsX, showWinner, sortMovesAscending, status, switchPlayers, updateState }) => {
   const classes = useStyles();
-  const hasMoves = historyLength !== 1;
-  const cannotUndo = !hasMoves || !status.startsWith('Next');
   const canSort = moves.length > 1;
 
   return (
     <div className={hasNarrowView ? classes.narrowGameInfo : classes.gameInfo}>
-      <ButtonGroup variant="contained" className={classes.gameBtnGroup}>
-        <Button
-          title="Start New Game"
-          onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
-          startIcon={<Power />}
-        >
-          New Game
-        </Button>
-        <Button
-          className={cannotUndo ? classes.grooveLeftShaded : classes.grooveLeft}
-          title="Undo Move"
-          onClick={undoLastMove}
-          disabled={cannotUndo}
-          startIcon={<Undo />}
-        >
-          Undo Move
-        </Button>
-      </ButtonGroup>
       <div className={hasNarrowView ? classes.narrowGameStatus : classes.gameStatus}>
         <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
         {moves.length > 0 ?
@@ -113,7 +87,6 @@ const GameInfo = ({ hasNarrowView, historyLength, moves, playerOneIsX, showWinne
               {canSort &&
                 <IconButton
                   color="inherit"
-                  disabled={!hasMoves}
                   onClick={() => updateState({sortMovesAscending: !sortMovesAscending})}
                   title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
                 >

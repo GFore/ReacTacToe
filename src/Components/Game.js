@@ -324,15 +324,13 @@ const Game = () => {
         {(!hasNarrowView || !showResults) &&
           <GameInfo
             hasNarrowView={hasNarrowView}
-            historyLength={history.length}
             moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
             playerOneIsX={playerOneIsX}
+            showWinner={winner ? () => showWinner() : null}
             sortMovesAscending={sortMovesAscending}
             status={status}
             switchPlayers={switchPlayers}
-            undoLastMove={undoLastMove}
             updateState={(update, resetInitial) => updateState(update, resetInitial)}
-            showWinner={winner ? () => showWinner() : null}
           />
         }
         {showResults &&
