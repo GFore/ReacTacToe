@@ -1,10 +1,19 @@
 import React from 'react';
+import Power from '@material-ui/icons/PowerSettingsNew';
+import Undo from '@material-ui/icons/Undo';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
+  boardWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   gameBoard: {
     border: '3px rgba(218, 165, 32, 0.2) solid',
-    marginBottom: 20,
+    marginBottom: 0,
     '& button': {
       color: theme.palette.common.black,
       border: '1px solid #999',
@@ -36,6 +45,12 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
     },
   },
+  btnWrapper: {
+    padding: '0 4px',
+    '& h2': { flex: '1 1 auto', margin: 0, textAlign: 'center' },
+  },
+  grooveLeft: { borderLeft: 'groove' },
+  grooveLeftShaded: { backgroundColor: '#e0e0e0 !important', borderLeft: 'groove' },
 }));
 
 const Square = ({ colors, hilite, onClick, value }) => (
@@ -44,7 +59,7 @@ const Square = ({ colors, hilite, onClick, value }) => (
   </button>
 );
 
-const Board = ({ colors, hasNarrowView, highlighted, onClick, squares }) => {
+const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, playerOneIsX, showWinner, squares, status, undoLastMove, updateState }) => {
   const classes = useStyles();
 
   const renderSquare = (i) => (
@@ -72,8 +87,33 @@ const Board = ({ colors, hasNarrowView, highlighted, onClick, squares }) => {
   }
 
   return (
-    <div className={hasNarrowView ? classes.narrowGameBoard : classes.gameBoard}>
-      {renderBoard()}
+    <div className={classes.boardWrapper}>
+      <div className={hasNarrowView ? classes.narrowGameBoard : classes.gameBoard}>
+        {renderBoard()}
+      </div>
+      <Grid container justifyContent='flex-start' className={classes.btnWrapper}>
+        <ButtonGroup variant="contained">
+          <Button
+            title="Start New Game"
+            onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
+            startIcon={<Power />}
+            color={!status.startsWith('Next') ? 'primary' : 'default'}
+          >
+            {cannotUndo ? 'New Game' : 'Start Over'}
+          </Button>
+          <Button
+            className={cannotUndo ? classes.grooveLeftShaded : classes.grooveLeft}
+            title="Undo Move"
+            onClick={undoLastMove}
+            disabled={cannotUndo}
+            startIcon={<Undo />}
+            // color="primary"
+          >
+            Undo Move
+          </Button>
+        </ButtonGroup>
+        <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
+      </Grid>
     </div>
   );
 };

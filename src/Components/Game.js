@@ -308,11 +308,17 @@ const Game = () => {
       <div className={classes.game}>
         {(!hasNarrowView || !showResults) &&
           <Board
+            cannotUndo={history.length === 1 || !status.startsWith('Next')}
             colors={colors}
             hasNarrowView={hasNarrowView}
             highlighted={highlighted}
             onClick={gameCompleted ? null : (i) => handleClick(i)}
+            playerOneIsX={playerOneIsX}
+            showWinner={winner ? () => showWinner() : null}
             squares={currentSquares}
+            status={status}
+            undoLastMove={undoLastMove}
+            updateState={(update, resetInitial) => updateState(update, resetInitial)}
           />
         }
         {(!hasNarrowView || !showResults) &&
