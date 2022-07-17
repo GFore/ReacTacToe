@@ -13,6 +13,7 @@ import { colorP1, colorP2, colorTie, colorTextSecondary} from './constants';
 const useStyles = makeStyles(() => ({
   gameResults: {
     flex: '1 1 auto',
+    borderRadius: 20,
     backgroundColor: 'rgba(218, 165, 32, 0.2)',
     padding: '10px 15px 0',
     marginBottom: 20,

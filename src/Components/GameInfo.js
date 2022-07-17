@@ -1,17 +1,13 @@
 import React from 'react';
-import Power from '@material-ui/icons/PowerSettingsNew';
 import SwapVert from '@material-ui/icons/SwapVert';
-import Undo from '@material-ui/icons/Undo';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import { colorP1, colorP2 } from './constants';
 
 const useStyles = makeStyles(() => ({
   gameInfo: {
-    border: '4px rgba(218, 165, 32, 0.2) solid',
     display: 'flex',
     flex: '1 1 auto',
     flexDirection: 'column',
