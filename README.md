@@ -45,9 +45,9 @@ Nope - The additional enhancements below will allow me to build more React skill
 - ~~Add a title and favicon~~ **_[DONE]_**
 - ~~Improve typography responsiveness using min() and max() techniques for widths, heights, & font sizes were pertinent~~ **_[DONE]_**
 - ~~Disable buttons in move list once game is finished~~ **_[DONE]_**
-- Improve the mobile UX (e.g., tooltips for buttons only assist laptop/desktop users, so need to make buttons more self-explantory or add labels, and improve layout so it is obvious which player is X and which is O) **_[IN PROGRESS]_**
-- Change color of New Game button when a game ends so it's obvious to user how to start new game
-- Migrate FontAwesome icons from JS import and className method to React component version
+- ~~Improve the mobile UX (e.g., tooltips for buttons only assist laptop/desktop users, so need to make buttons more self-explantory or add labels, and improve layout so it is obvious which player is X and which is O)~~ **_[DONE]_**
+- ~~Change color of New Game button when a game ends so it's obvious to user how to start new game~~ **_[DONE]_**
+- Migrate FontAwesome icons from JS import and className method to React component version **_[IN PROGRESS]_**
 - Upgrade the app from React v16 to v18 to get practice doing that type of upgrade and dealing with any breaking changes or new and improved techniques v18 provides
 
 ---
