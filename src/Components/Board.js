@@ -47,16 +47,8 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
     },
   },
-  btnWrapper: {
-    padding: '0 4px',
-    width: 573,
-    '& h2': { flex: '1 1 auto', margin: 0, textAlign: 'right' },
-  },
-  narrowBtnWrapper: {
-    padding: '0 4px',
-    width: 'clamp(273px, 75vw, 513px)',
-    '& h2': { flex: '1 1 auto', margin: 0, textAlign: 'right', fontSize: 'clamp(14px, 4vw, 21px)' },
-  },
+  btnWrapper: { padding: '0 4px', width: 573 },
+  narrowBtnWrapper: { padding: '0 4px', width: 'clamp(273px, 75vw, 513px)' },
   grooveLeft: { borderLeft: 'groove' },
   grooveLeftShaded: { backgroundColor: '#e0e0e0 !important', borderLeft: 'groove' },
 }));
@@ -119,7 +111,10 @@ const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, player
             {hasNarrowView ? 'Undo' : 'Undo Move'}
           </Button>
         </ButtonGroup>
-        <h2>{`${playerOneIsX ? 'P1: X, P2: O' : 'P1: O, P2: X'}`}</h2>
+        <ButtonGroup variant="contained" size={hasNarrowView ? 'small' : 'medium'} disabled={true}>
+          <Button style={{ color: 'white', backgroundColor: playerOneIsX ? colors.X : colors.O }}>{playerOneIsX ? 'P1:X' : 'P1:O'}</Button>
+          <Button style={{ color: 'white', backgroundColor: playerOneIsX ? colors.O : colors.X }}>{playerOneIsX ? 'P2:O' : 'P2:X'}</Button>
+        </ButtonGroup>
       </Grid>
     </div>
   );
