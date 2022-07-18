@@ -35,6 +35,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     fontSize: 30,
     padding: 0,
+    '& > button': { fontSize: 'clamp(28px, 8vw, 45px)', margin: '20px 0'  },
     '& h2': { fontSize: 'clamp(28px, 8vw, 45px)', margin: '15px 0 20px' },
     '& h4': { margin: 0 },
     '& button.sortBtn': { padding: 2 },
