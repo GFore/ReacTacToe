@@ -26,8 +26,9 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     fontSize: 20,
     padding: '0px 15px',
+    '& > button': { fontSize: '1.5em', marginBottom: '0.83em' },
     '& h4': { margin: 0 },
-    '& button': { padding: 2 },
+    '& button.sortBtn': { padding: 2 },
   },
   narrowGameStatus: {
     width: '100%',
@@ -36,7 +37,7 @@ const useStyles = makeStyles(() => ({
     padding: 0,
     '& h2': { fontSize: 'clamp(28px, 8vw, 45px)', margin: '15px 0 20px' },
     '& h4': { margin: 0 },
-    '& button': { padding: 2 },
+    '& button.sortBtn': { padding: 2 },
   },
   moveList: {
     display: 'flex',
@@ -70,11 +71,26 @@ const useStyles = makeStyles(() => ({
 const GameInfo = ({ hasNarrowView, moves, playerOneIsX, showWinner, sortMovesAscending, status, switchPlayers, updateState }) => {
   const classes = useStyles();
   const canSort = moves.length > 1;
+  const colorX = playerOneIsX ? colorP1 : colorP2;
+  const colorO = playerOneIsX ? colorP2 : colorP1;
 
   return (
     <div className={hasNarrowView ? classes.narrowGameInfo : classes.gameInfo}>
       <div className={hasNarrowView ? classes.narrowGameStatus : classes.gameStatus}>
-        <h2 onClick={showWinner ? () => showWinner() : null} style={showWinner ? { cursor: 'pointer' } : null}>{status}</h2>
+        {(status.startsWith('X') || status.startsWith('O')) ?
+          <Button
+            onClick={showWinner}
+            size="large"
+            variant="contained"
+            color="secondary"
+            fullWidth
+            style={{ backgroundColor: status.startsWith('X') ? colorX : colorO }}
+          >
+            {status}
+          </Button>
+          :
+          <h2>{status}</h2>
+        }
         {moves.length > 0 ?
           <Grid container>
             <Grid item xs={3}></Grid>
@@ -82,6 +98,7 @@ const GameInfo = ({ hasNarrowView, moves, playerOneIsX, showWinner, sortMovesAsc
             <Grid item xs={3} container justifyContent='flex-end'>
               {canSort &&
                 <IconButton
+                  className="sortBtn"
                   color="inherit"
                   onClick={() => updateState({sortMovesAscending: !sortMovesAscending})}
                   title={sortMovesAscending ? "Sort Moves Descending" : "Sort Moves Ascending"}
