@@ -307,6 +307,7 @@ const Game = () => {
         {(!hasNarrowView || !showResults) &&
           <Board
             cannotUndo={history.length === 1 || !status.startsWith('Next')}
+            canSwitch={history.length === 1}
             colors={colors}
             hasNarrowView={hasNarrowView}
             highlighted={highlighted}
@@ -314,6 +315,7 @@ const Game = () => {
             playerOneIsX={playerOneIsX}
             playing={status.startsWith('Next')}
             squares={currentSquares}
+            switchPlayers={switchPlayers}
             undoLastMove={undoLastMove}
             updateState={(update, resetInitial) => updateState(update, resetInitial)}
           />

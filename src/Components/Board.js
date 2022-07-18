@@ -59,7 +59,7 @@ const Square = ({ colors, hilite, onClick, value }) => (
   </button>
 );
 
-const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, playerOneIsX, playing,squares, undoLastMove, updateState }) => {
+const Board = ({ cannotUndo, canSwitch, colors, hasNarrowView, highlighted, onClick, playerOneIsX, playing, squares, switchPlayers, undoLastMove, updateState }) => {
   const classes = useStyles();
 
   const renderSquare = (i) => (
@@ -103,7 +103,7 @@ const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, player
           </Button>
           <Button
             className={cannotUndo ? classes.grooveLeftShaded : classes.grooveLeft}
-            title="Undo Move"
+            title="Undo Last Move"
             onClick={undoLastMove}
             disabled={cannotUndo}
             startIcon={<Undo />}
@@ -111,9 +111,21 @@ const Board = ({ cannotUndo, colors, hasNarrowView, highlighted, onClick, player
             {hasNarrowView ? 'Undo' : 'Undo Move'}
           </Button>
         </ButtonGroup>
-        <ButtonGroup variant="contained" size={hasNarrowView ? 'small' : 'medium'} disabled={true}>
-          <Button style={{ color: 'white', backgroundColor: playerOneIsX ? colors.X : colors.O }}>{playerOneIsX ? 'P1:X' : 'P1:O'}</Button>
-          <Button style={{ color: 'white', backgroundColor: playerOneIsX ? colors.O : colors.X }}>{playerOneIsX ? 'P2:O' : 'P2:X'}</Button>
+        <ButtonGroup variant="contained" size={hasNarrowView ? 'small' : 'medium'} disabled={!canSwitch}>
+          <Button
+            onClick={switchPlayers}
+            style={{ color: 'white', backgroundColor: playerOneIsX ? colors.X : colors.O }}
+            title="Click to switch players"
+          >
+            {playerOneIsX ? 'P1:X' : 'P1:O'}
+          </Button>
+          <Button
+            onClick={switchPlayers}
+            style={{ color: 'white', backgroundColor: playerOneIsX ? colors.O : colors.X }}
+            title="Click to switch players"
+          >
+            {playerOneIsX ? 'P2:O' : 'P2:X'}
+          </Button>
         </ButtonGroup>
       </Grid>
     </div>
