@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
+import { colorP1, colorP2 } from './constants';
 
 const useStyles = makeStyles((theme) => ({
   boardWrapper: {
@@ -114,14 +115,14 @@ const Board = ({ cannotUndo, canSwitch, colors, hasNarrowView, highlighted, onCl
         <ButtonGroup variant="contained" size={hasNarrowView ? 'small' : 'medium'} disabled={!canSwitch}>
           <Button
             onClick={switchPlayers}
-            style={{ color: 'white', backgroundColor: playerOneIsX ? colors.X : colors.O }}
+            style={{ color: 'white', backgroundColor: colorP1 }}
             title="Click to switch players"
           >
             {playerOneIsX ? 'P1:X' : 'P1:O'}
           </Button>
           <Button
             onClick={switchPlayers}
-            style={{ color: 'white', backgroundColor: playerOneIsX ? colors.O : colors.X }}
+            style={{ color: 'white', backgroundColor: colorP2 }}
             title="Click to switch players"
           >
             {playerOneIsX ? 'P2:O' : 'P2:X'}
