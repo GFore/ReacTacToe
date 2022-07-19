@@ -291,12 +291,12 @@ const Game = () => {
         <ToolBar>
           <Grid container justifyContent={hasVeryNarrowView ? "center" : "space-between"}>
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
-          {hasNarrowView &&
+          {hasNarrowView && gameCount > 0 &&
             <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
               {showResults ? 'Game' : 'Results'}
             </Button>
           }
-          {!hasNarrowView && !showResults &&
+          {!hasNarrowView && !showResults && gameCount > 0 &&
             <Button color="primary" variant='contained' onClick={() => setShowResults(true)}>
               Show Results
             </Button>
