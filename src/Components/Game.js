@@ -112,6 +112,8 @@ const Game = () => {
           results: {p1Wins: 0, p2Wins: 0, ties: 0},
         }],
       });
+      setShowResults(false);
+      setGameCompleted(false);
     }
   };
 
