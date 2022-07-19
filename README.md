@@ -1,15 +1,18 @@
 ## Really, a tic-tac-toe game? Whatcha doin' here?
-Oh, just brushing up on React basics by building a simple tic-tac-toe game following the official [React documentation Tutorial](https://reactjs.org/tutorial/tutorial.html). This builds a web app that:
-- Lets you play tic-tac-toe,
+Just brushing up on React basics by building a simple tic-tac-toe game following the official [React documentation Tutorial](https://reactjs.org/tutorial/tutorial.html), which builds a web app that:
+- Allows playing tic-tac-toe,
+- Stores the sequence of moves as a game progresses,
 - Indicates when a player has won the game,
-- Stores a game’s history as a game progresses,
-- Allows players to review a game’s history and see previous versions of a game’s board.
+- Allows players to review a game’s history of moves and see previous versions of the game board.
 
-Following the tutorial results in the simple game seen at this [CodePen](https://codepen.io/gaearon/full/gWWZgR).
+[Initial game based on the tutorial](https://codepen.io/gaearon/full/gWWZgR)
+[My enhanced version of the app](https://gfore.github.io/ReacTacToe/)
+
+As detailed below, I continued well beyond the basic tutorial to build a richly detailed, responsive web app that tracks the history of games played in the browser (using localstorage), including basic data vizualizations that display the results in various chart types. The UI was built using the [Material-UI v4](https://v4.mui.com/) component library and the data viz components use the [Nivo](https://nivo.rocks/) (D3-based) library. The responsiveness of the app, which allows it to display smoothly on any width screen, was done using CSS flexbox for layout and `min()`, `max()`, and `clamp()` for responsive widths and font sizes. Finally, the app was deployed live using Github Pages.
 
 ---
 
-## Yeah, did ya stop there?
+## Did ya stop with just the tutorial?
 Nope. The tutorial ends with suggestions to make these improvements on your own in order to get more experience with React:
 1. ~~Display the location for each move in the move history list.~~ **_[DONE]_**
 2. ~~Bold the currently selected item in the move list.~~ **_[DONE]_**
