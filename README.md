@@ -6,6 +6,7 @@ Just brushing up on React basics by building a simple tic-tac-toe game following
 - Allows players to review a game’s history of moves and see previous versions of the game board.
 
 [Initial game based on the tutorial](https://codepen.io/gaearon/full/gWWZgR)
+
 [My enhanced version of the app](https://gfore.github.io/ReacTacToe/)
 
 As detailed below, I continued well beyond the basic tutorial to build a richly detailed, responsive web app that tracks the history of games played in the browser (using localstorage), including basic data vizualizations that display the results in various chart types. The UI was built using the [Material-UI v4](https://v4.mui.com/) component library and the data viz components use the [Nivo](https://nivo.rocks/) (D3-based) library. The responsiveness of the app, which allows it to display smoothly on any width screen, was done using CSS flexbox for layout and `min()`, `max()`, and `clamp()` for responsive widths and font sizes. Finally, the app was deployed live using Github Pages.
