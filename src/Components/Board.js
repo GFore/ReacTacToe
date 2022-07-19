@@ -95,19 +95,21 @@ const Board = ({ cannotUndo, canSwitch, colors, hasNarrowView, highlighted, onCl
       <Grid container alignItems='center' justifyContent='space-between' className={hasNarrowView ? classes.narrowBtnWrapper : classes.btnWrapper}>
         <ButtonGroup variant="contained" size={hasNarrowView ? 'small' : 'medium'}>
           <Button
-            title="Start New Game"
+            color={playing ? 'default' : 'primary'}
+            disabled={canSwitch}
             onClick={() => updateState({playerOneIsX: playerOneIsX}, true)}
             startIcon={<Power />}
-            color={playing ? 'default' : 'primary'}
+            style={canSwitch ? { backgroundColor: '#e0e0e0' } : null}
+            title="Start New Game"
           >
             {hasNarrowView ? 'New' : 'New Game'}
           </Button>
           <Button
             className={cannotUndo ? classes.grooveLeftShaded : classes.grooveLeft}
-            title="Undo Last Move"
-            onClick={undoLastMove}
             disabled={cannotUndo}
+            onClick={undoLastMove}
             startIcon={<Undo />}
+            title="Undo Last Move"
           >
             {hasNarrowView ? 'Undo' : 'Undo Move'}
           </Button>
