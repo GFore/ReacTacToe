@@ -209,11 +209,8 @@ const Results = ({ clearResults, gameCount, games, hasNarrowView, hasVeryNarrowV
   const [chartType, setChartType] = useState('pie');
   const classes = useStyles();
 
-  const detes = getDetails(chartType, gameCount, games, results, playerOneIsX);
-  const { summaryInfo, chartData, chartParams } = detes;
-  // console.log({detes});
-
   if (!gameCount) return null;
+  const { summaryInfo, chartData, chartParams } = getDetails(chartType, gameCount, games, results, playerOneIsX);
 
   return (
     <div className={hasNarrowView ? classes.narrowGameResults : classes.gameResults} style={hasVeryNarrowView ? { padding: 0, backgroundColor: 'unset' } : null}>
