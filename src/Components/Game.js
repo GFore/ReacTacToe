@@ -120,7 +120,7 @@ const Game = () => {
   const handleClick = (i) => {
     const { stepNumber, xIsNext, games, playerOneIsX } = state;
     const history = state.history.slice(0, stepNumber + 1);
-    const current = history[history.length -1];
+    const current = history[history.length - 1];
     const squares = current.squares.slice();
 
     // return early if someone has won the game or if a Square is already filled
@@ -248,6 +248,7 @@ const Game = () => {
   const currentSquares = gameCompleted ? games[games.length - 1].squares : history[stepNumber].squares;
   const winner = calculateWinner(currentSquares);
   const colors = playerOneIsX ? { X: colorP1, O: colorP2 } : { X: colorP2, O: colorP1 };
+  const canSwitch = history.length === 1;
         
   let status;
   if (winner) {
@@ -295,7 +296,7 @@ const Game = () => {
           <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
           {hasNarrowView && gameCount > 0 &&
             <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
-              {showResults ? 'Game' : 'Results'}
+              {showResults ? (canSwitch ? 'Play' : 'Game') : 'Results'}
             </Button>
           }
           {!hasNarrowView && !showResults && gameCount > 0 &&
@@ -309,8 +310,8 @@ const Game = () => {
       <div className={classes.game}>
         {(!hasNarrowView || !showResults) &&
           <Board
-            cannotUndo={history.length === 1 || !status.startsWith('Next')}
-            canSwitch={history.length === 1}
+            cannotUndo={canSwitch || !status.startsWith('Next')}
+            canSwitch={canSwitch}
             colors={colors}
             hasNarrowView={hasNarrowView}
             highlighted={highlighted}
