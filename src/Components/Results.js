@@ -75,8 +75,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-const getDetails = (chartType, games, results, playerOneIsX) => {
-  const gameCount = results.p1Wins + results.p2Wins + results.ties;
+const getDetails = (chartType, gameCount, games, results, playerOneIsX) => {
   const summaryInfo = [
     {
       bgColor: colorP1, fColor: 'inherit',
@@ -145,7 +144,7 @@ const getDetails = (chartType, games, results, playerOneIsX) => {
     }
   } 
 
-  return { gameCount, summaryInfo, chartData, chartParams };
+  return { summaryInfo, chartData, chartParams };
 };
 
 const ResultsSummary = ({ classes, hideResults, showCloseBtn, summaryInfo }) => (
@@ -206,11 +205,13 @@ const DisplayChart = ({ cName, data, params, type }) => {
   }
 };
 
-const Results = ({ clearResults, games, hasNarrowView, hasVeryNarrowView, hideResults, playerOneIsX, results }) => {
+const Results = ({ clearResults, gameCount, games, hasNarrowView, hasVeryNarrowView, hideResults, playerOneIsX, results }) => {
   const [chartType, setChartType] = useState('pie');
   const classes = useStyles();
 
-  const { gameCount, summaryInfo, chartData, chartParams } = getDetails(chartType, games, results, playerOneIsX);
+  const detes = getDetails(chartType, gameCount, games, results, playerOneIsX);
+  const { summaryInfo, chartData, chartParams } = detes;
+  // console.log({detes});
 
   if (!gameCount) return null;
 

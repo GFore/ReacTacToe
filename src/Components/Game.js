@@ -60,7 +60,8 @@ const Game = () => {
         results: {p1Wins: 0, p2Wins: 0, ties: 0},
       }],
   });
-  const [showResults, setShowResults] = useState(true);
+  const gameCount = Object.values(state.results).reduce((acc, val) => acc + val, 0);
+  const [showResults, setShowResults] = useState(gameCount > 0);
   const [gameCompleted, setGameCompleted] = useState(false);
 
   const classes = useStyles();
@@ -332,9 +333,10 @@ const Game = () => {
             updateState={(update, resetInitial) => updateState(update, resetInitial)}
           />
         }
-        {showResults &&
+        {showResults && gameCount > 0 &&
           <Results
             clearResults={clearResults}
+            gameCount={gameCount}
             games={games}
             hasNarrowView={hasNarrowView}
             hasVeryNarrowView={hasVeryNarrowView}
