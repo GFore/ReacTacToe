@@ -148,7 +148,7 @@ const getDetails = (chartType, gameCount, games, results, playerOneIsX) => {
 };
 
 const ResultsSummary = ({ classes, hideResults, showCloseBtn, summaryInfo }) => (
-  <React.Fragment>
+  <>
     <Grid container>
       <Grid item xs={2}></Grid>
       <Grid item xs={8}><h4>Game Results</h4></Grid>
@@ -172,7 +172,7 @@ const ResultsSummary = ({ classes, hideResults, showCloseBtn, summaryInfo }) => 
         <div><h5>{row.label3}</h5>{row.value3}</div>
       </div>
     ))}
-  </React.Fragment>
+  </>
 );
 
 const SelectChartType = ({ chartType, classes, clearResults, handleOptionChange }) => (

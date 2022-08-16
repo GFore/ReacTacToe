@@ -288,69 +288,67 @@ const Game = () => {
     }));
   };
 
-  return (
-    <React.Fragment>
-      <AppBar className={classes.gameHeader} color="primary" position="static" style={hasVeryNarrowView ? { marginBottom: 10 } : null}>
-        <ToolBar>
-          <Grid container justifyContent={hasVeryNarrowView ? "center" : "space-between"}>
-          <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
-          {hasNarrowView && gameCount > 0 &&
-            <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
-              {showResults ? (canSwitch ? 'Play' : 'Game') : 'Results'}
-            </Button>
-          }
-          {!hasNarrowView && !showResults && gameCount > 0 &&
-            <Button color="primary" variant='contained' onClick={() => setShowResults(true)}>
-              Show Results
-            </Button>
-          }
-          </Grid>
-        </ToolBar>
-      </AppBar>
-      <div className={classes.game}>
-        {(!hasNarrowView || !showResults) &&
-          <Board
-            cannotUndo={canSwitch || !status.startsWith('Next')}
-            canSwitch={canSwitch}
-            colors={colors}
-            hasNarrowView={hasNarrowView}
-            highlighted={highlighted}
-            onClick={gameCompleted ? null : (i) => handleClick(i)}
-            playerOneIsX={playerOneIsX}
-            playing={status.startsWith('Next')}
-            squares={currentSquares}
-            switchPlayers={switchPlayers}
-            undoLastMove={undoLastMove}
-            updateState={(update, resetInitial) => updateState(update, resetInitial)}
-          />
+  return <>
+    <AppBar className={classes.gameHeader} color="primary" position="static" style={hasVeryNarrowView ? { marginBottom: 10 } : null}>
+      <ToolBar>
+        <Grid container justifyContent={hasVeryNarrowView ? "center" : "space-between"}>
+        <Typography variant="h4" component="h1" color="inherit">Reac-Tac-Toe</Typography>
+        {hasNarrowView && gameCount > 0 &&
+          <Button color="primary" variant='contained' onClick={() => setShowResults(curr => !curr)} className={hasVeryNarrowView ? 'bottomMargin' : null}>
+            {showResults ? (canSwitch ? 'Play' : 'Game') : 'Results'}
+          </Button>
         }
-        {(!hasNarrowView || !showResults) &&
-          <GameInfo
-            hasNarrowView={hasNarrowView}
-            moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
-            playerOneIsX={playerOneIsX}
-            showWinner={winner ? () => showWinner() : null}
-            sortMovesAscending={sortMovesAscending}
-            status={status}
-            switchPlayers={switchPlayers}
-            updateState={(update, resetInitial) => updateState(update, resetInitial)}
-          />
+        {!hasNarrowView && !showResults && gameCount > 0 &&
+          <Button color="primary" variant='contained' onClick={() => setShowResults(true)}>
+            Show Results
+          </Button>
         }
-        {showResults && gameCount > 0 &&
-          <Results
-            clearResults={clearResults}
-            gameCount={gameCount}
-            games={games}
-            hasNarrowView={hasNarrowView}
-            hasVeryNarrowView={hasVeryNarrowView}
-            hideResults={() => setShowResults(false)}
-            playerOneIsX={playerOneIsX}
-            results={results}
-          />
-        }
-      </div>
-    </React.Fragment>
-  );
+        </Grid>
+      </ToolBar>
+    </AppBar>
+    <div className={classes.game}>
+      {(!hasNarrowView || !showResults) &&
+        <Board
+          cannotUndo={canSwitch || !status.startsWith('Next')}
+          canSwitch={canSwitch}
+          colors={colors}
+          hasNarrowView={hasNarrowView}
+          highlighted={highlighted}
+          onClick={gameCompleted ? null : (i) => handleClick(i)}
+          playerOneIsX={playerOneIsX}
+          playing={status.startsWith('Next')}
+          squares={currentSquares}
+          switchPlayers={switchPlayers}
+          undoLastMove={undoLastMove}
+          updateState={(update, resetInitial) => updateState(update, resetInitial)}
+        />
+      }
+      {(!hasNarrowView || !showResults) &&
+        <GameInfo
+          hasNarrowView={hasNarrowView}
+          moves={sortMovesAscending ? moveBtns : moveBtns.reverse()}
+          playerOneIsX={playerOneIsX}
+          showWinner={winner ? () => showWinner() : null}
+          sortMovesAscending={sortMovesAscending}
+          status={status}
+          switchPlayers={switchPlayers}
+          updateState={(update, resetInitial) => updateState(update, resetInitial)}
+        />
+      }
+      {showResults && gameCount > 0 &&
+        <Results
+          clearResults={clearResults}
+          gameCount={gameCount}
+          games={games}
+          hasNarrowView={hasNarrowView}
+          hasVeryNarrowView={hasVeryNarrowView}
+          hideResults={() => setShowResults(false)}
+          playerOneIsX={playerOneIsX}
+          results={results}
+        />
+      }
+    </div>
+  </>
 };
 
 export default Game;
