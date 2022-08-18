@@ -169,11 +169,6 @@ const Game = () => {
           ties: games[gameId-1].results.ties + t}
       }
 
-      if (canUseLocalStorage) {
-        localStorage.P1 = +localStorage.P1 + p1;
-        localStorage.P2 = +localStorage.P2 + p2;
-        localStorage.Ties = +localStorage.Ties + t;
-      }
       setGameCompleted(true);
     }
 
@@ -182,7 +177,12 @@ const Game = () => {
     if (addGame) {
       newGames.push(addGame);
       if (canUseLocalStorage) {
-        localStorage.Games = JSON.stringify(newGames);
+        localStorage.ReacTacToe = JSON.stringify({
+          P1: addGame.results.p1Wins,
+          P2: addGame.results.p2Wins,
+          Ties: addGame.results.ties,
+          Games: newGames,
+        });
       }
     }
 

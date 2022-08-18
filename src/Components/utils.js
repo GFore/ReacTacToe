@@ -55,6 +55,14 @@ export const initializeLocalStorage = () => {
     });
   }
 
+  if (Object.keys(localStorage).includes("P1")) {
+    // clear out old properties that are no longer used
+    delete localStorage.P1;
+    delete localStorage.P2;
+    delete localStorage.Ties;
+    delete localStorage.Games;
+  }
+
   return JSON.parse(localStorage.ReacTacToe);
 };
 
