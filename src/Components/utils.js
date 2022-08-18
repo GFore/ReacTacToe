@@ -2,7 +2,6 @@ const storageAvailable = () => {
   // Modified from MDN code found at:
   // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability
   let storage;
-  console.log('checking local storage');
   try {
     storage = window['localStorage'];
     const x = '__storage_test__';
@@ -55,6 +54,8 @@ export const initializeLocalStorage = () => {
       }]
     });
   }
+
+  return JSON.parse(localStorage.ReacTacToe);
 };
 
 export const calculateWinner = (squares) => {

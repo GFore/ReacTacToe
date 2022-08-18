@@ -33,7 +33,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-if (canUseLocalStorage) initializeLocalStorage();
 const initialState = {
   highlighted: Array(9).fill(false),
   history: [{squares: Array(9).fill(null)}],
@@ -43,23 +42,25 @@ const initialState = {
   xIsNext: true,
 };
 
+const storedResults = {
+  results: { p1Wins: 0, p2Wins: 0, ties: 0 },
+  games: [{
+    id: 0,
+    winner: '',
+    squares: [],
+    winningLine: '',
+    results: {p1Wins: 0, p2Wins: 0, ties: 0},
+  }],
+};
+
+if (canUseLocalStorage) {
+  const { Games, P1, P2, Ties } = initializeLocalStorage();
+  storedResults.games = [ ...Games ];
+  storedResults.results = { p1Wins: P1, p2Wins: P2, ties: Ties };
+};
+
 const Game = () => {
-  const [state, setState] = useState({
-    ...initialState,
-    results: { 
-      p1Wins: canUseLocalStorage ? Number(localStorage.P1) : 0,
-      p2Wins: canUseLocalStorage ? Number(localStorage.P2) : 0,
-      ties: canUseLocalStorage ? Number(localStorage.Ties) : 0,
-    },
-    games: canUseLocalStorage ? JSON.parse(localStorage.Games) :
-      [{
-        id: 0,
-        winner: '',
-        squares: [],
-        winningLine: '',
-        results: {p1Wins: 0, p2Wins: 0, ties: 0},
-      }],
-  });
+  const [state, setState] = useState({ ...initialState, ...storedResults });
   const gameCount = Object.values(state.results).reduce((acc, val) => acc + val, 0);
   const [showResults, setShowResults] = useState(gameCount > 0);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -89,16 +90,18 @@ const Game = () => {
   const clearResults = () => {
     if (window.confirm('Are you sure you want to delete the history of played games?')) {
       if(canUseLocalStorage) {
-        localStorage.P1 = 0;
-        localStorage.P2 = 0;
-        localStorage.Ties = 0;
-        localStorage.Games = JSON.stringify([{
-          id: 0,
-          winner: '',
-          squares: [],
-          winningLine: '',
-          results: {p1Wins: 0, p2Wins: 0, ties: 0},
-        }]);
+        localStorage.ReacTacToe = JSON.stringify({
+          P1: 0,
+          P2: 0,
+          Ties: 0,
+          Games: [{
+            id: 0,
+            winner: '',
+            squares: [],
+            winningLine: '',
+            results: {p1Wins: 0, p2Wins: 0, ties: 0},
+          }]
+        });
       }
   
       setState({
