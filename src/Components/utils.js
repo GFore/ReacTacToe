@@ -2,6 +2,7 @@ const storageAvailable = () => {
   // Modified from MDN code found at:
   // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability
   let storage;
+  console.log('checking local storage');
   try {
     storage = window['localStorage'];
     const x = '__storage_test__';
@@ -29,18 +30,30 @@ export const canUseLocalStorage = storageAvailable();
 
 export const initializeLocalStorage = () => {
   // Initialize localStorage if user has not played before
-  if (!localStorage.P1) localStorage.P1 = '0';
-  if (!localStorage.P2) localStorage.P2 = '0';
-  if (!localStorage.Ties) localStorage.Ties = '0';
+  // The following if() is for handling the previous method of storing data to localStorage as 
+  // separate properties and moves that existing data into a single ReacTacToe object property
+  if (localStorage.P1 && localStorage.Games && !localStorage.ReacTacToe) {
+    localStorage.ReacTacToe = JSON.stringify({
+      P1: +localStorage.P1,
+      P2: +localStorage.P2,
+      Ties: +localStorage.Ties,
+      Games: JSON.parse(localStorage.Games)
+    });
+  }
 
-  if (!localStorage.Games) {
-    localStorage.Games = JSON.stringify([{
-      id: 0,
-      winner: '',
-      squares: [],
-      winningLine: '',
-      results: {p1Wins: 0, p2Wins: 0, ties: 0},
-    }]);
+  if (!localStorage.ReacTacToe) {
+    localStorage.ReacTacToe = JSON.stringify({
+      P1: 0,
+      P2: 0,
+      Ties: 0,
+      Games: [{
+        id: 0,
+        winner: '',
+        squares: [],
+        winningLine: '',
+        results: {p1Wins: 0, p2Wins: 0, ties: 0},
+      }]
+    });
   }
 };
 
