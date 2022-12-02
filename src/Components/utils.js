@@ -1,6 +1,12 @@
+// @ts-check
+
+/**
+ * Function to check if localStorage is available in user's browser. Modified from MDN code found at:
+ * https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability
+ * 
+ * @returns {boolean | undefined}
+ */
 const storageAvailable = () => {
-  // Modified from MDN code found at:
-  // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability
   let storage;
   try {
     storage = window['localStorage'];
@@ -25,10 +31,20 @@ const storageAvailable = () => {
   }
 }
 
-export const canUseLocalStorage = storageAvailable();
+/** @type {boolean} */
+export const canUseLocalStorage = !!storageAvailable();
 
+/**
+ * Function that initializes the localStorage if user has not played before (i.e., has no history
+ * stored in localStorage). Creates a ReacTacToe object property in localStorage containing these properties:
+ * - P1: numnber of wins for Player 1
+ * - P2: numnber of wins for Player 2
+ * - Ties: number of tie games
+ * - Games: array containing a results object for each game that has been played (used for charting)
+ * 
+ * @returns {object}
+ */
 export const initializeLocalStorage = () => {
-  // Initialize localStorage if user has not played before
   // The following if() is for handling the previous method of storing data to localStorage as 
   // separate properties and moves that existing data into a single ReacTacToe object property
   if (localStorage.P1 && localStorage.Games && !localStorage.ReacTacToe) {
@@ -66,6 +82,14 @@ export const initializeLocalStorage = () => {
   return JSON.parse(localStorage.ReacTacToe);
 };
 
+/**
+ * Function that determines whether the last move was a winning move by examining the
+ * current game squares to see if one of the 8 possible winning combinations exists. 
+ * If a winner is found, returns an object detailing the win, otherwise returns undefined.
+ * 
+ * @param {string[]} squares 
+ * @returns {object | undefined}
+ */
 export const calculateWinner = (squares) => {
   const winningLines = [
     [0, 1, 2],
